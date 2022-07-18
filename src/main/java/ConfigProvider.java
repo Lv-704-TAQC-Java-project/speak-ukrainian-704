@@ -1,7 +1,12 @@
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
+import java.util.Arrays;
+import java.util.List;
+
 public interface ConfigProvider {
+    Config config = readConfig();
+
     static Config readConfig(){
         return ConfigFactory.systemProperties().hasPath("testProfile")
                 ? ConfigFactory.load(ConfigFactory.systemProperties().getString("testProfile"))
@@ -14,5 +19,7 @@ public interface ConfigProvider {
 
     String USER_2_EMAIL = readConfig().getString("users.notValidUser.email");
     String USER_2_PASSWORD = readConfig().getString("users.notValidUser.password");
+
+//    List<Integer> TOWNS = readConfig().getIntList(Arrays.toString("towns.numberOfClubs".split(" ")));
 
 }

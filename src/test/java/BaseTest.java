@@ -16,8 +16,8 @@ abstract public class BaseTest {
 
     @BeforeTest
     public void setUpBeforeClass() {
-        chromedriver().setup();
-        //System.setProperty("webdriver.chrome.driver", "E:/chromedriver.exe");
+//        chromedriver().setup();
+        System.setProperty("webdriver.chrome.driver", "E:/chromedriver.exe");
     }
 
     @BeforeMethod
