@@ -17,11 +17,14 @@ public class BaseTest {
     protected String validUserEmail;
     protected String validUserPassword;
 
-    @BeforeTest
+    @BeforeClass
     public void beforeClass() {
-        chromedriver().setup();
         setConfigProperties();
+    }
 
+    @BeforeTest
+    public void beforeTest() {
+        chromedriver().setup();
     }
 
     @BeforeMethod
