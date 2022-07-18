@@ -5,7 +5,7 @@ public class DataProviderLogin {
     @DataProvider(name = "validLoginAdmin")
     public static Object[][] validLoginAdmin() {
         return new Object[][]{
-                {"admin@gmail.com", "admin"}
+                {"admin@gmail.com", "admin", "Ви успішно залогувалися!"}
         };
     }
 

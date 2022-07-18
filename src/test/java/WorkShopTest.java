@@ -7,15 +7,10 @@ import java.util.List;
 
 public class WorkShopTest extends BaseMethods {
 
-    @Test(priority = 1)
-    public void linkIsDisplayed() {
-        WorkShopPageElements elements = new WorkShopPageElements(driver);
-        elements.getWorkShopLink().isDisplayed();
-    }
-
-    @Test(priority = 2)
+    @Test
     public void workShopCount() {
-        WorkShopPageElements elements = new WorkShopPageElements(driver);
+        WorkShop elements = new WorkShop(driver);
+        getHomepage();
         elements.clickWorkShopLink();
         List<WebElement> items = driver.findElements(By.xpath("//div[@class = 'ant-card-body']"));
         int amount = items.size();
