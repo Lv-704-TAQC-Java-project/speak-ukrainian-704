@@ -11,7 +11,7 @@ public class ClubsTest extends BaseTest {
     @Test
     public void testCountOfClubs() {
         MainPage mainPage = new MainPage();
-        List<Integer> numbers = mainPage.goToTowns();
+        List<Integer> numbers = mainPage.countClubs();
         Assert.assertEquals(numbers, new ArrayList<>(Arrays.asList(366, 7 , 9)));
     }
 

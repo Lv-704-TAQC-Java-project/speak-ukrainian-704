@@ -55,7 +55,7 @@ public class MainPage extends BasePage {
         return failMsg.getText();
     }
 
-    public List<Integer> goToTowns(){
+    public List<Integer> countClubs(){
         WebDriverWait wait = new WebDriverWait(driver, 5);
         List<Integer> listOfNumbersOfClubs = new ArrayList<>();
         selectTown.click();
