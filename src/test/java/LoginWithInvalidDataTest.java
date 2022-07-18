@@ -9,7 +9,7 @@ public class LoginWithInvalidDataTest extends BaseMethods {
         elements.clickUserIcon().clickEnterButton();
         elements.inputEmail(email).inputPassword(password);
         elements.clickLoginButton();
-        String actual = elements.getInvalidDataMessage();
+        String actual = elements.getInvalidDataMessage().getText();
         Assert.assertEquals(actual, expectedMessage);
     }
 }

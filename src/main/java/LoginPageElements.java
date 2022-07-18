@@ -1,3 +1,4 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,70 +8,83 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPageElements {
 
     WebDriver driver;
+    private WebElement userIcon;
+    private WebElement userLogInIcon;
+    private WebElement userProfileLink;
+    private WebElement advancedSearch;
+    private WebElement enterButton;
+    private WebElement emailField;
+    private WebElement passwordField;
+    private WebElement loginButton;
+    private WebElement invalidDataMessage;
 
     public LoginPageElements(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
     }
 
-    @FindBy(how = How.XPATH, using = "//div[@class = 'ant-dropdown-trigger user-profile']")
-    private WebElement userIcon;
-
     public WebElement getUserIcon() {
+        if (userIcon != null) {
+            userIcon = driver.findElement(By.xpath("//div[@class = 'ant-dropdown-trigger user-profile']"));
+        }
         return userIcon;
     }
 
-    @FindBy(how = How.XPATH, using = "//div[2]/" +
-            "span[@class = 'ant-avatar ant-avatar-lg ant-avatar-circle ant-avatar-image ant-avatar-icon avatarIfLogin']")
-    private WebElement userLogInIcon;
-
-    @FindBy(how = How.XPATH, using = "//li/span/a[text() = 'Мій Профіль ']")
-    private WebElement userProfileLink;
+    public WebElement getUserLogInIcon() {
+        if (userLogInIcon != null) {
+            userLogInIcon = driver.findElement(By.xpath("//div[2]/" +
+                    "span[@class = 'ant-avatar ant-avatar-lg ant-avatar-circle ant-avatar-image ant-avatar-icon avatarIfLogin']"));
+        }
+        return userLogInIcon;
+    }
 
     public WebElement getUserProfileLink() {
+        if (userProfileLink != null) {
+            userProfileLink = driver.findElement(By.xpath("//div[2]/" +
+                    "span[@class = 'ant-avatar ant-avatar-lg ant-avatar-circle ant-avatar-image ant-avatar-icon avatarIfLogin']"));
+        }
         return userProfileLink;
     }
 
-    @FindBy(how = How.XPATH, using = "//div[@class = 'search-icon-group']/span[@class = 'anticon anticon-control advanced-icon']")
-    private WebElement advancedSearch;
-
     public WebElement getAdvancedSearch() {
+        if (advancedSearch != null) {
+            advancedSearch = driver.findElement(By.xpath("//div[@class = 'search-icon-group']/span[@class = 'anticon anticon-control advanced-icon']"));
+        }
         return advancedSearch;
     }
 
-    @FindBy(how = How.XPATH, using = "//div/ul/li/span/div[text() = 'Увійти']")
-    private WebElement enterButton;
-
     public WebElement getEnterButton() {
+        if (enterButton != null) {
+            enterButton = driver.findElement(By.xpath("//div/ul/li/span/div[text() = 'Увійти']"));
+        }
         return enterButton;
     }
 
-    @FindBy(how = How.XPATH, using =  "//div/span/input[@id = 'basic_email']")
-    private WebElement emailField;
-
     public WebElement getEmailField() {
+        if (emailField != null) {
+            emailField = driver.findElement(By.xpath("//div/span/input[@id = 'basic_email']"));
+        }
         return emailField;
     }
 
-    @FindBy(how = How.XPATH, using =  "//div/span/input[@id = 'basic_password']")
-    private WebElement passwordField;
-
     public WebElement getPasswordField() {
+        if (passwordField != null) {
+            passwordField = driver.findElement(By.xpath("//div/span/input[@id = 'basic_password']"));
+        }
         return passwordField;
     }
 
-    @FindBy(how = How.XPATH, using =  "//div/button/span[text() = 'Увійти']")
-    private WebElement loginButton;
-
     public WebElement getLoginButton() {
+        if (loginButton != null) {
+            loginButton = driver.findElement(By.xpath("//div/button/span[text() = 'Увійти']"));
+        }
         return loginButton;
     }
 
-    @FindBy(how = How.XPATH, using =  "//div[@class='ant-message']//span[contains(text(), 'невірний пароль')]")
-    private WebElement invalidDataMessage;
-
-    public String getInvalidDataMessage() {
-        return invalidDataMessage.getText();
+    public WebElement getInvalidDataMessage() {
+        if (invalidDataMessage != null) {
+            invalidDataMessage = driver.findElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'невірний пароль')]"));
+        }
+        return invalidDataMessage;
     }
 
     public LoginPageElements clickUserIcon() {
@@ -78,8 +92,9 @@ public class LoginPageElements {
         return this;
     }
 
-    public void clickEnterButton() {
-       enterButton.click();
+    public LoginPageElements clickEnterButton() {
+        enterButton.click();
+        return this;
     }
 
     public LoginPageElements inputEmail(String email) {
@@ -89,24 +104,23 @@ public class LoginPageElements {
         return this;
     }
 
-    public void inputPassword(String password) {
+    public LoginPageElements inputPassword(String password) {
         passwordField.click();
         passwordField.clear();
         passwordField.sendKeys(password);
+        return this;
     }
 
-    public void clickLoginButton() {
+    public LoginPageElements clickLoginButton() {
+
         loginButton.click();
+        return this;
     }
 
-    public void clickUserLogInIcon() {
+    public LoginPageElements clickUserLogInIcon() {
         userLogInIcon.click();
+        return this;
     }
-
-
-
-
-
 
 
 }
