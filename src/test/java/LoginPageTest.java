@@ -10,7 +10,7 @@ public class LoginPageTest extends BaseMethods {
         getHomepage();
         elements.clickUserIcon().clickEnterButton().inputEmail(email).inputPassword(password)
                 .clickLoginButton();
-        String actual = waitVisibilityOfElement(elements.getValidDataMessage()).getText();
+        String actual = elements.getValidDataMessage().getText();
         elements.clickUserLogInIcon().getUserProfileLink().isDisplayed();
         Assert.assertEquals(actual, expectedMessage);
     }
@@ -20,7 +20,7 @@ public class LoginPageTest extends BaseMethods {
         getHomepage();
         LoginPage elements = new LoginPage(driver);
         elements.clickUserIcon().clickEnterButton().inputEmail(email).inputPassword(password).clickLoginButton();
-        String actual = waitVisibilityOfElement(elements.getInvalidDataMessage()).getText();
+        String actual = elements.getInvalidDataMessage().getText();
         Assert.assertEquals(actual, expectedMessage);
     }
 

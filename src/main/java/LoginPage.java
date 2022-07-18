@@ -75,6 +75,7 @@ public class LoginPage extends BasePage{
         if (invalidDataMessage == null) {
             invalidDataMessage = driver.findElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'невірний пароль')]"));
         }
+        waitVisibilityOfElement(invalidDataMessage);
         return invalidDataMessage;
     }
 
@@ -82,6 +83,7 @@ public class LoginPage extends BasePage{
         if (validDataMessage == null) {
             validDataMessage = driver.findElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'успішно')]"));
         }
+        waitVisibilityOfElement(validDataMessage);
         return validDataMessage;
     }
 
