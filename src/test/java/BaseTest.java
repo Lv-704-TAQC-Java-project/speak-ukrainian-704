@@ -7,9 +7,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
-import java.util.concurrent.TimeUnit;
-
-import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
+import java.time.Duration;
 
 abstract public class BaseTest {
     public static WebDriver driver;
@@ -23,11 +21,10 @@ abstract public class BaseTest {
     @BeforeMethod
     public void setUp(){
         driver = new ChromeDriver();
-        waitForPageToLoad();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
-        driver.get(ConfigProvider.URL);
         waitForPageToLoad();
+        driver.get(ConfigProvider.URL);
         BasePage.setDriver(driver);
     }
 

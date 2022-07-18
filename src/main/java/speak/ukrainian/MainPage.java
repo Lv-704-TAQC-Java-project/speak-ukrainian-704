@@ -56,7 +56,7 @@ public class MainPage extends BasePage {
     }
 
     public List<Integer> goToTowns(){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 5);
         List<Integer> listOfNumbersOfClubs = new ArrayList<>();
         selectTown.click();
         List<WebElement> towns = driver.findElements(By.xpath("//li[contains(@class, 'ant-dropdown')]"));

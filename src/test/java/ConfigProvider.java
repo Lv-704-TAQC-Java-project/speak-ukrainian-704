@@ -1,9 +1,6 @@
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
-import java.util.Arrays;
-import java.util.List;
-
 public interface ConfigProvider {
     Config config = readConfig();
 
