@@ -17,7 +17,7 @@ public class ExtendedSearchTest extends BaseTest {
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(clubsPage.extendedSearchSideMenuIsVisible(), "Extended search menu is not visible");
-        softAssert.assertEquals(clubsPage.getNumberOfChildrenOfClubListSection(), 2, "Extended aside and main sections");
+        softAssert.assertTrue(clubsPage.extendedAsideMenuIsVisible(), "Extended aside section is not visible");
         softAssert.assertEquals(clubsPage.getExtendedSearchHeaderText().trim(), "Розширений пошук", "Extended search header title is not as expected");
         softAssert.assertTrue(clubsPage.citySelectionInputIsVisible(), "City selector is not visible");
         softAssert.assertTrue(clubsPage.basicCategoriesCheckListIsVisible(), "Basic category check list is not visible");
@@ -26,6 +26,6 @@ public class ExtendedSearchTest extends BaseTest {
         clubsPage
                 .clickExtendedSearchButton();
 
-        Assert.assertEquals(clubsPage.getNumberOfChildrenOfClubListSection(), 1);
+        Assert.assertFalse(clubsPage.extendedAsideMenuIsVisible(), "Extended aside section is visible");
     }
 }

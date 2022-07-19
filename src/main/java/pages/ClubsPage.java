@@ -1,8 +1,9 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+
+import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 
@@ -42,7 +43,7 @@ public class ClubsPage extends BasePage {
 
     public WebElement getAsideExtendedSearchMenu() {
         if (asideExtendedSearchMenu == null) {
-            waitVisibilityOfElement(By.xpath("//aside"));
+            waitVisibilityOfElement(By.xpath("//aside"), Duration.ofSeconds(2));
             asideExtendedSearchMenu = driver.findElement(By.xpath("//aside"));
         }
         return asideExtendedSearchMenu;
@@ -129,7 +130,11 @@ public class ClubsPage extends BasePage {
         return this;
     }
 
-    public int getNumberOfChildrenOfClubListSection() {
-        return getClubListSectionChildren().size();
+    public boolean extendedAsideMenuIsVisible() {
+        try {
+            return getAsideExtendedSearchMenu().isDisplayed();
+        } catch (StaleElementReferenceException e) {
+            return false;
+        }
     }
 }
