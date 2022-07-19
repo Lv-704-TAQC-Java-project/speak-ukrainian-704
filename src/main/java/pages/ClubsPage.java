@@ -3,21 +3,21 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class ClubsPage extends BasePage {
-    private final String listOfClubsOnCurrentPagePath = "//div[contains(@class, 'ant-card-body')]";
-    private final String listOfPaginationPagesPath = "//li[contains(@class, 'ant-pagination-item')]";
-    private final String asideExtendedSearchMenuPath = "//aside";
-    private final String extendedSearchHeaderPath = "//div[@class='club-list-label']";
-    private final String citySelectorPath = "//input[@id='basic_cityName']//ancestor::div[contains(@class, 'selector')]";
-    private final String basicCategoriesCheckListPath = "//div[@id='basic_categoriesName']";
-    private final String extendedSearchButtonPath = "//span[contains(@class, 'anticon-control')]";
-    private final String clubListSectionChildrenPath = "//section[contains(@class, 'club-list')]/child::*";
     private List<WebElement> listOfClubsOnCurrentPage;
-    private List<WebElement> listOfPaginationPages;
+    private List<WebElement> listOfPagesInPagination;
+    private List<WebElement> clubListSectionChildren;
+    private WebElement asideExtendedSearchMenu;
     private WebElement lastPaginationPage;
+    private WebElement extendedSearchHeader;
+    private WebElement citySelector;
+    private WebElement basicCategoriesCheckList;
+    private WebElement extendedSearchButton;
 
 
     public ClubsPage(WebDriver driver) {
@@ -29,21 +29,82 @@ public class ClubsPage extends BasePage {
         return this;
     }
 
+    public List<WebElement> getListOfClubsOnCurrentPage() {
+        listOfClubsOnCurrentPage = driver.findElements(By.xpath("//div[contains(@class, 'ant-card-body')]"));
+        return listOfClubsOnCurrentPage;
+    }
+
+    public List<WebElement> getListOfPagesInPagination() {
+        waitVisibilityOfElements(By.xpath("//li[contains(@class, 'ant-pagination-item')]"));
+        if (listOfPagesInPagination == null) {
+            listOfPagesInPagination = driver.findElements(By.xpath("//li[contains(@class, 'ant-pagination-item')]"));
+        }
+        return listOfPagesInPagination;
+    }
+
+    public WebElement getAsideExtendedSearchMenu() {
+        waitVisibilityOfElement(By.xpath("//aside"));
+        if (asideExtendedSearchMenu == null) {
+            asideExtendedSearchMenu = driver.findElement(By.xpath("//aside"));
+        }
+        return asideExtendedSearchMenu;
+    }
+
+    public WebElement getExtendedSearchHeader() {
+        if (extendedSearchHeader == null) {
+            extendedSearchHeader = driver.findElement(By.xpath("//div[@class='club-list-label']"));
+        }
+        return extendedSearchHeader;
+    }
+
+    public WebElement getCitySelector() {
+        if (citySelector == null) {
+            citySelector = driver.findElement(By.xpath("//input[@id='basic_cityName']//ancestor::div[contains(@class, 'selector')]"));
+        }
+        return citySelector;
+    }
+
+    public WebElement getBasicCategoriesCheckList() {
+        if (basicCategoriesCheckList == null) {
+            basicCategoriesCheckList = driver.findElement(By.xpath("//div[@id='basic_categoriesName']"));
+        }
+        return basicCategoriesCheckList;
+    }
+
+    public WebElement getExtendedSearchButton() {
+        waitVisibilityOfElement(By.xpath("//span[contains(@class, 'anticon-control')]"));
+        if (extendedSearchButton == null) {
+            extendedSearchButton = driver.findElement(By.xpath("//span[contains(@class, 'anticon-control')]"));
+        }
+        return extendedSearchButton;
+    }
+
+    public List<WebElement> getClubListSectionChildren() {
+        clubListSectionChildren = driver.findElements(By.xpath("//section[contains(@class, 'club-list')]/child::*"));
+        return clubListSectionChildren;
+    }
+
     public int getQuantityOfClubsOnCurrentPage() {
-        listOfClubsOnCurrentPage = driver.findElements(By.xpath(listOfClubsOnCurrentPagePath));
-        return listOfClubsOnCurrentPage.size();
+        return getListOfClubsOnCurrentPage().size();
+    }
+
+    public String getExtendedSearchHeaderText() {
+        return getExtendedSearchHeader().getText();
+    }
+
+    public WebElement getLastPaginationPage() {
+        if (lastPaginationPage == null) {
+            lastPaginationPage = getListOfPagesInPagination().get(getListOfPagesInPagination().size() - 1);
+        }
+        return lastPaginationPage;
     }
 
     public int getNumberOfPagesInPagination() {
-        listOfPaginationPages = driver.findElements(By.xpath(listOfPaginationPagesPath));
-        lastPaginationPage = listOfPaginationPages.get(listOfPaginationPages.size() - 1);
-        return Integer.parseInt(lastPaginationPage.findElement(By.xpath("./child::a")).getText());
+        return Integer.parseInt(getLastPaginationPage().findElement(By.xpath("./child::a")).getText());
     }
 
     public ClubsPage openLastPageInPagination() {
-        listOfPaginationPages = driver.findElements(By.xpath(listOfPaginationPagesPath));
-        lastPaginationPage = listOfPaginationPages.get(listOfPaginationPages.size() - 1);
-        lastPaginationPage.click();
+        getLastPaginationPage().click();
         return this;
     }
 
@@ -54,32 +115,23 @@ public class ClubsPage extends BasePage {
     }
 
     public boolean extendedSearchSideMenuIsVisible() {
-        waitVisibilityOfElement(By.xpath(asideExtendedSearchMenuPath));
-        WebElement asideExtendedSearchMenu = driver.findElement(By.xpath(asideExtendedSearchMenuPath));
-        return asideExtendedSearchMenu.isDisplayed();
-    }
-
-    public String getExtendedSearchHeader() {
-        WebElement extendedSearchHeader = driver.findElement(By.xpath(extendedSearchHeaderPath));
-        return extendedSearchHeader.getText();
+        return getAsideExtendedSearchMenu().isDisplayed();
     }
 
     public boolean citySelectionInputIsVisible() {
-        return driver.findElement(By.xpath(citySelectorPath)).isDisplayed();
+        return getCitySelector().isDisplayed();
     }
 
     public boolean basicCategoriesCheckListIsVisible() {
-        return driver.findElement(By.xpath(basicCategoriesCheckListPath)).isDisplayed();
+        return getBasicCategoriesCheckList().isDisplayed();
     }
 
     public ClubsPage clickExtendedSearchButton() {
-        waitVisibilityOfElement(By.xpath(extendedSearchButtonPath));
-        WebElement extendedSearchButton = driver.findElement(By.xpath(extendedSearchButtonPath));
-        action.moveToElement(extendedSearchButton).click().perform();
+        action.moveToElement(getExtendedSearchButton()).click().perform();
         return this;
     }
 
     public int getNumberOfChildrenOfClubListSection() {
-        return driver.findElements(By.xpath(clubListSectionChildrenPath)).size();
+        return getClubListSectionChildren().size();
     }
 }
