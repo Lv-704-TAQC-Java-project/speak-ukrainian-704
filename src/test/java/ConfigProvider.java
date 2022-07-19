@@ -17,6 +17,7 @@ public interface ConfigProvider {
     String USER_2_EMAIL = readConfig().getString("users.notValidUser.email");
     String USER_2_PASSWORD = readConfig().getString("users.notValidUser.password");
 
+    
 //    List<Integer> TOWNS = readConfig().getIntList(Arrays.toString("towns.numberOfClubs".split(" ")));
 
 }

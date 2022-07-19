@@ -1,3 +1,4 @@
+import base.BasePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import speak.ukrainian.MainPage;
@@ -10,7 +11,7 @@ public class ClubsTest extends BaseTest {
 
     @Test
     public void testCountOfClubs() {
-        MainPage mainPage = new MainPage();
+        MainPage mainPage = new MainPage(BasePage.driver);
         List<Integer> numbers = mainPage.countClubs();
         Assert.assertEquals(numbers, new ArrayList<>(Arrays.asList(366, 7 , 9)));
     }

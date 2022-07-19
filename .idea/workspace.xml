@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6443c2ce-225f-4bb8-b6f3-6bc9cc76ecb2" name="Changes" comment="Implementation of testLogin">
-      <change afterPath="$PROJECT_DIR$/src/main/java/speak/ukrainian/ClubsPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ClubsTest.java" afterDir="false" />
+    <list default="true" id="6443c2ce-225f-4bb8-b6f3-6bc9cc76ecb2" name="Changes" comment="Renaming of countClubs">
+      <change afterPath="$PROJECT_DIR$/src/test/java/AdvancedSearchTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ConfigProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ConfigProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/base/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/BasePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/speak/ukrainian/ClubsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/speak/ukrainian/ClubsPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/speak/ukrainian/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/speak/ukrainian/MainPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ClubsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ClubsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/LoginTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,28 +64,21 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\yaryn\IdeaProjects\speak-ukrainian-704\src\main\java" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="speak.ukrainian" />
       <recent name="base" />
       <recent name="readProperties" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.ClubsTest.testCountOfClubs">
-    <configuration name="LoginTest.successfulLoginTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG.AdvancedSearchTest.isDisplayed">
+    <configuration name="AdvancedSearchTest.isDisplayed" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="speak-ukrainian-704" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="LoginTest" />
-      <option name="METHOD_NAME" value="successfulLoginTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ClubsTest.testCountOfClubs" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="speak-ukrainian-704" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ClubsTest" />
-      <option name="METHOD_NAME" value="testCountOfClubs" />
+      <option name="MAIN_CLASS_NAME" value="AdvancedSearchTest" />
+      <option name="METHOD_NAME" value="isDisplayed" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -92,11 +86,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginTest" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="AdvancedSearchTest.isDisplayedNegative" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="speak-ukrainian-704" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="LoginTest" />
-      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="MAIN_CLASS_NAME" value="AdvancedSearchTest" />
+      <option name="METHOD_NAME" value="isDisplayedNegative" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AdvancedSearchTest.successfulLoginTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="speak-ukrainian-704" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="AdvancedSearchTest" />
+      <option name="METHOD_NAME" value="successfulLoginTest" />
+      <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
       <method v="2">
@@ -128,19 +135,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.LoginTest.successfulLoginTest" />
+      <item itemvalue="TestNG.AdvancedSearchTest.isDisplayedNegative" />
       <item itemvalue="TestNG.LoginTest.unsuccessfulLoginTest" />
+      <item itemvalue="TestNG.AdvancedSearchTest.successfulLoginTest" />
+      <item itemvalue="TestNG.AdvancedSearchTest.isDisplayed" />
       <item itemvalue="TestNG.LoginTest.successfulLoginTest" />
-      <item itemvalue="TestNG.ClubsTest.testCountOfClubs" />
-      <item itemvalue="TestNG.LoginTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.ClubsTest.testCountOfClubs" />
-        <item itemvalue="TestNG.LoginTest" />
+        <item itemvalue="TestNG.AdvancedSearchTest.isDisplayed" />
         <item itemvalue="TestNG.LoginTest.successfulLoginTest" />
+        <item itemvalue="TestNG.AdvancedSearchTest.successfulLoginTest" />
         <item itemvalue="TestNG.LoginTest.unsuccessfulLoginTest" />
-        <item itemvalue="JUnit.LoginTest.successfulLoginTest" />
+        <item itemvalue="TestNG.AdvancedSearchTest.isDisplayedNegative" />
       </list>
     </recent_temporary>
   </component>
@@ -152,7 +159,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1658072946868</updated>
-      <workItem from="1658072950035" duration="36160000" />
+      <workItem from="1658072950035" duration="58759000" />
     </task>
     <task id="LOCAL-00001" summary="Implementation of testLogin">
       <created>1658099752340</created>
@@ -161,7 +168,35 @@
       <option name="project" value="LOCAL" />
       <updated>1658099752340</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Implementation of clubs test">
+      <created>1658114202446</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1658114202446</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Some changes">
+      <created>1658142025317</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1658142025317</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Some changes">
+      <created>1658142050023</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1658142050023</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Renaming of countClubs">
+      <created>1658142400912</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1658142400912</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,7 +215,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Implementation of testLogin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementation of testLogin" />
+    <MESSAGE value="Implementation of clubs test" />
+    <MESSAGE value="Some changes" />
+    <MESSAGE value="Renaming of countClubs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renaming of countClubs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -191,8 +229,23 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/speak/ukrainian/MainPage.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="10" />
+          <line>113</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/AdvancedSearchTest.java</url>
+          <line>9</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/LoginTest.java</url>
+          <line>8</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/LoginTest.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

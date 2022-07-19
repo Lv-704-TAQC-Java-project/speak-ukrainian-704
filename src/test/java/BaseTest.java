@@ -21,11 +21,10 @@ abstract public class BaseTest {
     @BeforeMethod
     public void setUp(){
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        new BasePage(driver);
         driver.manage().window().maximize();
-        waitForPageToLoad();
         driver.get(ConfigProvider.URL);
-        BasePage.setDriver(driver);
     }
 
     @AfterMethod
