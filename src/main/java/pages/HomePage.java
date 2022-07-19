@@ -14,8 +14,8 @@ public class HomePage extends BasePage {
     private WebElement passwordFieldWrapper;
     private WebElement submitLoginFormBtn;
     private WebElement userProfileBtn;
-    private WebElement successLoginPopupMessage;
-    private WebElement mistakeLoginPopupMessage;
+    private WebElement loginSuccessPopupMessage;
+    private WebElement loginErrorPopupMessage;
     private WebElement clubsLinkBtn;
     private WebElement extendedSearchButton;
 
@@ -95,20 +95,20 @@ public class HomePage extends BasePage {
         return userProfileBtn;
     }
 
-    public WebElement getSuccessLoginPopupMessage() {
-        if (successLoginPopupMessage == null) {
+    public WebElement getLoginSuccessPopupMessage() {
+        if (loginSuccessPopupMessage == null) {
             waitVisibilityOfElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'успішно')]"));
-            successLoginPopupMessage = driver.findElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'успішно')]"));
+            loginSuccessPopupMessage = driver.findElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'успішно')]"));
         }
-        return successLoginPopupMessage;
+        return loginSuccessPopupMessage;
     }
 
-    public WebElement getMistakeLoginPopupMessage() {
-        if (mistakeLoginPopupMessage == null) {
+    public WebElement getLoginErrorPopupMessage() {
+        if (loginErrorPopupMessage == null) {
             waitVisibilityOfElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'невірний')]"));
-            mistakeLoginPopupMessage = driver.findElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'невірний')]"));
+            loginErrorPopupMessage = driver.findElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'невірний')]"));
         }
-        return mistakeLoginPopupMessage;
+        return loginErrorPopupMessage;
     }
 
     public WebElement getClubsLinkBtn() {

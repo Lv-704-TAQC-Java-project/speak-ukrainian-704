@@ -28,7 +28,7 @@ public class LoginTest extends BaseTest {
                 .fillInPassword(password)
                 .submitLoginForm();
 
-        String errorMessageText = homePage.getMistakeLoginPopupMessage().getText();
+        String errorMessageText = homePage.getLoginErrorPopupMessage().getText();
         Assert.assertTrue(errorMessageText.contains("невірний"));
     }
 
@@ -75,7 +75,7 @@ public class LoginTest extends BaseTest {
                 .fillInPassword(password)
                 .submitLoginForm();
 
-        String successMessageText = homePage.getSuccessLoginPopupMessage().getText();
+        String successMessageText = homePage.getLoginSuccessPopupMessage().getText();
         Assert.assertTrue(successMessageText.contains("успішно"));
     }
 
