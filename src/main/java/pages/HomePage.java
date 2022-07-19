@@ -1,24 +1,23 @@
 package pages;
 
 import org.openqa.selenium.*;
-import org.testng.Assert;
 
 
 public class HomePage extends BasePage {
     private final String HOME_URL = BASE_URL;
-    WebElement profileMenu;
-    WebElement loginProfileMenuBtn;
-    WebElement loginModal;
-    WebElement emailInputField;
-    WebElement emailInputFieldError;
-    WebElement passwordField;
-    WebElement passwordFieldError;
-    WebElement submitLoginFormBtn;
-    WebElement userProfileBtn;
-    WebElement successLoginPopupMessage;
-    WebElement mistakeLoginPopupMessage;
-    WebElement clubsLinkBtn;
-    WebElement extendedSearchButton;
+    private WebElement profileMenu;
+    private WebElement loginProfileMenuBtn;
+    private WebElement loginModal;
+    private WebElement emailInputField;
+    private WebElement emailInputFieldWrapper;
+    private WebElement passwordField;
+    private WebElement passwordFieldWrapper;
+    private WebElement submitLoginFormBtn;
+    private WebElement userProfileBtn;
+    private WebElement successLoginPopupMessage;
+    private WebElement mistakeLoginPopupMessage;
+    private WebElement clubsLinkBtn;
+    private WebElement extendedSearchButton;
 
 
     public HomePage(WebDriver driver) {
@@ -56,12 +55,12 @@ public class HomePage extends BasePage {
         return emailInputField;
     }
 
-    public WebElement getEmailInputFieldError() {
-        if (emailInputFieldError == null) {
+    public WebElement getEmailInputFieldWrapper() {
+        if (emailInputFieldWrapper == null) {
             waitVisibilityOfElement(By.xpath("//input[@id='basic_email']/parent::span"));
-            emailInputFieldError = driver.findElement(By.xpath("//input[@id='basic_email']/parent::span"));
+            emailInputFieldWrapper = driver.findElement(By.xpath("//input[@id='basic_email']/parent::span"));
         }
-        return emailInputFieldError;
+        return emailInputFieldWrapper;
     }
 
     public WebElement getPasswordField() {
@@ -72,12 +71,12 @@ public class HomePage extends BasePage {
         return passwordField;
     }
 
-    public WebElement getPasswordFieldError() {
-        if (passwordFieldError == null) {
+    public WebElement getPasswordFieldWrapper() {
+        if (passwordFieldWrapper == null) {
             waitVisibilityOfElement(By.xpath("//input[@id='basic_password']/parent::span"));
-            passwordFieldError = driver.findElement(By.xpath("//input[@id='basic_password']/parent::span"));
+            passwordFieldWrapper = driver.findElement(By.xpath("//input[@id='basic_password']/parent::span"));
         }
-        return passwordFieldError;
+        return passwordFieldWrapper;
     }
 
     public WebElement getSubmitLoginFormBtn() {
@@ -138,11 +137,6 @@ public class HomePage extends BasePage {
         return this;
     }
 
-    public HomePage checkLoginModalVisible() {
-        Assert.assertTrue(getLoginModal().isDisplayed());
-        return this;
-    }
-
     public HomePage fillInEmail(String email) {
         getEmailInputField().sendKeys(email);
         return this;
@@ -155,28 +149,6 @@ public class HomePage extends BasePage {
 
     public HomePage submitLoginForm() {
         getSubmitLoginFormBtn().click();
-        return this;
-    }
-
-    public HomePage checkEmailInputBorder(boolean emailError) {
-        Assert.assertTrue(getEmailInputFieldError().getAttribute("class")
-                .contains(emailError ? "wrapper-status-error" : "wrapper-status-success"));
-        return this;
-    }
-
-    public HomePage checkPasswordInputBorder(boolean passwordError) {
-        Assert.assertTrue(getPasswordFieldError().getAttribute("class")
-                .contains(passwordError ? "wrapper-status-error" : "wrapper-status-success"));
-        return this;
-    }
-
-    public HomePage checkSuccessLoginMessageIsShown() {
-        Assert.assertTrue(getSuccessLoginPopupMessage().getText().contains("успішно"));
-        return this;
-    }
-
-    public HomePage checkMistakeLoginMessageIsShown() {
-        Assert.assertTrue(getMistakeLoginPopupMessage().getText().contains("невірний"));
         return this;
     }
 

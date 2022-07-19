@@ -12,7 +12,7 @@ import java.time.Duration;
 
 public class BasePage {
     protected final String BASE_URL = "https://speak-ukrainian.org.ua/dev/";
-    protected final Duration TIMEOUT = Duration.ofSeconds(10);
+    protected final Duration TIMEOUT = Duration.ofSeconds(12);
 
     WebDriver driver;
     protected final Actions action;

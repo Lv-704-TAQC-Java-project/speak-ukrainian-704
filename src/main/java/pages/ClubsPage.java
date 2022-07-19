@@ -3,8 +3,6 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,16 +33,16 @@ public class ClubsPage extends BasePage {
     }
 
     public List<WebElement> getListOfPagesInPagination() {
-        waitVisibilityOfElements(By.xpath("//li[contains(@class, 'ant-pagination-item')]"));
         if (listOfPagesInPagination == null) {
+            waitVisibilityOfElements(By.xpath("//li[contains(@class, 'ant-pagination-item')]"));
             listOfPagesInPagination = driver.findElements(By.xpath("//li[contains(@class, 'ant-pagination-item')]"));
         }
         return listOfPagesInPagination;
     }
 
     public WebElement getAsideExtendedSearchMenu() {
-        waitVisibilityOfElement(By.xpath("//aside"));
         if (asideExtendedSearchMenu == null) {
+            waitVisibilityOfElement(By.xpath("//aside"));
             asideExtendedSearchMenu = driver.findElement(By.xpath("//aside"));
         }
         return asideExtendedSearchMenu;

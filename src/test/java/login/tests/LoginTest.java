@@ -1,13 +1,16 @@
 package login.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+import pages.HomePage;
 import pages.ProfilePage;
 
 
 public class LoginTest extends BaseTest {
 
-    @DataProvider (name = "invalidLoginData")
+    @DataProvider(name = "invalidLoginData")
     public Object[][] invalidLoginData() {
         return new Object[][]{
                 {validUserEmail, "a"},
@@ -16,19 +19,20 @@ public class LoginTest extends BaseTest {
         };
     }
 
-    @Test (dataProvider = "invalidLoginData")
+    @Test(dataProvider = "invalidLoginData")
     public void checkMistakeMessageIsShownAfterLoginWithInvalidData(String email, String password) {
-        getHomePage()
+        HomePage homePage = getHomePage()
                 .openProfileMenu()
                 .openLoginModal()
-                .checkLoginModalVisible()
                 .fillInEmail(email)
                 .fillInPassword(password)
-                .submitLoginForm()
-                .checkMistakeLoginMessageIsShown();
+                .submitLoginForm();
+
+        String errorMessageText = homePage.getMistakeLoginPopupMessage().getText();
+        Assert.assertTrue(errorMessageText.contains("невірний"));
     }
 
-    @DataProvider (name = "loginInputFieldsBordersTestData")
+    @DataProvider(name = "loginInputFieldsBordersTestData")
     public Object[][] loginInputFieldsBordersTestData() {
         return new Object[][]{
                 {"", "", true, true},
@@ -37,44 +41,49 @@ public class LoginTest extends BaseTest {
         };
     }
 
-    @Test (dataProvider = "loginInputFieldsBordersTestData")
+    @Test(dataProvider = "loginInputFieldsBordersTestData")
     public void checkLoginInputFieldsBorders(String email, String password, boolean emailError, boolean passwordError) {
-        getHomePage()
+        HomePage homePage = getHomePage()
                 .openProfileMenu()
                 .openLoginModal()
-                .checkLoginModalVisible()
                 .fillInEmail(email)
                 .fillInPassword(password)
-                .submitLoginForm()
-                .checkEmailInputBorder(emailError)
-                .checkPasswordInputBorder(passwordError);
+                .submitLoginForm();
+
+        String getCssClassOfEmailWrapper = homePage.getEmailInputFieldWrapper().getAttribute("class");
+        String getCssClassOfPasswordWrapper = homePage.getPasswordFieldWrapper().getAttribute("class");
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(getCssClassOfEmailWrapper.contains(emailError ? "wrapper-status-error" : "wrapper-status-success"));
+        softAssert.assertTrue(getCssClassOfPasswordWrapper.contains(passwordError ? "wrapper-status-error" : "wrapper-status-success"));
+        softAssert.assertAll();
     }
 
-    @DataProvider (name = "validLoginData")
+    @DataProvider(name = "validLoginData")
     public Object[][] validLoginData() {
         return new Object[][]{
                 {validUserEmail, validUserPassword}
         };
     }
 
-    @Test (dataProvider = "validLoginData")
+    @Test(dataProvider = "validLoginData")
     public void checkSuccessMessageIsShownAfterLogin(String email, String password) {
-        getHomePage()
+        HomePage homePage = getHomePage()
                 .openProfileMenu()
                 .openLoginModal()
-                .checkLoginModalVisible()
                 .fillInEmail(email)
                 .fillInPassword(password)
-                .submitLoginForm()
-                .checkSuccessLoginMessageIsShown();
+                .submitLoginForm();
+
+        String successMessageText = homePage.getSuccessLoginPopupMessage().getText();
+        Assert.assertTrue(successMessageText.contains("успішно"));
     }
 
-    @Test (dataProvider = "validLoginData")
+    @Test(dataProvider = "validLoginData")
     public void checkLoggedInUserEmailEqualsExpected(String email, String password) {
         ProfilePage profilePage = getHomePage()
                 .openProfileMenu()
                 .openLoginModal()
-                .checkLoginModalVisible()
                 .fillInEmail(email)
                 .fillInPassword(password)
                 .submitLoginForm()
@@ -82,6 +91,7 @@ public class LoginTest extends BaseTest {
                 .openProfileMenu()
                 .openUserProfilePage();
 
-        profilePage.checkCurrentUserEmailEqualsExpected(email);
+        String userEmailOnProfilePage = profilePage.getCurrentUserEmailField().getText();
+        Assert.assertEquals(email, userEmailOnProfilePage);
     }
 }
