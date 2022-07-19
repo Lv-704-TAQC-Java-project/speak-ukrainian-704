@@ -29,7 +29,7 @@ public class LoginTest extends BaseTest {
                 .submitLoginForm();
 
         String errorMessageText = homePage.getLoginErrorPopupMessage().getText();
-        Assert.assertTrue(errorMessageText.contains("невірний"));
+        Assert.assertTrue(errorMessageText.contains("невірний"), "Error message doesn't contain key word 'невірний'.");
     }
 
     @DataProvider(name = "loginInputFieldsBordersTestData")
@@ -54,8 +54,10 @@ public class LoginTest extends BaseTest {
         String getCssClassOfPasswordWrapper = homePage.getPasswordFieldWrapper().getAttribute("class");
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(getCssClassOfEmailWrapper.contains(emailError ? "wrapper-status-error" : "wrapper-status-success"));
-        softAssert.assertTrue(getCssClassOfPasswordWrapper.contains(passwordError ? "wrapper-status-error" : "wrapper-status-success"));
+        softAssert.assertTrue(getCssClassOfEmailWrapper.contains(emailError ? "wrapper-status-error" : "wrapper-status-success"),
+                "Wrapper class attribute doesn't contain expected class.");
+        softAssert.assertTrue(getCssClassOfPasswordWrapper.contains(passwordError ? "wrapper-status-error" : "wrapper-status-success"),
+                "Wrapper class attribute doesn't contain expected class.");
         softAssert.assertAll();
     }
 
@@ -76,7 +78,7 @@ public class LoginTest extends BaseTest {
                 .submitLoginForm();
 
         String successMessageText = homePage.getLoginSuccessPopupMessage().getText();
-        Assert.assertTrue(successMessageText.contains("успішно"));
+        Assert.assertTrue(successMessageText.contains("успішно"), "Success message doesn't contain key word 'успішно'.");
     }
 
     @Test(dataProvider = "validLoginData")
@@ -92,6 +94,6 @@ public class LoginTest extends BaseTest {
                 .openUserProfilePage();
 
         String userEmailOnProfilePage = profilePage.getCurrentUserEmailField().getText();
-        Assert.assertEquals(email, userEmailOnProfilePage);
+        Assert.assertEquals(email, userEmailOnProfilePage, "user email doesn't equal expected.");
     }
 }
