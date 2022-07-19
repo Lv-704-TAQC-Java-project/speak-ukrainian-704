@@ -127,7 +127,7 @@ public class ClubsPage extends BasePage {
     }
 
     public ClubsPage clickExtendedSearchButton() {
-        action.moveToElement(getExtendedSearchButton()).click().perform();
+        getExtendedSearchButton().click();
         return this;
     }
 

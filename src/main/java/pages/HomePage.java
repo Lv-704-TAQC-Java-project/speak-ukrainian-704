@@ -6,19 +6,19 @@ import org.testng.Assert;
 
 public class HomePage extends BasePage {
     private final String HOME_URL = BASE_URL;
-    private final String profileMenuPath = "//div[contains(@class, 'user-profile')]";
-    private final String loginProfileMenuBtnPath = "//div[contains(text(), 'Увійти')]//ancestor::li";
-    private final String loginModalPath = "//div[contains(@class, 'modal-login')]";
-    private final String emailInputFieldPath = "//input[@id='basic_email']";
-    private final String emailInputFieldErrorPath = emailInputFieldPath + "/parent::span";
-    private final String passwordInputFieldPath = "//input[@id='basic_password']";
-    private final String passwordInputFieldErrorPath = passwordInputFieldPath + "/parent::span";
-    private final String submitLoginFormBtnPath = "//button[contains(@class, 'login-button')]";
-    private final String userProfileBtnPath = "//a[contains(@href, 'user')]";
-    private final String successLoginPopupMessagePath = "//div[@class='ant-message']//span[contains(text(), 'успішно')]";
-    private final String mistakeLoginPopupMessagePath = "//div[@class='ant-message']//span[contains(text(), 'невірний')]";
-    private final String clubsLinkPath = "//header//a[contains(@href, 'clubs')]";
-    private final String extendedSearchButtonPath = "//span[contains(@class, 'anticon-control')]";
+    WebElement profileMenu;
+    WebElement loginProfileMenuBtn;
+    WebElement loginModal;
+    WebElement emailInputField;
+    WebElement emailInputFieldError;
+    WebElement passwordField;
+    WebElement passwordFieldError;
+    WebElement submitLoginFormBtn;
+    WebElement userProfileBtn;
+    WebElement successLoginPopupMessage;
+    WebElement mistakeLoginPopupMessage;
+    WebElement clubsLinkBtn;
+    WebElement extendedSearchButton;
 
 
     public HomePage(WebDriver driver) {
@@ -27,72 +27,156 @@ public class HomePage extends BasePage {
         waitForPageToLoad();
     }
 
+    public WebElement getProfileMenu() {
+        profileMenu = driver.findElement(By.xpath("//div[contains(@class, 'user-profile')]"));
+        return profileMenu;
+    }
+
+    public WebElement getLoginProfileMenuBtn() {
+        if (loginProfileMenuBtn == null) {
+            waitVisibilityOfElement(By.xpath("//div[contains(text(), 'Увійти')]//ancestor::li"));
+            loginProfileMenuBtn = driver.findElement(By.xpath("//div[contains(text(), 'Увійти')]//ancestor::li"));
+        }
+        return loginProfileMenuBtn;
+    }
+
+    public WebElement getLoginModal() {
+        if (loginModal == null) {
+            waitVisibilityOfElement(By.xpath("//div[contains(@class, 'modal-login')]"));
+            loginModal = driver.findElement(By.xpath("//div[contains(@class, 'modal-login')]"));
+        }
+        return loginModal;
+    }
+
+    public WebElement getEmailInputField() {
+        if (emailInputField == null) {
+            waitVisibilityOfElement(By.xpath("//input[@id='basic_email']"));
+            emailInputField = driver.findElement(By.xpath("//input[@id='basic_email']"));
+        }
+        return emailInputField;
+    }
+
+    public WebElement getEmailInputFieldError() {
+        if (emailInputFieldError == null) {
+            waitVisibilityOfElement(By.xpath("//input[@id='basic_email']/parent::span"));
+            emailInputFieldError = driver.findElement(By.xpath("//input[@id='basic_email']/parent::span"));
+        }
+        return emailInputFieldError;
+    }
+
+    public WebElement getPasswordField() {
+        if (passwordField == null) {
+            waitVisibilityOfElement(By.xpath("//input[@id='basic_password']"));
+            passwordField = driver.findElement(By.xpath("//input[@id='basic_password']"));
+        }
+        return passwordField;
+    }
+
+    public WebElement getPasswordFieldError() {
+        if (passwordFieldError == null) {
+            waitVisibilityOfElement(By.xpath("//input[@id='basic_password']/parent::span"));
+            passwordFieldError = driver.findElement(By.xpath("//input[@id='basic_password']/parent::span"));
+        }
+        return passwordFieldError;
+    }
+
+    public WebElement getSubmitLoginFormBtn() {
+        if (submitLoginFormBtn == null) {
+            waitVisibilityOfElement(By.xpath("//button[contains(@class, 'login-button')]"));
+            submitLoginFormBtn = driver.findElement(By.xpath("//button[contains(@class, 'login-button')]"));
+        }
+        return submitLoginFormBtn;
+    }
+
+    public WebElement getUserProfileBtn() {
+        if (userProfileBtn == null) {
+            waitVisibilityOfElement(By.xpath("//a[contains(@href, 'user')]"));
+            userProfileBtn = driver.findElement(By.xpath("//a[contains(@href, 'user')]"));
+        }
+        return userProfileBtn;
+    }
+
+    public WebElement getSuccessLoginPopupMessage() {
+        if (successLoginPopupMessage == null) {
+            waitVisibilityOfElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'успішно')]"));
+            successLoginPopupMessage = driver.findElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'успішно')]"));
+        }
+        return successLoginPopupMessage;
+    }
+
+    public WebElement getMistakeLoginPopupMessage() {
+        if (mistakeLoginPopupMessage == null) {
+            waitVisibilityOfElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'невірний')]"));
+            mistakeLoginPopupMessage = driver.findElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'невірний')]"));
+        }
+        return mistakeLoginPopupMessage;
+    }
+
+    public WebElement getClubsLinkBtn() {
+        if (clubsLinkBtn == null) {
+            waitVisibilityOfElement(By.xpath("//header//a[contains(@href, 'clubs')]"));
+            clubsLinkBtn = driver.findElement(By.xpath("//header//a[contains(@href, 'clubs')]"));
+        }
+        return clubsLinkBtn;
+    }
+
+    public WebElement getExtendedSearchButton() {
+        if (extendedSearchButton == null) {
+            waitVisibilityOfElement(By.xpath("//span[contains(@class, 'anticon-control')]"));
+            extendedSearchButton = driver.findElement(By.xpath("//span[contains(@class, 'anticon-control')]"));
+        }
+        return extendedSearchButton;
+    }
+
     public HomePage openProfileMenu() {
-        WebElement profileMenu = driver.findElement(By.xpath(profileMenuPath));
-        action.moveToElement(profileMenu).click().perform();
+        getProfileMenu().click();
         return this;
     }
 
     public HomePage openLoginModal() {
-        waitVisibilityOfElement(By.xpath(loginProfileMenuBtnPath));
-        WebElement loginProfileMenuBtn = driver.findElement(By.xpath(loginProfileMenuBtnPath));
-        action.moveToElement(loginProfileMenuBtn).click().perform();
+        getLoginProfileMenuBtn().click();
         return this;
     }
 
     public HomePage checkLoginModalVisible() {
-        waitVisibilityOfElement(By.xpath(loginModalPath));
-        WebElement loginModal = driver.findElement(By.xpath(loginModalPath));
-        Assert.assertTrue(loginModal.isDisplayed());
+        Assert.assertTrue(getLoginModal().isDisplayed());
         return this;
     }
 
     public HomePage fillInEmail(String email) {
-        waitVisibilityOfElement(By.xpath(emailInputFieldPath));
-        WebElement emailField = driver.findElement(By.xpath(emailInputFieldPath));
-        emailField.sendKeys(email);
+        getEmailInputField().sendKeys(email);
         return this;
     }
 
     public HomePage fillInPassword(String password) {
-        waitVisibilityOfElement(By.xpath(passwordInputFieldPath));
-        WebElement passwordField = driver.findElement(By.xpath(passwordInputFieldPath));
-        passwordField.sendKeys(password);
+        getPasswordField().sendKeys(password);
         return this;
     }
 
     public HomePage submitLoginForm() {
-        waitVisibilityOfElement(By.xpath(submitLoginFormBtnPath));
-        WebElement submitLoginFormBtn = driver.findElement(By.xpath(submitLoginFormBtnPath));
-        submitLoginFormBtn.click();
+        getSubmitLoginFormBtn().click();
         return this;
     }
 
     public HomePage checkEmailInputBorder(boolean emailError) {
-        WebElement emailInputFieldError = driver.findElement(By.xpath(emailInputFieldErrorPath));
-        Assert.assertTrue(emailInputFieldError.getAttribute("class")
+        Assert.assertTrue(getEmailInputFieldError().getAttribute("class")
                 .contains(emailError ? "wrapper-status-error" : "wrapper-status-success"));
         return this;
     }
 
     public HomePage checkPasswordInputBorder(boolean passwordError) {
-        WebElement emailInputFieldError = driver.findElement(By.xpath(passwordInputFieldErrorPath));
-        Assert.assertTrue(emailInputFieldError.getAttribute("class")
+        Assert.assertTrue(getPasswordFieldError().getAttribute("class")
                 .contains(passwordError ? "wrapper-status-error" : "wrapper-status-success"));
         return this;
     }
 
     public HomePage checkSuccessLoginMessageIsShown() {
-        waitVisibilityOfElement(By.xpath(successLoginPopupMessagePath));
-        WebElement successLoginPopupMessage = driver.findElement(By.xpath(successLoginPopupMessagePath));
-        Assert.assertTrue(successLoginPopupMessage.getText().contains("успішно"));
+        Assert.assertTrue(getSuccessLoginPopupMessage().getText().contains("успішно"));
         return this;
     }
 
     public HomePage checkMistakeLoginMessageIsShown() {
-        waitVisibilityOfElement(By.xpath(mistakeLoginPopupMessagePath));
-        WebElement mistakeLoginPopupMessage = driver.findElement(By.xpath(mistakeLoginPopupMessagePath));
-        Assert.assertTrue(mistakeLoginPopupMessage.getText().contains("невірний"));
+        Assert.assertTrue(getMistakeLoginPopupMessage().getText().contains("невірний"));
         return this;
     }
 
@@ -102,23 +186,17 @@ public class HomePage extends BasePage {
     }
 
     public ProfilePage openUserProfilePage() {
-        waitVisibilityOfElement(By.xpath(userProfileBtnPath));
-        WebElement userProfileBtn = driver.findElement(By.xpath(userProfileBtnPath));
-        userProfileBtn.click();
+        getUserProfileBtn().click();
         return new ProfilePage(driver);
     }
 
     public ClubsPage openClubsPage() {
-        waitVisibilityOfElement(By.xpath(clubsLinkPath));
-        WebElement clubsLinkBtn = driver.findElement(By.xpath(clubsLinkPath));
-        clubsLinkBtn.click();
+        getClubsLinkBtn().click();
         return new ClubsPage(driver);
     }
 
     public ClubsPage clickExtendedSearchButton() {
-        waitVisibilityOfElement(By.xpath(extendedSearchButtonPath));
-        WebElement extendedSearchButton = driver.findElement(By.xpath(extendedSearchButtonPath));
-        action.moveToElement(extendedSearchButton).click().perform();
+        getExtendedSearchButton().click();
         return new ClubsPage(driver);
     }
 }
