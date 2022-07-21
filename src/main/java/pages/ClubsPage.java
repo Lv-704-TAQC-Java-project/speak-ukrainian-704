@@ -1,22 +1,17 @@
 package pages;
 
 import org.openqa.selenium.*;
+import pages.components.AdvancedSearchPanelComponent;
 
-import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 
 public class ClubsPage extends BasePage {
     private List<WebElement> listOfClubsOnCurrentPage;
     private List<WebElement> listOfPagesInPagination;
-    private List<WebElement> clubListSectionChildren;
-    private WebElement asideExtendedSearchMenu;
     private WebElement lastPaginationPage;
-    private WebElement extendedSearchHeader;
-    private WebElement citySelector;
-    private WebElement basicCategoriesCheckList;
-    private WebElement extendedSearchButton;
+    private AdvancedSearchPanelComponent advancedSearchPanelComponent;
+    private WebElement advancedSearchButton;
 
 
     public ClubsPage(WebDriver driver) {
@@ -26,6 +21,13 @@ public class ClubsPage extends BasePage {
     public ClubsPage waitForClubsPageToOpen() {
         waitForPageToReload();
         return this;
+    }
+
+    public AdvancedSearchPanelComponent getAdvancedSearchPanelComponent() {
+        if (advancedSearchPanelComponent == null) {
+            advancedSearchPanelComponent = new AdvancedSearchPanelComponent(driver);
+        }
+        return advancedSearchPanelComponent;
     }
 
     public List<WebElement> getListOfClubsOnCurrentPage() {
@@ -41,54 +43,21 @@ public class ClubsPage extends BasePage {
         return listOfPagesInPagination;
     }
 
-    public WebElement getAsideExtendedSearchMenu() {
-        if (asideExtendedSearchMenu == null) {
-            waitVisibilityOfElement(By.xpath("//aside"), Duration.ofSeconds(2));
-            asideExtendedSearchMenu = driver.findElement(By.xpath("//aside"));
-        }
-        return asideExtendedSearchMenu;
-    }
 
-    public WebElement getExtendedSearchHeader() {
-        if (extendedSearchHeader == null) {
-            extendedSearchHeader = driver.findElement(By.xpath("//div[@class='club-list-label']"));
-        }
-        return extendedSearchHeader;
-    }
-
-    public WebElement getCitySelector() {
-        if (citySelector == null) {
-            citySelector = driver.findElement(By.xpath("//input[@id='basic_cityName']//ancestor::div[contains(@class, 'selector')]"));
-        }
-        return citySelector;
-    }
-
-    public WebElement getBasicCategoriesCheckList() {
-        if (basicCategoriesCheckList == null) {
-            basicCategoriesCheckList = driver.findElement(By.xpath("//div[@id='basic_categoriesName']"));
-        }
-        return basicCategoriesCheckList;
-    }
-
-    public WebElement getExtendedSearchButton() {
+    public WebElement getAdvancedSearchButton() {
         waitVisibilityOfElement(By.xpath("//span[contains(@class, 'anticon-control')]"));
-        if (extendedSearchButton == null) {
-            extendedSearchButton = driver.findElement(By.xpath("//span[contains(@class, 'anticon-control')]"));
+        if (advancedSearchButton == null) {
+            advancedSearchButton = driver.findElement(By.xpath("//span[contains(@class, 'anticon-control')]"));
         }
-        return extendedSearchButton;
-    }
-
-    public List<WebElement> getClubListSectionChildren() {
-        clubListSectionChildren = driver.findElements(By.xpath("//section[contains(@class, 'club-list')]/child::*"));
-        return clubListSectionChildren;
+        return advancedSearchButton;
     }
 
     public int getQuantityOfClubsOnCurrentPage() {
         return getListOfClubsOnCurrentPage().size();
     }
 
-    public String getExtendedSearchHeaderText() {
-        return getExtendedSearchHeader().getText();
+    public String getAdvancedSearchHeaderText() {
+        return getAdvancedSearchPanelComponent().getAdvancedSearchHeader().getText();
     }
 
     public WebElement getLastPaginationPage() {
@@ -113,26 +82,26 @@ public class ClubsPage extends BasePage {
         return this;
     }
 
-    public boolean extendedSearchSideMenuIsVisible() {
-        return getAsideExtendedSearchMenu().isDisplayed();
+    public boolean advancedSearchSideMenuIsVisible() {
+        return getAdvancedSearchPanelComponent().getAsideAdvancedSearchMenu().isDisplayed();
     }
 
     public boolean citySelectionInputIsVisible() {
-        return getCitySelector().isDisplayed();
+        return getAdvancedSearchPanelComponent().getCitySelector().isDisplayed();
     }
 
     public boolean basicCategoriesCheckListIsVisible() {
-        return getBasicCategoriesCheckList().isDisplayed();
+        return getAdvancedSearchPanelComponent().getBasicCategoriesCheckList().isDisplayed();
     }
 
-    public ClubsPage clickExtendedSearchButton() {
-        getExtendedSearchButton().click();
-        return this;
+    public AdvancedSearchPanelComponent clickAdvancedSearchButton() {
+        getAdvancedSearchButton().click();
+        return getAdvancedSearchPanelComponent();
     }
 
-    public boolean extendedAsideMenuIsVisible() {
+    public boolean advancedAsideMenuIsVisible() {
         try {
-            return getAsideExtendedSearchMenu().isDisplayed();
+            return getAdvancedSearchPanelComponent().getAsideAdvancedSearchMenu().isDisplayed();
         } catch (StaleElementReferenceException e) {
             return false;
         }

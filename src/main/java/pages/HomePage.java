@@ -8,12 +8,9 @@ public class HomePage extends BasePage {
     private final String HOME_URL = BASE_URL;
     private WebElement profileMenu;
     private WebElement loginProfileMenuBtn;
-
     private WebElement clubsLinkBtn;
-    private WebElement extendedSearchButton;
-
+    private WebElement advancedSearchButton;
     private WebElement userProfileBtn;
-
     private LoginModalComponent loginModalComponent;
 
     public HomePage(WebDriver driver) {
@@ -44,12 +41,12 @@ public class HomePage extends BasePage {
         return clubsLinkBtn;
     }
 
-    public WebElement getExtendedSearchButton() {
-        if (extendedSearchButton == null) {
+    public WebElement getAdvancedSearchButton() {
+        if (advancedSearchButton == null) {
             waitVisibilityOfElement(By.xpath("//span[contains(@class, 'anticon-control')]"));
-            extendedSearchButton = driver.findElement(By.xpath("//span[contains(@class, 'anticon-control')]"));
+            advancedSearchButton = driver.findElement(By.xpath("//span[contains(@class, 'anticon-control')]"));
         }
-        return extendedSearchButton;
+        return advancedSearchButton;
     }
 
     public HomePage openProfileMenu() {
@@ -88,8 +85,8 @@ public class HomePage extends BasePage {
         return new ClubsPage(driver);
     }
 
-    public ClubsPage clickExtendedSearchButton() {
-        getExtendedSearchButton().click();
+    public ClubsPage clickAdvancedSearchButton() {
+        getAdvancedSearchButton().click();
         return new ClubsPage(driver);
     }
 }
