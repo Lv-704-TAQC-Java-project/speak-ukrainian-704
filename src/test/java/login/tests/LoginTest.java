@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.HomePage;
 import pages.ProfilePage;
 import pages.components.LoginModalComponent;
 
@@ -24,10 +23,10 @@ public class LoginTest extends BaseTest {
     public void checkMistakeMessageIsShownAfterLoginWithInvalidData(String email, String password) {
         LoginModalComponent loginModal = getHomePage()
                 .openProfileMenu()
-                .openLoginModal()
+                .clickLoginButton()
                 .fillInEmail(email)
                 .fillInPassword(password)
-                .submitLoginForm();
+                .clickLoginButton();
 
         String errorMessageText = loginModal.getLoginErrorPopupMessage().getText();
         Assert.assertTrue(errorMessageText.contains("невірний"), "Error message doesn't contain key word 'невірний'.");
@@ -46,10 +45,10 @@ public class LoginTest extends BaseTest {
     public void checkLoginInputFieldsBorders(String email, String password, boolean emailError, boolean passwordError) {
         LoginModalComponent loginModalComponent = getHomePage()
                 .openProfileMenu()
-                .openLoginModal()
+                .clickLoginButton()
                 .fillInEmail(email)
                 .fillInPassword(password)
-                .submitLoginForm();
+                .clickLoginButton();
 
         String getCssClassOfEmailWrapper = loginModalComponent.getEmailInputFieldWrapper().getAttribute("class");
         String getCssClassOfPasswordWrapper = loginModalComponent.getPasswordFieldWrapper().getAttribute("class");
@@ -73,10 +72,10 @@ public class LoginTest extends BaseTest {
     public void checkSuccessMessageIsShownAfterLogin(String email, String password) {
         LoginModalComponent loginModalComponent = getHomePage()
                 .openProfileMenu()
-                .openLoginModal()
+                .clickLoginButton()
                 .fillInEmail(email)
                 .fillInPassword(password)
-                .submitLoginForm();
+                .clickLoginButton();
 
         String successMessageText = loginModalComponent.getLoginSuccessPopupMessage().getText();
         Assert.assertTrue(successMessageText.contains("успішно"), "Success message doesn't contain key word 'успішно'.");
@@ -86,10 +85,10 @@ public class LoginTest extends BaseTest {
     public void checkLoggedInUserEmailEqualsExpected(String email, String password) {
         ProfilePage profilePage = getHomePage()
                 .openProfileMenu()
-                .openLoginModal()
+                .clickLoginButton()
                 .fillInEmail(email)
                 .fillInPassword(password)
-                .submitLoginForm()
+                .clickLoginButton()
                 .waitForUserToBeLoggedIn()
                 .getHomePage()
                 .openProfileMenu()

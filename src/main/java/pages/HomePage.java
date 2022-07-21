@@ -61,7 +61,7 @@ public class HomePage extends BasePage {
         return loginModalComponent;
     }
 
-    public LoginModalComponent openLoginModal() {
+    public LoginModalComponent clickLoginButton() {
         getLoginProfileMenuBtn().click();
         return getLoginModalComponent();
     }

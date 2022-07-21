@@ -98,7 +98,7 @@ public class LoginModalComponent extends BasePage {
         return this;
     }
 
-    public LoginModalComponent submitLoginForm() {
+    public LoginModalComponent clickLoginButton() {
         getSubmitLoginFormBtn().click();
         return this;
     }
