@@ -1,24 +1,20 @@
 package pages;
 
 import org.openqa.selenium.*;
+import pages.components.LoginModalComponent;
 
 
 public class HomePage extends BasePage {
     private final String HOME_URL = BASE_URL;
     private WebElement profileMenu;
     private WebElement loginProfileMenuBtn;
-    private WebElement loginModal;
-    private WebElement emailInputField;
-    private WebElement emailInputFieldWrapper;
-    private WebElement passwordField;
-    private WebElement passwordFieldWrapper;
-    private WebElement submitLoginFormBtn;
-    private WebElement userProfileBtn;
-    private WebElement loginSuccessPopupMessage;
-    private WebElement loginErrorPopupMessage;
+
     private WebElement clubsLinkBtn;
     private WebElement extendedSearchButton;
 
+    private WebElement userProfileBtn;
+
+    private LoginModalComponent loginModalComponent;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -39,77 +35,6 @@ public class HomePage extends BasePage {
         return loginProfileMenuBtn;
     }
 
-    public WebElement getLoginModal() {
-        if (loginModal == null) {
-            waitVisibilityOfElement(By.xpath("//div[contains(@class, 'modal-login')]"));
-            loginModal = driver.findElement(By.xpath("//div[contains(@class, 'modal-login')]"));
-        }
-        return loginModal;
-    }
-
-    public WebElement getEmailInputField() {
-        if (emailInputField == null) {
-            waitVisibilityOfElement(By.xpath("//input[@id='basic_email']"));
-            emailInputField = driver.findElement(By.xpath("//input[@id='basic_email']"));
-        }
-        return emailInputField;
-    }
-
-    public WebElement getEmailInputFieldWrapper() {
-        if (emailInputFieldWrapper == null) {
-            waitVisibilityOfElement(By.xpath("//input[@id='basic_email']/parent::span"));
-            emailInputFieldWrapper = driver.findElement(By.xpath("//input[@id='basic_email']/parent::span"));
-        }
-        return emailInputFieldWrapper;
-    }
-
-    public WebElement getPasswordField() {
-        if (passwordField == null) {
-            waitVisibilityOfElement(By.xpath("//input[@id='basic_password']"));
-            passwordField = driver.findElement(By.xpath("//input[@id='basic_password']"));
-        }
-        return passwordField;
-    }
-
-    public WebElement getPasswordFieldWrapper() {
-        if (passwordFieldWrapper == null) {
-            waitVisibilityOfElement(By.xpath("//input[@id='basic_password']/parent::span"));
-            passwordFieldWrapper = driver.findElement(By.xpath("//input[@id='basic_password']/parent::span"));
-        }
-        return passwordFieldWrapper;
-    }
-
-    public WebElement getSubmitLoginFormBtn() {
-        if (submitLoginFormBtn == null) {
-            waitVisibilityOfElement(By.xpath("//button[contains(@class, 'login-button')]"));
-            submitLoginFormBtn = driver.findElement(By.xpath("//button[contains(@class, 'login-button')]"));
-        }
-        return submitLoginFormBtn;
-    }
-
-    public WebElement getUserProfileBtn() {
-        if (userProfileBtn == null) {
-            waitVisibilityOfElement(By.xpath("//a[contains(@href, 'user')]"));
-            userProfileBtn = driver.findElement(By.xpath("//a[contains(@href, 'user')]"));
-        }
-        return userProfileBtn;
-    }
-
-    public WebElement getLoginSuccessPopupMessage() {
-        if (loginSuccessPopupMessage == null) {
-            waitVisibilityOfElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'успішно')]"));
-            loginSuccessPopupMessage = driver.findElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'успішно')]"));
-        }
-        return loginSuccessPopupMessage;
-    }
-
-    public WebElement getLoginErrorPopupMessage() {
-        if (loginErrorPopupMessage == null) {
-            waitVisibilityOfElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'невірний')]"));
-            loginErrorPopupMessage = driver.findElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'невірний')]"));
-        }
-        return loginErrorPopupMessage;
-    }
 
     public WebElement getClubsLinkBtn() {
         if (clubsLinkBtn == null) {
@@ -132,29 +57,25 @@ public class HomePage extends BasePage {
         return this;
     }
 
-    public HomePage openLoginModal() {
+    public LoginModalComponent getLoginModalComponent() {
+        if (loginModalComponent == null) {
+            loginModalComponent = new LoginModalComponent(driver);
+        }
+        return loginModalComponent;
+    }
+
+    public LoginModalComponent openLoginModal() {
         getLoginProfileMenuBtn().click();
-        return this;
+        return getLoginModalComponent();
     }
 
-    public HomePage fillInEmail(String email) {
-        getEmailInputField().sendKeys(email);
-        return this;
-    }
 
-    public HomePage fillInPassword(String password) {
-        getPasswordField().sendKeys(password);
-        return this;
-    }
-
-    public HomePage submitLoginForm() {
-        getSubmitLoginFormBtn().click();
-        return this;
-    }
-
-    public HomePage waitForUserToBeLoggedIn() {
-        waitForPageToReload();
-        return this;
+    public WebElement getUserProfileBtn() {
+        if (userProfileBtn == null) {
+            waitVisibilityOfElement(By.xpath("//a[contains(@href, 'user')]"));
+            userProfileBtn = driver.findElement(By.xpath("//a[contains(@href, 'user')]"));
+        }
+        return userProfileBtn;
     }
 
     public ProfilePage openUserProfilePage() {

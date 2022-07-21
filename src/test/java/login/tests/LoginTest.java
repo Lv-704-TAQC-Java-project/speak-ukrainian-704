@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.HomePage;
 import pages.ProfilePage;
+import pages.components.LoginModalComponent;
 
 
 public class LoginTest extends BaseTest {
@@ -21,14 +22,14 @@ public class LoginTest extends BaseTest {
 
     @Test(dataProvider = "invalidLoginData")
     public void checkMistakeMessageIsShownAfterLoginWithInvalidData(String email, String password) {
-        HomePage homePage = getHomePage()
+        LoginModalComponent loginModal = getHomePage()
                 .openProfileMenu()
                 .openLoginModal()
                 .fillInEmail(email)
                 .fillInPassword(password)
                 .submitLoginForm();
 
-        String errorMessageText = homePage.getLoginErrorPopupMessage().getText();
+        String errorMessageText = loginModal.getLoginErrorPopupMessage().getText();
         Assert.assertTrue(errorMessageText.contains("невірний"), "Error message doesn't contain key word 'невірний'.");
     }
 
@@ -43,15 +44,15 @@ public class LoginTest extends BaseTest {
 
     @Test(dataProvider = "loginInputFieldsBordersTestData")
     public void checkLoginInputFieldsBorders(String email, String password, boolean emailError, boolean passwordError) {
-        HomePage homePage = getHomePage()
+        LoginModalComponent loginModalComponent = getHomePage()
                 .openProfileMenu()
                 .openLoginModal()
                 .fillInEmail(email)
                 .fillInPassword(password)
                 .submitLoginForm();
 
-        String getCssClassOfEmailWrapper = homePage.getEmailInputFieldWrapper().getAttribute("class");
-        String getCssClassOfPasswordWrapper = homePage.getPasswordFieldWrapper().getAttribute("class");
+        String getCssClassOfEmailWrapper = loginModalComponent.getEmailInputFieldWrapper().getAttribute("class");
+        String getCssClassOfPasswordWrapper = loginModalComponent.getPasswordFieldWrapper().getAttribute("class");
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(getCssClassOfEmailWrapper.contains(emailError ? "wrapper-status-error" : "wrapper-status-success"),
@@ -70,14 +71,14 @@ public class LoginTest extends BaseTest {
 
     @Test(dataProvider = "validLoginData")
     public void checkSuccessMessageIsShownAfterLogin(String email, String password) {
-        HomePage homePage = getHomePage()
+        LoginModalComponent loginModalComponent = getHomePage()
                 .openProfileMenu()
                 .openLoginModal()
                 .fillInEmail(email)
                 .fillInPassword(password)
                 .submitLoginForm();
 
-        String successMessageText = homePage.getLoginSuccessPopupMessage().getText();
+        String successMessageText = loginModalComponent.getLoginSuccessPopupMessage().getText();
         Assert.assertTrue(successMessageText.contains("успішно"), "Success message doesn't contain key word 'успішно'.");
     }
 
@@ -90,6 +91,7 @@ public class LoginTest extends BaseTest {
                 .fillInPassword(password)
                 .submitLoginForm()
                 .waitForUserToBeLoggedIn()
+                .getHomePage()
                 .openProfileMenu()
                 .openUserProfilePage();
 
