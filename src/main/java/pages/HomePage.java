@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.*;
+import pages.components.HeaderMenuListComponent;
 import pages.components.LoginModalComponent;
 
 
@@ -8,7 +9,6 @@ public class HomePage extends BasePage {
     private final String HOME_URL = BASE_URL;
     private WebElement profileMenu;
     private WebElement loginProfileMenuBtn;
-    private WebElement clubsLinkBtn;
     private WebElement advancedSearchButton;
     private WebElement userProfileBtn;
     private LoginModalComponent loginModalComponent;
@@ -30,15 +30,6 @@ public class HomePage extends BasePage {
             loginProfileMenuBtn = driver.findElement(By.xpath("//div[contains(text(), 'Увійти')]//ancestor::li"));
         }
         return loginProfileMenuBtn;
-    }
-
-
-    public WebElement getClubsLinkBtn() {
-        if (clubsLinkBtn == null) {
-            waitVisibilityOfElement(By.xpath("//header//a[contains(@href, 'clubs')]"));
-            clubsLinkBtn = driver.findElement(By.xpath("//header//a[contains(@href, 'clubs')]"));
-        }
-        return clubsLinkBtn;
     }
 
     public WebElement getAdvancedSearchButton() {
@@ -80,13 +71,29 @@ public class HomePage extends BasePage {
         return new ProfilePage(driver);
     }
 
-    public ClubsPage openClubsPage() {
-        getClubsLinkBtn().click();
-        return new ClubsPage(driver);
-    }
-
     public ClubsPage clickAdvancedSearchButton() {
         getAdvancedSearchButton().click();
         return new ClubsPage(driver);
+    }
+
+    public ClubsPage openClubsPage() {
+        return new HeaderMenuListComponent(driver).openClubsPage();
+    }
+
+    public HomePage openChallengeMenu() {
+        new HeaderMenuListComponent(driver).openChallengeMenu();
+        return this;
+    }
+
+    public NewsPage openNewsPage() {
+        return new HeaderMenuListComponent(driver).openNewsPage();
+    }
+
+    public ServicePage openServicePage() {
+        return new HeaderMenuListComponent(driver).openServicePage();
+    }
+
+    public AboutPage openAboutPage() {
+        return new HeaderMenuListComponent(driver).openAboutPage();
     }
 }

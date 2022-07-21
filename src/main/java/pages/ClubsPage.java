@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.*;
 import pages.components.AdvancedSearchPanelComponent;
+import pages.components.HeaderMenuListComponent;
 
 import java.util.List;
 
@@ -106,4 +107,26 @@ public class ClubsPage extends BasePage {
             return false;
         }
     }
+
+    public ClubsPage openClubsPage() {
+        return new HeaderMenuListComponent(driver).openClubsPage();
+    }
+
+    public ClubsPage openChallengeMenu() {
+        new HeaderMenuListComponent(driver).openChallengeMenu();
+        return this;
+    }
+
+    public NewsPage openNewsPage() {
+        return new HeaderMenuListComponent(driver).openNewsPage();
+    }
+
+    public ServicePage openServicePage() {
+        return new HeaderMenuListComponent(driver).openServicePage();
+    }
+
+    public AboutPage openAboutPage() {
+        return new HeaderMenuListComponent(driver).openAboutPage();
+    }
+
 }
