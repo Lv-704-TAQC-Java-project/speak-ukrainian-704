@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.*;
 import pages.components.HeaderMenuListComponent;
+import pages.components.LogInProfileMenuComponent;
 import pages.components.LoginModalComponent;
 
 
@@ -57,18 +58,8 @@ public class HomePage extends BasePage {
         return getLoginModalComponent();
     }
 
-
-    public WebElement getUserProfileBtn() {
-        if (userProfileBtn == null) {
-            waitVisibilityOfElement(By.xpath("//a[contains(@href, 'user')]"));
-            userProfileBtn = driver.findElement(By.xpath("//a[contains(@href, 'user')]"));
-        }
-        return userProfileBtn;
-    }
-
     public ProfilePage openUserProfilePage() {
-        getUserProfileBtn().click();
-        return new ProfilePage(driver);
+        return new LogInProfileMenuComponent(driver).openUserProfilePage();
     }
 
     public ClubsPage clickAdvancedSearchButton() {
