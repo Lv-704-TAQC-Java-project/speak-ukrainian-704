@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.components.EditProfileModalComponent;
+import pages.components.HeaderMenuListComponent;
 import pages.components.LoginModalComponent;
 
 
@@ -44,5 +45,26 @@ public class ProfilePage extends BasePage {
     public EditProfileModalComponent clickEditProfileButton() {
         getEditProfileButton().click();
         return getEditProfileModalComponent();
+    }
+
+    public ClubsPage openClubsPage() {
+        return new HeaderMenuListComponent(driver).openClubsPage();
+    }
+
+    public ProfilePage openChallengeMenu() {
+        new HeaderMenuListComponent(driver).openChallengeMenu();
+        return this;
+    }
+
+    public NewsPage openNewsPage() {
+        return new HeaderMenuListComponent(driver).openNewsPage();
+    }
+
+    public ServicePage openServicePage() {
+        return new HeaderMenuListComponent(driver).openServicePage();
+    }
+
+    public AboutPage openAboutPage() {
+        return new HeaderMenuListComponent(driver).openAboutPage();
     }
 }
