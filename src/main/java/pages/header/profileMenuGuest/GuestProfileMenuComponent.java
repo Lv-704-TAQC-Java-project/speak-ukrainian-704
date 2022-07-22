@@ -1,19 +1,19 @@
-package pages.header.profileMenu;
+package pages.header.profileMenuGuest;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.BasePage;
-import pages.ProfilePage;
+import pages.header.profileMenuAdmin.profilePage.ProfilePage;
 
-public class ProfileMenuComponent extends BasePage {
+public class GuestProfileMenuComponent extends BasePage {
     private WebElement loginButton;
     private WebElement registerButton;
     private WebElement myProfileButton;
 
     private LoginModalComponent loginModal;
 
-    public ProfileMenuComponent(WebDriver driver) {
+    public GuestProfileMenuComponent(WebDriver driver) {
         super(driver);
     }
 

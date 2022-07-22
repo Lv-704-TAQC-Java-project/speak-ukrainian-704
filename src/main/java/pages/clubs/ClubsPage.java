@@ -2,7 +2,6 @@ package pages.clubs;
 
 import org.openqa.selenium.*;
 import pages.BasePage;
-import pages.components.AdvancedSearchPanelComponent;
 import pages.header.HeaderComponent;
 
 

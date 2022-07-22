@@ -5,8 +5,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.HomePage;
-import pages.ProfilePage;
-import pages.header.profileMenu.LoginModalComponent;
+import pages.header.profileMenuAdmin.profilePage.ProfilePage;
+import pages.header.profileMenuGuest.LoginModalComponent;
 
 
 public class LoginTest extends BaseTestRunner {
@@ -24,7 +24,7 @@ public class LoginTest extends BaseTestRunner {
     public void checkMistakeMessageIsShownAfterLoginWithInvalidData(String email, String password) {
         new HomePage(driver)
                 .getHeader()
-                .openProfileMenu()
+                .openGuestProfileMenu()
                 .clickLoginButton()
                 .fillInEmail(email)
                 .fillInPassword(password)
@@ -47,7 +47,7 @@ public class LoginTest extends BaseTestRunner {
     public void checkLoginInputFieldsBorders(String email, String password, boolean emailError, boolean passwordError) {
         LoginModalComponent loginModal = new HomePage(driver)
                 .getHeader()
-                .openProfileMenu()
+                .openGuestProfileMenu()
                 .clickLoginButton()
                 .fillInEmail(email)
                 .fillInPassword(password)
@@ -81,7 +81,7 @@ public class LoginTest extends BaseTestRunner {
     public void checkSuccessMessageIsShownAfterLogin(String email, String password) {
         new HomePage(driver)
                 .getHeader()
-                .openProfileMenu()
+                .openGuestProfileMenu()
                 .clickLoginButton()
                 .fillInEmail(email)
                 .fillInPassword(password)
@@ -95,14 +95,14 @@ public class LoginTest extends BaseTestRunner {
     public void checkLoggedInUserEmailEqualsExpected(String email, String password) {
         ProfilePage profilePage = new HomePage(driver)
                 .getHeader()
-                .openProfileMenu()
+                .openGuestProfileMenu()
                 .clickLoginButton()
                 .fillInEmail(email)
                 .fillInPassword(password)
                 .clickLoginButton()
                 .getHomePageReload()
                 .getHeader()
-                .openProfileMenu()
+                .openAdminProfileMenu()
                 .openUserProfilePage();
 
         String userEmailOnProfilePage = profilePage.getCurrentUserEmailField().getText();

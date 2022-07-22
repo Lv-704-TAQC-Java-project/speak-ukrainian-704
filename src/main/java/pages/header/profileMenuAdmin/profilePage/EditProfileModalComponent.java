@@ -1,4 +1,4 @@
-package pages.header.profileMenu;
+package pages.header.profileMenuAdmin.profilePage;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

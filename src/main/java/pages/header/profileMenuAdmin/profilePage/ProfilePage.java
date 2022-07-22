@@ -1,9 +1,9 @@
-package pages;
+package pages.header.profileMenuAdmin.profilePage;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.header.profileMenu.EditProfileModalComponent;
+import pages.BasePage;
 import pages.header.HeaderComponent;
 
 
