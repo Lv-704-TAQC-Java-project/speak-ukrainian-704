@@ -1,35 +1,15 @@
 package pages;
 
 import org.openqa.selenium.*;
-import pages.components.HeaderMenuListComponent;
-import pages.components.LoginModalComponent;
 
 
-public class HomePage extends BasePage {
-    private final String HOME_URL = BASE_URL;
-    private WebElement profileMenu;
-    private WebElement loginProfileMenuBtn;
+public class HomePage extends BasePageWithHeader {
     private WebElement advancedSearchButton;
-    private WebElement userProfileBtn;
-    private LoginModalComponent loginModalComponent;
+
 
     public HomePage(WebDriver driver) {
         super(driver);
-        driver.get(HOME_URL);
-        waitForPageToLoad();
-    }
-
-    public WebElement getProfileMenu() {
-        profileMenu = driver.findElement(By.xpath("//div[contains(@class, 'user-profile')]"));
-        return profileMenu;
-    }
-
-    public WebElement getLoginProfileMenuBtn() {
-        if (loginProfileMenuBtn == null) {
-            waitVisibilityOfElement(By.xpath("//div[contains(text(), 'Увійти')]//ancestor::li"));
-            loginProfileMenuBtn = driver.findElement(By.xpath("//div[contains(text(), 'Увійти')]//ancestor::li"));
-        }
-        return loginProfileMenuBtn;
+        waitForPageToReload();
     }
 
     public WebElement getAdvancedSearchButton() {
@@ -40,60 +20,11 @@ public class HomePage extends BasePage {
         return advancedSearchButton;
     }
 
-    public HomePage openProfileMenu() {
-        getProfileMenu().click();
-        return this;
-    }
-
-    public LoginModalComponent getLoginModalComponent() {
-        if (loginModalComponent == null) {
-            loginModalComponent = new LoginModalComponent(driver);
-        }
-        return loginModalComponent;
-    }
-
-    public LoginModalComponent clickLoginButton() {
-        getLoginProfileMenuBtn().click();
-        return getLoginModalComponent();
-    }
-
-
-    public WebElement getUserProfileBtn() {
-        if (userProfileBtn == null) {
-            waitVisibilityOfElement(By.xpath("//a[contains(@href, 'user')]"));
-            userProfileBtn = driver.findElement(By.xpath("//a[contains(@href, 'user')]"));
-        }
-        return userProfileBtn;
-    }
-
-    public ProfilePage openUserProfilePage() {
-        getUserProfileBtn().click();
-        return new ProfilePage(driver);
-    }
 
     public ClubsPage clickAdvancedSearchButton() {
         getAdvancedSearchButton().click();
         return new ClubsPage(driver);
     }
 
-    public ClubsPage openClubsPage() {
-        return new HeaderMenuListComponent(driver).openClubsPage();
-    }
 
-    public HomePage openChallengeMenu() {
-        new HeaderMenuListComponent(driver).openChallengeMenu();
-        return this;
-    }
-
-    public NewsPage openNewsPage() {
-        return new HeaderMenuListComponent(driver).openNewsPage();
-    }
-
-    public ServicePage openServicePage() {
-        return new HeaderMenuListComponent(driver).openServicePage();
-    }
-
-    public AboutPage openAboutPage() {
-        return new HeaderMenuListComponent(driver).openAboutPage();
-    }
 }

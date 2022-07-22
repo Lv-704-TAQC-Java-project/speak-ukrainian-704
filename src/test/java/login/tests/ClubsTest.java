@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import pages.ClubsPage;
 
 
-public class ClubsTest extends BaseTest {
+public class ClubsTest extends BaseTestRunner {
 
     @Test
     public void checkNumberOfClubsOnFirstPageEqualsExpected() {

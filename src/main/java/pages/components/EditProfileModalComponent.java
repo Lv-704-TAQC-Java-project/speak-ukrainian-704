@@ -3,9 +3,9 @@ package pages.components;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.BasePage;
+import pages.BaseMethods;
 
-public class EditProfileModalComponent extends BasePage {
+public class EditProfileModalComponent extends BaseMethods {
 
     private WebElement userButton;
     private WebElement managerButton;

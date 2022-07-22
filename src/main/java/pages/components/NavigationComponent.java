@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.*;
 
-public class HeaderMenuListComponent extends BasePage {
+public class NavigationComponent extends BaseMethods {
 
     private WebElement clubsLinkBtn;
     private WebElement challengeBtn;
@@ -13,7 +13,7 @@ public class HeaderMenuListComponent extends BasePage {
     private WebElement aboutLinkBtn;
     private WebElement serviceLinkBtn;
 
-    public HeaderMenuListComponent(WebDriver driver) {
+    public NavigationComponent(WebDriver driver) {
         super(driver);
     }
 

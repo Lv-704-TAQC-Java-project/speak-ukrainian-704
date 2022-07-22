@@ -1,10 +1,9 @@
 package login.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.ClubsPage;
 
-public class HeaderMenuTest extends BaseTest{
+
+public class PageWithHeaderMenuTest extends BaseTestRunner {
     @Test
     public void checkHeaderMenuSwitching() {
                 getHomePage()
