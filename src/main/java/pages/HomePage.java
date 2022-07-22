@@ -1,12 +1,11 @@
 package pages;
 
 import org.openqa.selenium.*;
-import pages.components.HeaderMenuListComponent;
 import pages.components.LogInProfileMenuComponent;
 import pages.components.LoginModalComponent;
 
 
-public class HomePage extends BasePage {
+public class HomePage extends Header {
     private final String HOME_URL = BASE_URL;
     private WebElement profileMenu;
     private WebElement loginProfileMenuBtn;
@@ -67,24 +66,4 @@ public class HomePage extends BasePage {
         return new ClubsPage(driver);
     }
 
-    public ClubsPage openClubsPage() {
-        return new HeaderMenuListComponent(driver).openClubsPage();
-    }
-
-    public HomePage openChallengeMenu() {
-        new HeaderMenuListComponent(driver).openChallengeMenu();
-        return this;
-    }
-
-    public NewsPage openNewsPage() {
-        return new HeaderMenuListComponent(driver).openNewsPage();
-    }
-
-    public ServicePage openServicePage() {
-        return new HeaderMenuListComponent(driver).openServicePage();
-    }
-
-    public AboutPage openAboutPage() {
-        return new HeaderMenuListComponent(driver).openAboutPage();
-    }
 }
