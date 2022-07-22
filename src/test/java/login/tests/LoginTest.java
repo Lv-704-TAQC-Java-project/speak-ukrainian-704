@@ -54,14 +54,19 @@ public class LoginTest extends BaseTestRunner {
                 .clickOnLoginHeader()
                 .clickLoginButton();
 
-        String getBorderColorOfEmailWrapper = loginModal.getEmailFieldWrapper().getCssValue("border-color");
-        String getBorderColorOfPasswordWrapper = loginModal.getPasswordFieldWrapper().getCssValue("border-color");
+        String expectedEmailBorderColor = emailError ? "rgb(255, 77, 79)" : "rgb(217, 217, 217)";
+        String expectedPasswordBorderColor = passwordError ? "rgb(255, 77, 79)" : "rgb(217, 217, 217)";
+
+        String getBorderColorOfEmailWrapper = loginModal.getEmailFieldWrapper(expectedEmailBorderColor).getCssValue("border-color");
+        String getBorderColorOfPasswordWrapper = loginModal.getPasswordFieldWrapper(expectedPasswordBorderColor).getCssValue("border-color");
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(getBorderColorOfEmailWrapper.contains(emailError ? "rgb(255, 77, 79)" : "rgb(217, 217, 217)"),
-                "Border color of email field wrapper is not of expected color.");
-        softAssert.assertTrue(getBorderColorOfPasswordWrapper.contains(passwordError ? "rgb(255, 77, 79)" : "rgb(217, 217, 217)"),
-                "Border color of password field wrapper is not of expected color.");
+        softAssert.assertTrue(getBorderColorOfEmailWrapper.contains(expectedEmailBorderColor),
+                String.format("Border color of email field border is expected to be %s, but was %s.",
+                        expectedEmailBorderColor, getBorderColorOfEmailWrapper));
+        softAssert.assertTrue(getBorderColorOfPasswordWrapper.contains(expectedPasswordBorderColor),
+                String.format("Border color of password field border is expected to be %s, but was %s.",
+                        expectedPasswordBorderColor, getBorderColorOfPasswordWrapper));
         softAssert.assertAll();
     }
 

@@ -21,6 +21,7 @@ public class BasePage {
     public void getUrl(String url){
         driver.get(url);
     }
+
     public void waitForPageToLoad() {
         try {
             WebDriverWait wait = new WebDriverWait(this.driver, TIMEOUT);
@@ -43,6 +44,11 @@ public class BasePage {
     public void waitVisibilityOfElement(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public void waitAttributeOfElementContains(By locator, String attribute, String value) {
+        WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
+        wait.until(ExpectedConditions.attributeContains(locator, attribute, value));
     }
 
     public void waitVisibilityOfElement(By locator, Duration timeout) {
