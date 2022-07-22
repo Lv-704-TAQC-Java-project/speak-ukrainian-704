@@ -4,9 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.components.EditProfileModalComponent;
+import pages.header.HeaderComponent;
 
 
-public class ProfilePage extends BasePageWithHeader {
+public class ProfilePage extends BasePage {
+    private HeaderComponent header;
     private WebElement currentUserEmailField;
     private WebElement editProfileButton;
     private EditProfileModalComponent editProfileModalComponent;
@@ -15,6 +17,13 @@ public class ProfilePage extends BasePageWithHeader {
 
     public ProfilePage(WebDriver driver) {
         super(driver);
+    }
+
+    public HeaderComponent getHeader() {
+        if (header == null) {
+            header = new HeaderComponent(driver);
+        }
+        return header;
     }
 
     public WebElement getCurrentUserEmailField() {

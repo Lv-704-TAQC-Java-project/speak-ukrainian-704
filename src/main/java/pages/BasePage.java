@@ -9,12 +9,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 
-public class BaseMethods {
+public class BasePage {
     protected final Duration TIMEOUT = Duration.ofSeconds(12);
     protected WebDriver driver;
 
 
-    public BaseMethods(WebDriver driver) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
     }
 

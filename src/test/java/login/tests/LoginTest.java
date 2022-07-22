@@ -23,13 +23,14 @@ public class LoginTest extends BaseTestRunner {
     @Test(dataProvider = "invalidLoginData")
     public void checkMistakeMessageIsShownAfterLoginWithInvalidData(String email, String password) {
         new HomePage(driver)
+                .getHeader()
                 .openProfileMenu()
                 .clickLoginButton()
                 .fillInEmail(email)
                 .fillInPassword(password)
                 .clickLoginButton();
 
-        String errorMessageText = new HomePage(driver).getLoginErrorMessage().getText();
+        String errorMessageText = new HomePage(driver).getHeader().getLoginErrorMessage().getText();
         Assert.assertTrue(errorMessageText.contains("невірний"), "Error message doesn't contain key word 'невірний'.");
     }
 
@@ -45,6 +46,7 @@ public class LoginTest extends BaseTestRunner {
     @Test(dataProvider = "loginInputFieldsBordersTestData")
     public void checkLoginInputFieldsBorders(String email, String password, boolean emailError, boolean passwordError) {
         LoginModalComponent loginModal = new HomePage(driver)
+                .getHeader()
                 .openProfileMenu()
                 .clickLoginButton()
                 .fillInEmail(email)
@@ -73,25 +75,28 @@ public class LoginTest extends BaseTestRunner {
     @Test(dataProvider = "validLoginData")
     public void checkSuccessMessageIsShownAfterLogin(String email, String password) {
         new HomePage(driver)
+                .getHeader()
                 .openProfileMenu()
                 .clickLoginButton()
                 .fillInEmail(email)
                 .fillInPassword(password)
                 .clickLoginButton();
 
-        String successMessageText = new HomePage(driver).getLoginSuccessMessage().getText();
+        String successMessageText = new HomePage(driver).getHeader().getLoginSuccessMessage().getText();
         Assert.assertTrue(successMessageText.contains("успішно"), "Success message doesn't contain key word 'успішно'.");
     }
 
     @Test(dataProvider = "validLoginData")
     public void checkLoggedInUserEmailEqualsExpected(String email, String password) {
         ProfilePage profilePage = new HomePage(driver)
+                .getHeader()
                 .openProfileMenu()
                 .clickLoginButton()
                 .fillInEmail(email)
                 .fillInPassword(password)
                 .clickLoginButton()
                 .getHomePageReload()
+                .getHeader()
                 .openProfileMenu()
                 .openUserProfilePage();
 

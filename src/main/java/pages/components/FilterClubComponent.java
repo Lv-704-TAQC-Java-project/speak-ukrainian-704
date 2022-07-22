@@ -3,9 +3,9 @@ package pages.components;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.BaseMethods;
+import pages.BasePage;
 
-public class FilterClubComponent extends BaseMethods {
+public class FilterClubComponent extends BasePage {
 
     private WebElement sortByABCButton;
     private WebElement sortByRatingButton;

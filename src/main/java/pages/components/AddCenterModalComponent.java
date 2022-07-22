@@ -1,9 +1,9 @@
 package pages.components;
 
 import org.openqa.selenium.WebDriver;
-import pages.BaseMethods;
+import pages.BasePage;
 
-public class AddCenterModalComponent extends BaseMethods {
+public class AddCenterModalComponent extends BasePage {
 
     public AddCenterModalComponent(WebDriver driver) {
         super(driver);

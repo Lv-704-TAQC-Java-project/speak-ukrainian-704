@@ -4,10 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import pages.BaseMethods;
+import pages.BasePage;
 import pages.HomePage;
 
-public class LoginModalComponent extends BaseMethods {
+public class LoginModalComponent extends BasePage {
     private WebElement loginModal;
     private WebElement emailInputField;
     private WebElement emailInputFieldWrapper;

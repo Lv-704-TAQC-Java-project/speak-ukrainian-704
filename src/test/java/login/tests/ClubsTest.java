@@ -12,6 +12,7 @@ public class ClubsTest extends BaseTestRunner {
     @Test
     public void checkNumberOfClubsOnFirstPageEqualsExpected() {
         PaginationComponent paginationComponent = new HomePage(driver)
+                .getHeader()
                 .openClubsPage()
                 .openPaginationComponent();
 
@@ -24,6 +25,7 @@ public class ClubsTest extends BaseTestRunner {
     @Test
     public void checkTotalNumberOfClubsEqualsExpected() {
         PaginationComponent paginationComponent = new HomePage(driver)
+                .getHeader()
                 .openClubsPage().openPaginationComponent();
 
         int quantityOfClubsOnFirstPage = paginationComponent.getQuantityOfClubsOnCurrentPage();

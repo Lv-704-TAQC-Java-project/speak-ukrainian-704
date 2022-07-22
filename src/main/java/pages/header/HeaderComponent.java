@@ -1,20 +1,21 @@
-package pages;
+package pages.header;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pages.*;
 import pages.components.PopupMessageComponent;
 import pages.components.ProfileMenuComponent;
 import pages.components.NavigationComponent;
 
 
-public class BasePageWithHeader extends BaseMethods {
+public class HeaderComponent extends BasePage {
     private WebElement profileMenuButton;
     private ProfileMenuComponent profileMenuComponent;
     private PopupMessageComponent popupMessageComponent;
     private NavigationComponent navigationComponent;
 
-    public BasePageWithHeader(WebDriver driver) {
+    public HeaderComponent(WebDriver driver) {
         super(driver);
     }
 
@@ -64,7 +65,7 @@ public class BasePageWithHeader extends BaseMethods {
         return getNavigationComponent().openClubsPage();
     }
 
-    public BasePageWithHeader openChallengeMenu() {
+    public HeaderComponent openChallengeMenu() {
         getNavigationComponent().openChallengeMenu();
         return this;
     }

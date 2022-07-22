@@ -3,22 +3,25 @@ package pages;
 import org.openqa.selenium.*;
 import pages.components.AdvancedSearchPanelComponent;
 import pages.components.PaginationComponent;
+import pages.header.HeaderComponent;
 
-import java.util.List;
 
-
-public class ClubsPage extends BasePageWithHeader {
+public class ClubsPage extends BasePage {
     private PaginationComponent paginationComponent;
     private AdvancedSearchPanelComponent advancedSearchPanelComponent;
     private WebElement advancedSearchButton;
-    private BasePageWithHeader header;
-    public BasePageWithHeader getHeader() {
-        return this.header;
-    }
+    private HeaderComponent header;
 
 
     public ClubsPage(WebDriver driver) {
         super(driver);
+    }
+
+    public HeaderComponent getHeader() {
+        if (header == null) {
+            header = new HeaderComponent(driver);
+        }
+        return header;
     }
 
     public ClubsPage waitForClubsPageToOpen() {
@@ -40,7 +43,7 @@ public class ClubsPage extends BasePageWithHeader {
         return paginationComponent;
     }
 
-    public PaginationComponent openPaginationComponent(){
+    public PaginationComponent openPaginationComponent() {
         return getPaginationComponent().waitForPaginationComponentToOpen();
     }
 

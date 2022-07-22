@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.*;
 
-public class NavigationComponent extends BaseMethods {
+public class NavigationComponent extends BasePage {
 
     private WebElement clubsLinkBtn;
     private WebElement challengeBtn;

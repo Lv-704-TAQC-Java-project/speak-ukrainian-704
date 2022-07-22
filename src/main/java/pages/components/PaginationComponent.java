@@ -3,11 +3,11 @@ package pages.components;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.BasePageWithHeader;
+import pages.header.HeaderComponent;
 
 import java.util.List;
 
-public class PaginationComponent extends BasePageWithHeader {
+public class PaginationComponent extends HeaderComponent {
     private List<WebElement> listOfClubsOnCurrentPage;
     private List<WebElement> listOfPagesInPagination;
     private WebElement lastPaginationPage;

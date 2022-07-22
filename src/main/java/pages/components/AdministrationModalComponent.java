@@ -1,9 +1,9 @@
 package pages.components;
 
 import org.openqa.selenium.WebDriver;
-import pages.BaseMethods;
+import pages.BasePage;
 
-public class AdministrationModalComponent extends BaseMethods {
+public class AdministrationModalComponent extends BasePage {
 
     public AdministrationModalComponent(WebDriver driver) {
         super(driver);
