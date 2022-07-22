@@ -2,9 +2,8 @@ package login.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.ClubsPage;
 import pages.HomePage;
-import pages.components.PaginationComponent;
+import pages.clubs.PaginationComponent;
 
 
 public class ClubsTest extends BaseTestRunner {

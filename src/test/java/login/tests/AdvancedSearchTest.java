@@ -3,7 +3,7 @@ package login.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.ClubsPage;
+import pages.clubs.ClubsPage;
 import pages.HomePage;
 
 public class AdvancedSearchTest extends BaseTestRunner {

@@ -1,8 +1,8 @@
-package pages;
+package pages.clubs;
 
 import org.openqa.selenium.*;
+import pages.BasePage;
 import pages.components.AdvancedSearchPanelComponent;
-import pages.components.PaginationComponent;
 import pages.header.HeaderComponent;
 
 

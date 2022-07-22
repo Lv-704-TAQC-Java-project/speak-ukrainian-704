@@ -4,9 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.*;
-import pages.components.PopupMessageComponent;
-import pages.components.ProfileMenuComponent;
-import pages.components.NavigationComponent;
+import pages.clubs.ClubsPage;
+import pages.header.profileMenu.ProfileMenuComponent;
 
 
 public class HeaderComponent extends BasePage {

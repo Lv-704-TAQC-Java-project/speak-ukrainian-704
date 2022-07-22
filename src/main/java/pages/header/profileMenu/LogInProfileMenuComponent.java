@@ -1,4 +1,4 @@
-package pages.components;
+package pages.header.profileMenu;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import pages.BasePage;
 import pages.HomePage;
 import pages.ProfilePage;
+import pages.header.profileMenu.AddCenterModalComponent;
+import pages.header.profileMenu.AddGroupModalComponent;
+import pages.header.profileMenu.AdministrationModalComponent;
 
 public class LogInProfileMenuComponent extends BasePage {
 

@@ -1,9 +1,10 @@
-package pages.components;
+package pages.header;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.*;
+import pages.clubs.ClubsPage;
 
 public class NavigationComponent extends BasePage {
 

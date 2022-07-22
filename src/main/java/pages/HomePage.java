@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.*;
+import pages.clubs.ClubsPage;
 import pages.header.HeaderComponent;
 
 

@@ -1,4 +1,4 @@
-package pages.components;
+package pages.clubs;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
