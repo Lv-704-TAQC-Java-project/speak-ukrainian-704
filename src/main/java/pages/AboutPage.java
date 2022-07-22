@@ -5,6 +5,7 @@ import pages.header.HeaderComponent;
 
 public class AboutPage extends BasePage {
     private HeaderComponent header;
+
     public AboutPage(WebDriver driver) {
         super(driver);
     }

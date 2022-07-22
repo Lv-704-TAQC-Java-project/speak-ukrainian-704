@@ -37,9 +37,9 @@ public class LoginModalComponent extends BasePage {
         return emailInputField;
     }
 
-    public WebElement getEmailFieldWrapper() {
+    public WebElement getEmailFieldWrapper(String color) {
         if (emailInputFieldWrapper == null) {
-            waitBorderColorToChange();
+            waitAttributeOfElementToBe(By.xpath("//input[@id='basic_email']/parent::span"), "border-color", color);
             emailInputFieldWrapper = driver.findElement(By.xpath("//input[@id='basic_email']/parent::span"));
         }
         return emailInputFieldWrapper;
@@ -52,8 +52,9 @@ public class LoginModalComponent extends BasePage {
         return passwordField;
     }
 
-    public WebElement getPasswordFieldWrapper() {
+    public WebElement getPasswordFieldWrapper(String color) {
         if (passwordFieldWrapper == null) {
+            waitAttributeOfElementToBe(By.xpath("//input[@id='basic_password']/parent::span"), "border-color", color);
             passwordFieldWrapper = driver.findElement(By.xpath("//input[@id='basic_password']/parent::span"));
         }
         return passwordFieldWrapper;
@@ -76,23 +77,7 @@ public class LoginModalComponent extends BasePage {
 
     public LoginModalComponent clickOnLoginHeader() {
         Actions action = new Actions(driver);
-
-//        action.moveToElement(getLoginModal()).click();
         action.moveToElement(getLoginHeader()).click();
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-        return this;
-    }
-
-    public LoginModalComponent waitBorderColorToChange() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return this;
     }
 
