@@ -46,7 +46,7 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    public void waitAttributeOfElementToBe(By locator, String attribute, String value) {
+    public void waitAttributeOfElementContains(By locator, String attribute, String value) {
         WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
         wait.until(ExpectedConditions.attributeContains(locator, attribute, value));
     }

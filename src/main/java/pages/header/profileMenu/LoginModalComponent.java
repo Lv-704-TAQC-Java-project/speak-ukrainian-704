@@ -39,7 +39,7 @@ public class LoginModalComponent extends BasePage {
 
     public WebElement getEmailFieldWrapper(String color) {
         if (emailInputFieldWrapper == null) {
-            waitAttributeOfElementToBe(By.xpath("//input[@id='basic_email']/parent::span"), "border-color", color);
+            waitAttributeOfElementContains(By.xpath("//input[@id='basic_email']/parent::span"), "border-color", color);
             emailInputFieldWrapper = driver.findElement(By.xpath("//input[@id='basic_email']/parent::span"));
         }
         return emailInputFieldWrapper;
@@ -54,7 +54,7 @@ public class LoginModalComponent extends BasePage {
 
     public WebElement getPasswordFieldWrapper(String color) {
         if (passwordFieldWrapper == null) {
-            waitAttributeOfElementToBe(By.xpath("//input[@id='basic_password']/parent::span"), "border-color", color);
+            waitAttributeOfElementContains(By.xpath("//input[@id='basic_password']/parent::span"), "border-color", color);
             passwordFieldWrapper = driver.findElement(By.xpath("//input[@id='basic_password']/parent::span"));
         }
         return passwordFieldWrapper;
