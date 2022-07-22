@@ -9,26 +9,28 @@ import java.util.List;
 
 public class ClubPageComponent extends BasePage {
 
-    List<WebElement> listOfCardsTypeList;
-    List<WebElement> listOfCardsTypeBlock;
+    private WebElement listCard;
+    private WebElement blockCard;
 
     public ClubPageComponent(WebDriver driver) {
         super(driver);
     }
 
-    public List<WebElement> getListOfCardsTypeList() {
-        listOfCardsTypeList = driver.findElements(By.xpath("//div/div[@class = 'ant-card ant-card-bordered card list-rectangle-item']"));
-        return listOfCardsTypeList;
+    public WebElement getListCard() {
+        if (listCard == null) {
+            listCard = driver.findElement(By.xpath("//div[@class = 'content-clubs-list false']"));
+            listCard.findElement(By.xpath("//div/div[@class = 'ant-card ant-card-bordered card list-rectangle-item']"));
+        }
+        return listCard;
     }
 
-    public List<WebElement> getListOfCardsTypeBlock() {
-        listOfCardsTypeList = driver.findElements(By.xpath("//div/div[@class = 'ant-card ant-card-bordered card']"));
-        return listOfCardsTypeList;
+    public WebElement getBlockCard() {
+        if (blockCard == null) {
+            blockCard = driver.findElement(By.xpath("//div[@class = 'content-clubs-list content-clubs-block']"));
+            blockCard.findElement(By.xpath("//div/div[@class = 'ant-card ant-card-bordered card']"));
+        }
+        return blockCard;
     }
-
-
-
-
 
 
 }

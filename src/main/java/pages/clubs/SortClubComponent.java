@@ -48,14 +48,15 @@ public class SortClubComponent extends BasePage {
 
     public WebElement getListViewButton() {
         if (listViewButton == null) {
-            listViewButton = driver.findElement(By.xpath("//div/label[@class = 'ant-radio-button-wrapper ant-radio-button-wrapper-checked club-view-button']"));
+            listViewButton = driver.findElement(By.xpath("//div/label[@class = 'ant-radio-button-wrapper club-view-button']"));
         }
         return listViewButton;
     }
 
     public WebElement getBlockViewButton() {
         if (blockViewButton == null) {
-            blockViewButton = driver.findElement(By.xpath("//div/label[@class = 'ant-radio-button-wrapper club-view-button']"));
+            blockViewButton = driver.findElement(By.xpath("//div/label[@class = 'ant-radio-button-wrapper ant-radio-button-wrapper-checked club-view-button']"));
+
         }
         return blockViewButton;
     }
