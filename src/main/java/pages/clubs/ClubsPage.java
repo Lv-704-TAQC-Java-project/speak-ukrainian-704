@@ -56,33 +56,9 @@ public class ClubsPage extends BasePage {
         return advancedSearchButton;
     }
 
-    public String getAdvancedSearchHeaderText() {
-        return getAdvancedSearchPanelComponent().getAdvancedSearchHeader().getText();
-    }
-
-
-    public boolean advancedSearchSideMenuIsVisible() {
-        return getAdvancedSearchPanelComponent().getAsideAdvancedSearchMenu().isDisplayed();
-    }
-
-    public boolean citySelectionInputIsVisible() {
-        return getAdvancedSearchPanelComponent().getCitySelector().isDisplayed();
-    }
-
-    public boolean basicCategoriesCheckListIsVisible() {
-        return getAdvancedSearchPanelComponent().getBasicCategoriesCheckList().isDisplayed();
-    }
-
     public AdvancedSearchPanelComponent clickAdvancedSearchButton() {
         getAdvancedSearchButton().click();
         return getAdvancedSearchPanelComponent();
     }
 
-    public boolean advancedAsideMenuIsVisible() {
-        try {
-            return getAdvancedSearchPanelComponent().getAsideAdvancedSearchMenu().isDisplayed();
-        } catch (StaleElementReferenceException e) {
-            return false;
-        }
-    }
 }

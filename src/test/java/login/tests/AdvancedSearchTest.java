@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.clubs.ClubsPage;
 import pages.HomePage;
+import pages.components.AdvancedSearchPanelComponent;
 
 public class AdvancedSearchTest extends BaseTestRunner {
 
@@ -16,18 +17,20 @@ public class AdvancedSearchTest extends BaseTestRunner {
         clubsPage
                 .waitForClubsPageToOpen();
 
+        AdvancedSearchPanelComponent advancedSearchPanelComponent = clubsPage.getAdvancedSearchPanelComponent();
+
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(clubsPage.advancedSearchSideMenuIsVisible(), "Extended search menu is not visible.");
-        softAssert.assertTrue(clubsPage.advancedAsideMenuIsVisible(), "Extended aside section is not visible.");
-        softAssert.assertEquals(clubsPage.getAdvancedSearchHeaderText().trim(), "Розширений пошук",
+        softAssert.assertTrue(advancedSearchPanelComponent.advancedSearchSideMenuIsVisible(), "Extended search menu is not visible.");
+        softAssert.assertTrue(advancedSearchPanelComponent.advancedAsideMenuIsVisible(), "Extended aside section is not visible.");
+        softAssert.assertEquals(advancedSearchPanelComponent.getAdvancedSearchHeaderText().trim(), "Розширений пошук",
                 "Advanced search header title is not as expected.");
-        softAssert.assertTrue(clubsPage.citySelectionInputIsVisible(), "City selector is not visible.");
-        softAssert.assertTrue(clubsPage.basicCategoriesCheckListIsVisible(), "Basic category check list is not visible.");
+        softAssert.assertTrue(advancedSearchPanelComponent.citySelectionInputIsVisible(), "City selector is not visible.");
+        softAssert.assertTrue(advancedSearchPanelComponent.basicCategoriesCheckListIsVisible(), "Basic category check list is not visible.");
         softAssert.assertAll();
 
         clubsPage
                 .clickAdvancedSearchButton();
 
-        Assert.assertFalse(clubsPage.advancedAsideMenuIsVisible(), "Extended aside section is visible");
+        Assert.assertFalse(advancedSearchPanelComponent.advancedAsideMenuIsVisible(), "Extended aside section is visible");
     }
 }

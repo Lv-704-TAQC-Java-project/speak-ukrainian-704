@@ -1,6 +1,7 @@
 package pages.components;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.BasePage;
@@ -53,4 +54,27 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return clubListSectionChildren;
     }
 
+    public String getAdvancedSearchHeaderText() {
+        return getAdvancedSearchHeader().getText();
+    }
+
+    public boolean advancedSearchSideMenuIsVisible() {
+        return getAsideAdvancedSearchMenu().isDisplayed();
+    }
+
+    public boolean citySelectionInputIsVisible() {
+        return getCitySelector().isDisplayed();
+    }
+
+    public boolean basicCategoriesCheckListIsVisible() {
+        return getBasicCategoriesCheckList().isDisplayed();
+    }
+
+    public boolean advancedAsideMenuIsVisible() {
+        try {
+            return getAsideAdvancedSearchMenu().isDisplayed();
+        } catch (StaleElementReferenceException e) {
+            return false;
+        }
+    }
 }
