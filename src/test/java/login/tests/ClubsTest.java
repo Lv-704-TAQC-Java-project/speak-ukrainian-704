@@ -16,7 +16,7 @@ public class ClubsTest extends BaseTestRunner {
         int quantityOfClubsOnFirstPage = clubsPage.getQuantityOfClubsOnCurrentPage();
 
         Assert.assertEquals(quantityOfClubsOnFirstPage, 8,
-                "Number of clubs per page is expected to be 8, but was " + quantityOfClubsOnFirstPage + " instead.");
+                String.format("Number of clubs per page is expected to be 8, but was %s instead.", quantityOfClubsOnFirstPage));
     }
 
     @Test
@@ -36,6 +36,6 @@ public class ClubsTest extends BaseTestRunner {
         int totalNumberOfClubs = quantityOfClubsOnFirstPage * (numberOfPagesInPagination - 1) + quantityOfClubsOnLastPage;
 
         Assert.assertEquals(totalNumberOfClubs, 368,
-                "Total number of clubs is expected to be 368, but was " + totalNumberOfClubs + " instead.");
+                String.format("Total number of clubs is expected to be 368, but was %s instead.", totalNumberOfClubs));
     }
 }
