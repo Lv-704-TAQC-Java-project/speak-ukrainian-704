@@ -3,9 +3,10 @@ package pages;
 import org.openqa.selenium.*;
 import pages.components.LogInProfileMenuComponent;
 import pages.components.LoginModalComponent;
+import pages.components.NavigationComponent;
 
 
-public class HomePage extends Header {
+public class HomePage extends NavigationComponent {
     private final String HOME_URL = BASE_URL;
     private WebElement profileMenu;
     private WebElement loginProfileMenuBtn;

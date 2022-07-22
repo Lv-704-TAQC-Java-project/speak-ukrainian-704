@@ -2,11 +2,12 @@ package pages;
 
 import org.openqa.selenium.*;
 import pages.components.AdvancedSearchPanelComponent;
+import pages.components.NavigationComponent;
 
 import java.util.List;
 
 
-public class ClubsPage extends Header {
+public class ClubsPage extends NavigationComponent {
     private List<WebElement> listOfClubsOnCurrentPage;
     private List<WebElement> listOfPagesInPagination;
     private WebElement lastPaginationPage;

@@ -4,9 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.components.EditProfileModalComponent;
+import pages.components.NavigationComponent;
 
 
-public class ProfilePage extends Header {
+public class ProfilePage extends NavigationComponent {
     private WebElement currentUserEmailField;
     private WebElement editProfileButton;
     private EditProfileModalComponent editProfileModalComponent;
