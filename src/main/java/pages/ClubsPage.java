@@ -11,6 +11,10 @@ public class ClubsPage extends BasePageWithHeader {
     private PaginationComponent paginationComponent;
     private AdvancedSearchPanelComponent advancedSearchPanelComponent;
     private WebElement advancedSearchButton;
+    private BasePageWithHeader header;
+    public BasePageWithHeader getHeader() {
+        return this.header;
+    }
 
 
     public ClubsPage(WebDriver driver) {

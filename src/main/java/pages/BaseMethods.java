@@ -18,6 +18,9 @@ public class BaseMethods {
         this.driver = driver;
     }
 
+    public void getUrl(String url){
+        driver.get(url);
+    }
     public void waitForPageToLoad() {
         try {
             WebDriverWait wait = new WebDriverWait(this.driver, TIMEOUT);

@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import pages.HomePage;
 import pages.ProfilePage;
 import pages.components.LoginModalComponent;
 
@@ -21,14 +22,14 @@ public class LoginTest extends BaseTestRunner {
 
     @Test(dataProvider = "invalidLoginData")
     public void checkMistakeMessageIsShownAfterLoginWithInvalidData(String email, String password) {
-        getHomePage()
+        new HomePage(driver)
                 .openProfileMenu()
                 .clickLoginButton()
                 .fillInEmail(email)
                 .fillInPassword(password)
                 .clickLoginButton();
 
-        String errorMessageText = getHomePage().getLoginErrorMessage().getText();
+        String errorMessageText = new HomePage(driver).getLoginErrorMessage().getText();
         Assert.assertTrue(errorMessageText.contains("невірний"), "Error message doesn't contain key word 'невірний'.");
     }
 
@@ -43,7 +44,7 @@ public class LoginTest extends BaseTestRunner {
 
     @Test(dataProvider = "loginInputFieldsBordersTestData")
     public void checkLoginInputFieldsBorders(String email, String password, boolean emailError, boolean passwordError) {
-        LoginModalComponent loginModal = getHomePage()
+        LoginModalComponent loginModal = new HomePage(driver)
                 .openProfileMenu()
                 .clickLoginButton()
                 .fillInEmail(email)
@@ -71,20 +72,20 @@ public class LoginTest extends BaseTestRunner {
 
     @Test(dataProvider = "validLoginData")
     public void checkSuccessMessageIsShownAfterLogin(String email, String password) {
-        getHomePage()
+        new HomePage(driver)
                 .openProfileMenu()
                 .clickLoginButton()
                 .fillInEmail(email)
                 .fillInPassword(password)
                 .clickLoginButton();
 
-        String successMessageText = getHomePage().getLoginSuccessMessage().getText();
+        String successMessageText = new HomePage(driver).getLoginSuccessMessage().getText();
         Assert.assertTrue(successMessageText.contains("успішно"), "Success message doesn't contain key word 'успішно'.");
     }
 
     @Test(dataProvider = "validLoginData")
     public void checkLoggedInUserEmailEqualsExpected(String email, String password) {
-        ProfilePage profilePage = getHomePage()
+        ProfilePage profilePage = new HomePage(driver)
                 .openProfileMenu()
                 .clickLoginButton()
                 .fillInEmail(email)

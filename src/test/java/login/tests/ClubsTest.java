@@ -3,6 +3,7 @@ package login.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.ClubsPage;
+import pages.HomePage;
 import pages.components.PaginationComponent;
 
 
@@ -10,8 +11,9 @@ public class ClubsTest extends BaseTestRunner {
 
     @Test
     public void checkNumberOfClubsOnFirstPageEqualsExpected() {
-        PaginationComponent paginationComponent = getHomePage()
-                .openClubsPage().openPaginationComponent();
+        PaginationComponent paginationComponent = new HomePage(driver)
+                .openClubsPage()
+                .openPaginationComponent();
 
         int quantityOfClubsOnFirstPage = paginationComponent.getQuantityOfClubsOnCurrentPage();
 
@@ -21,7 +23,7 @@ public class ClubsTest extends BaseTestRunner {
 
     @Test
     public void checkTotalNumberOfClubsEqualsExpected() {
-        PaginationComponent paginationComponent = getHomePage()
+        PaginationComponent paginationComponent = new HomePage(driver)
                 .openClubsPage().openPaginationComponent();
 
         int quantityOfClubsOnFirstPage = paginationComponent.getQuantityOfClubsOnCurrentPage();

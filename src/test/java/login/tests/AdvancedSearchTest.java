@@ -4,12 +4,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.ClubsPage;
+import pages.HomePage;
 
 public class AdvancedSearchTest extends BaseTestRunner {
 
     @Test
     public void checkExtendedSearchButtonFunctionality() {
-        ClubsPage clubsPage = getHomePage()
+        ClubsPage clubsPage = new HomePage(driver)
                 .clickAdvancedSearchButton();
 
         clubsPage

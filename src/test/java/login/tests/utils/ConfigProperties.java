@@ -5,39 +5,30 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigProperties {
-    private Properties prop;
-    private String userEmail;
-    private String userPassword;
+    private final Properties properties;
 
     public ConfigProperties() {
-        this.prop = new Properties();
 
-        FileInputStream ip;
+        properties = new Properties();
         try {
-            ip = new FileInputStream("config.properties");
-            prop.load(ip);
-            setUserEmail(prop.getProperty("VALID_USER_EMAIL"));
-            setUserPassword(prop.getProperty("VALID_USER_PASSWORD"));
+            FileInputStream fileInputStream = new FileInputStream("src/test/resources/config.properties");
+            properties.load(fileInputStream);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
     public String getUserEmail() {
-        return userEmail;
+        return properties.getProperty("VALID_USER_EMAIL");
     }
 
     public String getUserPassword() {
-        return userPassword;
+        return properties.getProperty("VALID_USER_PASSWORD");
     }
 
+    public String getBaseUrl() {
+        return properties.getProperty("BASE_URL");
+    }
 
 }
