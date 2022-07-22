@@ -3,9 +3,10 @@ package login.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import pages.clubs.AdvancedSearchPanelComponent;
 import pages.clubs.ClubsPage;
 import pages.HomePage;
-import pages.components.AdvancedSearchPanelComponent;
+
 
 public class AdvancedSearchTest extends BaseTestRunner {
 
