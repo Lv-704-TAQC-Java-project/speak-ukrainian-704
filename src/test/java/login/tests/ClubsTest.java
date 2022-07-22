@@ -3,17 +3,17 @@ package login.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.ClubsPage;
+import pages.components.PaginationComponent;
 
 
 public class ClubsTest extends BaseTestRunner {
 
     @Test
     public void checkNumberOfClubsOnFirstPageEqualsExpected() {
-        ClubsPage clubsPage = getHomePage()
-                .openClubsPage()
-                .waitForClubsPageToOpen();
+        PaginationComponent paginationComponent = getHomePage()
+                .openClubsPage().openPaginationComponent();
 
-        int quantityOfClubsOnFirstPage = clubsPage.getQuantityOfClubsOnCurrentPage();
+        int quantityOfClubsOnFirstPage = paginationComponent.getQuantityOfClubsOnCurrentPage();
 
         Assert.assertEquals(quantityOfClubsOnFirstPage, 8,
                 String.format("Number of clubs per page is expected to be 8, but was %s instead.", quantityOfClubsOnFirstPage));
@@ -21,18 +21,16 @@ public class ClubsTest extends BaseTestRunner {
 
     @Test
     public void checkTotalNumberOfClubsEqualsExpected() {
-        ClubsPage clubsPage = getHomePage()
-                .openClubsPage()
-                .waitForClubsPageToOpen();
+        PaginationComponent paginationComponent = getHomePage()
+                .openClubsPage().openPaginationComponent();
 
-        int quantityOfClubsOnFirstPage = clubsPage.getQuantityOfClubsOnCurrentPage();
-        int numberOfPagesInPagination = clubsPage.getNumberOfPagesInPagination();
+        int quantityOfClubsOnFirstPage = paginationComponent.getQuantityOfClubsOnCurrentPage();
+        int numberOfPagesInPagination = paginationComponent.getNumberOfPagesInPagination();
 
-        clubsPage
-                .openLastPageInPagination()
-                .waitForPageToRefresh();
+        paginationComponent
+                .openLastPageInPagination();
 
-        int quantityOfClubsOnLastPage = clubsPage.getQuantityOfClubsOnCurrentPage();
+        int quantityOfClubsOnLastPage = paginationComponent.getQuantityOfClubsOnCurrentPage();
         int totalNumberOfClubs = quantityOfClubsOnFirstPage * (numberOfPagesInPagination - 1) + quantityOfClubsOnLastPage;
 
         Assert.assertEquals(totalNumberOfClubs, 368,

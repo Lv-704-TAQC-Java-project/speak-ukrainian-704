@@ -2,14 +2,13 @@ package pages;
 
 import org.openqa.selenium.*;
 import pages.components.AdvancedSearchPanelComponent;
+import pages.components.PaginationComponent;
 
 import java.util.List;
 
 
 public class ClubsPage extends BasePageWithHeader {
-    private List<WebElement> listOfClubsOnCurrentPage;
-    private List<WebElement> listOfPagesInPagination;
-    private WebElement lastPaginationPage;
+    private PaginationComponent paginationComponent;
     private AdvancedSearchPanelComponent advancedSearchPanelComponent;
     private WebElement advancedSearchButton;
 
@@ -30,17 +29,15 @@ public class ClubsPage extends BasePageWithHeader {
         return advancedSearchPanelComponent;
     }
 
-    public List<WebElement> getListOfClubsOnCurrentPage() {
-        listOfClubsOnCurrentPage = driver.findElements(By.xpath("//div[contains(@class, 'ant-card-body')]"));
-        return listOfClubsOnCurrentPage;
+    public PaginationComponent getPaginationComponent() {
+        if (paginationComponent == null) {
+            paginationComponent = new PaginationComponent(driver);
+        }
+        return paginationComponent;
     }
 
-    public List<WebElement> getListOfPagesInPagination() {
-        if (listOfPagesInPagination == null) {
-            waitVisibilityOfElements(By.xpath("//li[contains(@class, 'ant-pagination-item')]"));
-            listOfPagesInPagination = driver.findElements(By.xpath("//li[contains(@class, 'ant-pagination-item')]"));
-        }
-        return listOfPagesInPagination;
+    public PaginationComponent openPaginationComponent(){
+        return getPaginationComponent().waitForPaginationComponentToOpen();
     }
 
 
@@ -52,35 +49,10 @@ public class ClubsPage extends BasePageWithHeader {
         return advancedSearchButton;
     }
 
-    public int getQuantityOfClubsOnCurrentPage() {
-        return getListOfClubsOnCurrentPage().size();
-    }
-
     public String getAdvancedSearchHeaderText() {
         return getAdvancedSearchPanelComponent().getAdvancedSearchHeader().getText();
     }
 
-    public WebElement getLastPaginationPage() {
-        if (lastPaginationPage == null) {
-            lastPaginationPage = getListOfPagesInPagination().get(getListOfPagesInPagination().size() - 1);
-        }
-        return lastPaginationPage;
-    }
-
-    public int getNumberOfPagesInPagination() {
-        return Integer.parseInt(getLastPaginationPage().findElement(By.xpath("./child::a")).getText());
-    }
-
-    public ClubsPage openLastPageInPagination() {
-        getLastPaginationPage().click();
-        return this;
-    }
-
-    public ClubsPage waitForPageToRefresh() {
-        WebElement firstClubPOnPage = listOfClubsOnCurrentPage.get(0);
-        waitInvisibilityOfElement(firstClubPOnPage);
-        return this;
-    }
 
     public boolean advancedSearchSideMenuIsVisible() {
         return getAdvancedSearchPanelComponent().getAsideAdvancedSearchMenu().isDisplayed();
