@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import pages.components.EditProfileModalComponent;
 
 
-public class ProfilePage extends Header {
+public class ProfilePage extends BasePageWithHeader {
     private WebElement currentUserEmailField;
     private WebElement editProfileButton;
     private EditProfileModalComponent editProfileModalComponent;
@@ -44,5 +44,4 @@ public class ProfilePage extends Header {
         getEditProfileButton().click();
         return getEditProfileModalComponent();
     }
-
 }

@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.ClubsPage;
 
-public class AdvancedSearchTest extends BaseTest {
+public class AdvancedSearchTest extends BaseTestRunner {
 
     @Test
     public void checkExtendedSearchButtonFunctionality() {

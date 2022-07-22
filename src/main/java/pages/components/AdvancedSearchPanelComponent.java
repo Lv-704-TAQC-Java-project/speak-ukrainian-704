@@ -3,12 +3,12 @@ package pages.components;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.BasePage;
+import pages.BaseMethods;
 
 import java.time.Duration;
 import java.util.List;
 
-public class AdvancedSearchPanelComponent extends BasePage {
+public class AdvancedSearchPanelComponent extends BaseMethods {
     private List<WebElement> clubListSectionChildren;
     private WebElement asideAdvancedSearchMenu;
     private WebElement advancedSearchHeader;

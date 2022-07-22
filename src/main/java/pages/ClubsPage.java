@@ -7,7 +7,7 @@ import pages.components.PaginationComponent;
 import java.util.List;
 
 
-public class ClubsPage extends Header {
+public class ClubsPage extends BasePageWithHeader {
     private PaginationComponent paginationComponent;
     private AdvancedSearchPanelComponent advancedSearchPanelComponent;
     private WebElement advancedSearchButton;
@@ -78,5 +78,4 @@ public class ClubsPage extends Header {
             return false;
         }
     }
-
 }

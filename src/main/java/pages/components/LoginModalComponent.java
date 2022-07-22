@@ -3,19 +3,19 @@ package pages.components;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.BasePage;
+import org.openqa.selenium.interactions.Actions;
+import pages.BaseMethods;
 import pages.HomePage;
 
-public class LoginModalComponent extends BasePage {
+public class LoginModalComponent extends BaseMethods {
     private WebElement loginModal;
     private WebElement emailInputField;
     private WebElement emailInputFieldWrapper;
     private WebElement passwordField;
     private WebElement passwordFieldWrapper;
     private WebElement submitLoginFormBtn;
+    private WebElement loginHeader;
 
-    private WebElement loginSuccessPopupMessage;
-    private WebElement loginErrorPopupMessage;
 
     public LoginModalComponent(WebDriver driver) {
         super(driver);
@@ -32,15 +32,14 @@ public class LoginModalComponent extends BasePage {
 
     public WebElement getEmailInputField() {
         if (emailInputField == null) {
-            waitVisibilityOfElement(By.xpath("//input[@id='basic_email']"));
             emailInputField = driver.findElement(By.xpath("//input[@id='basic_email']"));
         }
         return emailInputField;
     }
 
-    public WebElement getEmailInputFieldWrapper() {
+    public WebElement getEmailFieldWrapper() {
         if (emailInputFieldWrapper == null) {
-            waitVisibilityOfElement(By.xpath("//input[@id='basic_email']/parent::span"));
+            waitBorderColorToChange();
             emailInputFieldWrapper = driver.findElement(By.xpath("//input[@id='basic_email']/parent::span"));
         }
         return emailInputFieldWrapper;
@@ -48,7 +47,6 @@ public class LoginModalComponent extends BasePage {
 
     public WebElement getPasswordField() {
         if (passwordField == null) {
-            waitVisibilityOfElement(By.xpath("//input[@id='basic_password']"));
             passwordField = driver.findElement(By.xpath("//input[@id='basic_password']"));
         }
         return passwordField;
@@ -56,7 +54,6 @@ public class LoginModalComponent extends BasePage {
 
     public WebElement getPasswordFieldWrapper() {
         if (passwordFieldWrapper == null) {
-            waitVisibilityOfElement(By.xpath("//input[@id='basic_password']/parent::span"));
             passwordFieldWrapper = driver.findElement(By.xpath("//input[@id='basic_password']/parent::span"));
         }
         return passwordFieldWrapper;
@@ -64,28 +61,39 @@ public class LoginModalComponent extends BasePage {
 
     public WebElement getSubmitLoginFormBtn() {
         if (submitLoginFormBtn == null) {
-            waitVisibilityOfElement(By.xpath("//button[contains(@class, 'login-button')]"));
             submitLoginFormBtn = driver.findElement(By.xpath("//button[contains(@class, 'login-button')]"));
         }
         return submitLoginFormBtn;
     }
 
-
-
-    public WebElement getLoginSuccessPopupMessage() {
-        if (loginSuccessPopupMessage == null) {
-            waitVisibilityOfElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'успішно')]"));
-            loginSuccessPopupMessage = driver.findElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'успішно')]"));
+    public WebElement getLoginHeader() {
+        if (loginHeader == null) {
+            loginHeader = driver.findElement(By.xpath("//div[@class='login-header']"));
         }
-        return loginSuccessPopupMessage;
+        return loginHeader;
     }
 
-    public WebElement getLoginErrorPopupMessage() {
-        if (loginErrorPopupMessage == null) {
-            waitVisibilityOfElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'невірний')]"));
-            loginErrorPopupMessage = driver.findElement(By.xpath("//div[@class='ant-message']//span[contains(text(), 'невірний')]"));
+
+    public LoginModalComponent clickOnLoginHeader() {
+        Actions action = new Actions(driver);
+
+//        action.moveToElement(getLoginModal()).click();
+        action.moveToElement(getLoginHeader()).click();
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        return this;
+    }
+
+    public LoginModalComponent waitBorderColorToChange() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        return loginErrorPopupMessage;
+        return this;
     }
 
     public LoginModalComponent fillInEmail(String email) {
@@ -98,7 +106,7 @@ public class LoginModalComponent extends BasePage {
         return this;
     }
 
-    public LoginModalComponent submitLoginForm() {
+    public LoginModalComponent clickLoginButton() {
         getSubmitLoginFormBtn().click();
         return this;
     }
@@ -112,4 +120,8 @@ public class LoginModalComponent extends BasePage {
         return new HomePage(driver);
     }
 
+    public HomePage getHomePageReload() {
+        waitForPageToReload();
+        return new HomePage(driver);
+    }
 }

@@ -1,10 +1,11 @@
-package pages;
+package pages.components;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pages.*;
 
-public class Header extends BasePage {
+public class NavigationComponent extends BaseMethods {
 
     private WebElement clubsLinkBtn;
     private WebElement challengeBtn;
@@ -12,7 +13,7 @@ public class Header extends BasePage {
     private WebElement aboutLinkBtn;
     private WebElement serviceLinkBtn;
 
-    public Header(WebDriver driver) {
+    public NavigationComponent(WebDriver driver) {
         super(driver);
     }
 

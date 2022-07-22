@@ -4,32 +4,31 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.HomePage;
 import pages.ProfilePage;
 import pages.components.LoginModalComponent;
 
 
-public class LoginTest extends BaseTest {
+public class LoginTest extends BaseTestRunner {
 
     @DataProvider(name = "invalidLoginData")
     public Object[][] invalidLoginData() {
         return new Object[][]{
-                {validUserEmail, "a"},
-                {"a@gmail.com", validUserPassword},
+                {configProps.getUserEmail(), "a"},
+                {"a@gmail.com", configProps.getUserPassword()},
                 {"a@gmail.com", "a"}
         };
     }
 
     @Test(dataProvider = "invalidLoginData")
     public void checkMistakeMessageIsShownAfterLoginWithInvalidData(String email, String password) {
-        LoginModalComponent loginModal = getHomePage()
+        getHomePage()
                 .openProfileMenu()
-                .openLoginModal()
+                .clickLoginButton()
                 .fillInEmail(email)
                 .fillInPassword(password)
-                .submitLoginForm();
+                .clickLoginButton();
 
-        String errorMessageText = loginModal.getLoginErrorPopupMessage().getText();
+        String errorMessageText = getHomePage().getLoginErrorMessage().getText();
         Assert.assertTrue(errorMessageText.contains("невірний"), "Error message doesn't contain key word 'невірний'.");
     }
 
@@ -38,47 +37,48 @@ public class LoginTest extends BaseTest {
         return new Object[][]{
                 {"", "", true, true},
                 {"some", "a", true, false},
-                {validUserEmail, validUserPassword, false, false}
+                {configProps.getUserEmail(), configProps.getUserPassword(), false, false}
         };
     }
 
     @Test(dataProvider = "loginInputFieldsBordersTestData")
     public void checkLoginInputFieldsBorders(String email, String password, boolean emailError, boolean passwordError) {
-        LoginModalComponent loginModalComponent = getHomePage()
+        LoginModalComponent loginModal = getHomePage()
                 .openProfileMenu()
-                .openLoginModal()
+                .clickLoginButton()
                 .fillInEmail(email)
                 .fillInPassword(password)
-                .submitLoginForm();
+                .clickOnLoginHeader()
+                .clickLoginButton();
 
-        String getCssClassOfEmailWrapper = loginModalComponent.getEmailInputFieldWrapper().getAttribute("class");
-        String getCssClassOfPasswordWrapper = loginModalComponent.getPasswordFieldWrapper().getAttribute("class");
+        String getBorderColorOfEmailWrapper = loginModal.getEmailFieldWrapper().getCssValue("border-color");
+        String getBorderColorOfPasswordWrapper = loginModal.getPasswordFieldWrapper().getCssValue("border-color");
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(getCssClassOfEmailWrapper.contains(emailError ? "wrapper-status-error" : "wrapper-status-success"),
-                "Wrapper class attribute doesn't contain expected class.");
-        softAssert.assertTrue(getCssClassOfPasswordWrapper.contains(passwordError ? "wrapper-status-error" : "wrapper-status-success"),
-                "Wrapper class attribute doesn't contain expected class.");
+        softAssert.assertTrue(getBorderColorOfEmailWrapper.contains(emailError ? "rgb(255, 77, 79)" : "rgb(217, 217, 217)"),
+                "Border color of email field wrapper is not of expected color.");
+        softAssert.assertTrue(getBorderColorOfPasswordWrapper.contains(passwordError ? "rgb(255, 77, 79)" : "rgb(217, 217, 217)"),
+                "Border color of password field wrapper is not of expected color.");
         softAssert.assertAll();
     }
 
     @DataProvider(name = "validLoginData")
     public Object[][] validLoginData() {
         return new Object[][]{
-                {validUserEmail, validUserPassword}
+                {configProps.getUserEmail(), configProps.getUserPassword()}
         };
     }
 
     @Test(dataProvider = "validLoginData")
     public void checkSuccessMessageIsShownAfterLogin(String email, String password) {
-        LoginModalComponent loginModalComponent = getHomePage()
+        getHomePage()
                 .openProfileMenu()
-                .openLoginModal()
+                .clickLoginButton()
                 .fillInEmail(email)
                 .fillInPassword(password)
-                .submitLoginForm();
+                .clickLoginButton();
 
-        String successMessageText = loginModalComponent.getLoginSuccessPopupMessage().getText();
+        String successMessageText = getHomePage().getLoginSuccessMessage().getText();
         Assert.assertTrue(successMessageText.contains("успішно"), "Success message doesn't contain key word 'успішно'.");
     }
 
@@ -86,12 +86,11 @@ public class LoginTest extends BaseTest {
     public void checkLoggedInUserEmailEqualsExpected(String email, String password) {
         ProfilePage profilePage = getHomePage()
                 .openProfileMenu()
-                .openLoginModal()
+                .clickLoginButton()
                 .fillInEmail(email)
                 .fillInPassword(password)
-                .submitLoginForm()
-                .waitForUserToBeLoggedIn()
-                .getHomePage()
+                .clickLoginButton()
+                .getHomePageReload()
                 .openProfileMenu()
                 .openUserProfilePage();
 
