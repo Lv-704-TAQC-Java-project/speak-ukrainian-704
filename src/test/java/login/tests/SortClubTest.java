@@ -7,6 +7,9 @@ import pages.clubs.ClubPageComponent;
 import pages.clubs.ClubsPage;
 import pages.clubs.SortClubComponent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SortClubTest extends BaseTestRunner {
 
     @Test
@@ -35,6 +38,26 @@ public class SortClubTest extends BaseTestRunner {
 
         boolean isDisplayed = clubPageComponent.getListCard().isDisplayed();
         Assert.assertTrue(isDisplayed);
+    }
+
+    @Test
+    public void sortByAbcASCTest() {
+        ClubsPage clubsPage = new HomePage(driver)
+                .clickAdvancedSearchButton();
+
+        SortClubComponent sortClubComponent = clubsPage.getSortClubComponent()
+                .sortByABCButtonClick()
+                .arrowUpButtonClick()
+                .arrowDownButtonClick();
+
+        ClubPageComponent clubPageComponent = clubsPage.getClubPageComponent();
+
+        List<String> namesActual = new ArrayList<>();
+        for (int i = 0; i < clubPageComponent.getListOfCardNames().size(); i++) {
+            namesActual.add(i, clubPageComponent.getListOfCardNames().get(i).getText().toUpperCase());
+            Assert.assertTrue(namesActual.get(i).startsWith("A"));
+        }
+
     }
 
 
