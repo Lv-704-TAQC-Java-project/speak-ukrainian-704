@@ -5,12 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.*;
 import pages.clubs.ClubsPage;
-import pages.header.profileMenu.ProfileMenuComponent;
+import pages.header.profileMenuAdmin.AdminProfileMenuComponent;
+import pages.header.profileMenuGuest.GuestProfileMenuComponent;
 
 
 public class HeaderComponent extends BasePage {
     private WebElement profileMenuButton;
-    private ProfileMenuComponent profileMenuComponent;
+    private GuestProfileMenuComponent guestProfileMenuComponent;
+    private AdminProfileMenuComponent adminProfileMenuComponent;
     private PopupMessageComponent popupMessageComponent;
     private NavigationComponent navigationComponent;
 
@@ -18,11 +20,18 @@ public class HeaderComponent extends BasePage {
         super(driver);
     }
 
-    protected ProfileMenuComponent getProfileMenuComponent() {
-        if (profileMenuComponent == null) {
-            profileMenuComponent = new ProfileMenuComponent(driver);
+    protected GuestProfileMenuComponent getGuestProfileMenuComponent() {
+        if (guestProfileMenuComponent == null) {
+            guestProfileMenuComponent = new GuestProfileMenuComponent(driver);
         }
-        return profileMenuComponent;
+        return guestProfileMenuComponent;
+    }
+
+    protected AdminProfileMenuComponent getAdminProfileMenuComponent() {
+        if (adminProfileMenuComponent == null) {
+            adminProfileMenuComponent = new AdminProfileMenuComponent(driver);
+        }
+        return adminProfileMenuComponent;
     }
 
     public WebElement getProfileMenuButton() {
@@ -33,9 +42,14 @@ public class HeaderComponent extends BasePage {
         return profileMenuButton;
     }
 
-    public ProfileMenuComponent openProfileMenu() {
+    public GuestProfileMenuComponent openGuestProfileMenu() {
         getProfileMenuButton().click();
-        return getProfileMenuComponent();
+        return getGuestProfileMenuComponent();
+    }
+
+    public AdminProfileMenuComponent openAdminProfileMenu() {
+        getProfileMenuButton().click();
+        return getAdminProfileMenuComponent();
     }
 
     public PopupMessageComponent getPopupMessageComponent() {

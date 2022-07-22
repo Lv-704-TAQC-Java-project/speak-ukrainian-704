@@ -1,16 +1,13 @@
-package pages.header.profileMenu;
+package pages.header.profileMenuAdmin;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.BasePage;
 import pages.HomePage;
-import pages.ProfilePage;
-import pages.header.profileMenu.AddCenterModalComponent;
-import pages.header.profileMenu.AddGroupModalComponent;
-import pages.header.profileMenu.AdministrationModalComponent;
+import pages.header.profileMenuAdmin.profilePage.ProfilePage;
 
-public class LogInProfileMenuComponent extends BasePage {
+public class AdminProfileMenuComponent extends BasePage {
 
     WebElement addGroupModal;
     WebElement addCenterModal;
@@ -19,7 +16,7 @@ public class LogInProfileMenuComponent extends BasePage {
     WebElement administrationBtn;
 
 
-    public LogInProfileMenuComponent(WebDriver driver) {
+    public AdminProfileMenuComponent(WebDriver driver) {
         super(driver);
     }
 
