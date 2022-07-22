@@ -8,6 +8,8 @@ import pages.header.HeaderComponent;
 
 public class ClubsPage extends BasePage {
     private PaginationComponent paginationComponent;
+    private SortClubComponent sortClubComponent;
+    private ClubPageComponent clubPageComponent;
     private AdvancedSearchPanelComponent advancedSearchPanelComponent;
     private WebElement advancedSearchButton;
     private HeaderComponent header;
@@ -47,6 +49,19 @@ public class ClubsPage extends BasePage {
         return getPaginationComponent().waitForPaginationComponentToOpen();
     }
 
+    public SortClubComponent getSortClubComponent() {
+        if (sortClubComponent == null) {
+            sortClubComponent = new SortClubComponent(driver);
+        }
+        return sortClubComponent;
+    }
+
+    public ClubPageComponent getClubPageComponent() {
+        if (clubPageComponent == null) {
+            clubPageComponent = new ClubPageComponent(driver);
+        }
+        return clubPageComponent;
+    }
 
     public WebElement getAdvancedSearchButton() {
         waitVisibilityOfElement(By.xpath("//span[contains(@class, 'anticon-control')]"));

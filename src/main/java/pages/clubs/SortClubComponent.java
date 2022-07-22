@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.BasePage;
 
-public class FilterClubComponent extends BasePage {
+public class SortClubComponent extends BasePage {
 
     private WebElement sortByABCButton;
     private WebElement sortByRatingButton;
@@ -14,7 +14,7 @@ public class FilterClubComponent extends BasePage {
     private WebElement listViewButton;
     private WebElement blockViewButton;
 
-    public FilterClubComponent(WebDriver driver) {
+    public SortClubComponent(WebDriver driver) {
         super(driver);
     }
 
@@ -60,32 +60,32 @@ public class FilterClubComponent extends BasePage {
         return blockViewButton;
     }
 
-    public FilterClubComponent sortByABCButtonClick() {
+    public SortClubComponent sortByABCButtonClick() {
         getSortByABCButton().click();
         return this;
     }
 
-    public FilterClubComponent sortByRatingButtonClick() {
+    public SortClubComponent sortByRatingButtonClick() {
         getSortByRatingButton().click();
         return this;
     }
 
-    public FilterClubComponent arrowUpButtonClick() {
+    public SortClubComponent arrowUpButtonClick() {
         getArrowUpButton().click();
         return this;
     }
 
-    public FilterClubComponent arrowDownButtonClick() {
+    public SortClubComponent arrowDownButtonClick() {
         getArrowDownButton().click();
         return this;
     }
 
-    public FilterClubComponent listViewButtonClick() {
+    public SortClubComponent listViewButtonClick() {
         getListViewButton().click();
         return this;
     }
 
-    public FilterClubComponent blockViewButtonClick() {
+    public SortClubComponent blockViewButtonClick() {
         getBlockViewButton().click();
         return this;
     }
