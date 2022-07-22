@@ -10,6 +10,7 @@ public class ClubsPage extends BasePage {
     private AdvancedSearchPanelComponent advancedSearchPanelComponent;
     private WebElement advancedSearchButton;
     private HeaderComponent header;
+    private WebElement pageIdentifier;
 
 
     public ClubsPage(WebDriver driver) {
@@ -58,6 +59,12 @@ public class ClubsPage extends BasePage {
     public AdvancedSearchPanelComponent clickAdvancedSearchButton() {
         getAdvancedSearchButton().click();
         return getAdvancedSearchPanelComponent();
+    }
+    public WebElement getPageIdentity(){
+        if (pageIdentifier == null) {
+            pageIdentifier = driver.findElement(By.xpath("//a[@href='/dev/clubs']"));
+        }
+        return pageIdentifier;
     }
 
 }

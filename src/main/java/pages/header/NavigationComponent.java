@@ -13,6 +13,7 @@ public class NavigationComponent extends BasePage {
     private WebElement newsLinkBtn;
     private WebElement aboutLinkBtn;
     private WebElement serviceLinkBtn;
+    private WebElement challengeMenu;
 
     public NavigationComponent(WebDriver driver) {
         super(driver);
@@ -56,6 +57,14 @@ public class NavigationComponent extends BasePage {
             serviceLinkBtn = driver.findElement(By.xpath("//header//a[contains(@href, 'service')]"));
         }
         return serviceLinkBtn;
+    }
+
+    public WebElement getChallengeMenu() {
+        if (challengeMenu == null) {
+            waitVisibilityOfElement(By.xpath("//div[@class='ant-menu-submenu ant-menu-submenu-popup ant-menu ant-menu-light ant-menu-submenu-placement-bottomLeft ']"));
+            challengeMenu = driver.findElement(By.xpath("//div[@class='ant-menu-submenu ant-menu-submenu-popup ant-menu ant-menu-light ant-menu-submenu-placement-bottomLeft ']"));
+        }
+        return challengeMenu;
     }
 
     public ClubsPage openClubsPage() {
