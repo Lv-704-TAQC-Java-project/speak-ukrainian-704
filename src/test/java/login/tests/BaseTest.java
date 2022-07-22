@@ -51,7 +51,7 @@ public class BaseTest {
 
         FileInputStream ip;
         try {
-            ip = new FileInputStream("config.properties");
+            ip = new FileInputStream("src/main/resources/config.properties");
             prop.load(ip);
             validUserEmail = prop.getProperty("VALID_USER_EMAIL");
             validUserPassword = prop.getProperty("VALID_USER_PASSWORD");
