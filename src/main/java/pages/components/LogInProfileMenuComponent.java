@@ -3,11 +3,11 @@ package pages.components;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.BasePage;
+import pages.BaseMethods;
 import pages.HomePage;
 import pages.ProfilePage;
 
-public class LogInProfileMenuComponent extends BasePage {
+public class LogInProfileMenuComponent extends BaseMethods {
 
     WebElement addGroupModal;
     WebElement addCenterModal;
