@@ -120,4 +120,8 @@ public class LoginModalComponent extends BaseMethods {
         return new HomePage(driver);
     }
 
+    public HomePage getHomePageReload() {
+        waitForPageToReload();
+        return new HomePage(driver);
+    }
 }

@@ -9,7 +9,7 @@ public class HomePage extends BasePageWithHeader {
 
     public HomePage(WebDriver driver) {
         super(driver);
-        waitForPageToReload();
+//        waitForPageToReload();
     }
 
     public WebElement getAdvancedSearchButton() {

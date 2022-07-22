@@ -90,7 +90,7 @@ public class LoginTest extends BaseTestRunner {
                 .fillInEmail(email)
                 .fillInPassword(password)
                 .clickLoginButton()
-                .getHomePage()
+                .getHomePageReload()
                 .openProfileMenu()
                 .openUserProfilePage();
 
