@@ -15,6 +15,7 @@ public class HeaderComponent extends BasePage {
     private AdminProfileMenuComponent adminProfileMenuComponent;
     private PopupMessageComponent popupMessageComponent;
     private NavigationComponent navigationComponent;
+    private WebElement imageUserComponent;
 
     public HeaderComponent(WebDriver driver) {
         super(driver);
@@ -40,6 +41,18 @@ public class HeaderComponent extends BasePage {
             profileMenuButton = driver.findElement(By.xpath("//div[contains(@class, 'user-profile')]"));
         }
         return profileMenuButton;
+    }
+
+    public WebElement getUserIdentity(){
+        if (imageUserComponent == null) {
+            imageUserComponent = driver.findElement(By.xpath("//span[@aria-label='user']"));
+        }
+        return imageUserComponent;
+    }
+
+    public HeaderComponent getHomePageReload() {
+        waitForPageToReload();
+        return new HeaderComponent(driver);
     }
 
     public GuestProfileMenuComponent openGuestProfileMenu() {

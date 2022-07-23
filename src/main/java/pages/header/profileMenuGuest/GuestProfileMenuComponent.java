@@ -10,6 +10,7 @@ public class GuestProfileMenuComponent extends BasePage {
     private WebElement loginButton;
     private WebElement registrationButton;
     private WebElement myProfileButton;
+    private WebElement menuIdentifier;
 
     private LoginModalComponent loginModal;
 
@@ -71,4 +72,5 @@ public class GuestProfileMenuComponent extends BasePage {
         getMyProfileButton().click();
         return new ProfilePage(driver);
     }
+
 }

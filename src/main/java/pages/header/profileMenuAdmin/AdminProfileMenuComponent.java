@@ -22,8 +22,8 @@ public class AdminProfileMenuComponent extends BasePage {
 
     public WebElement getAddGroupBtn() {
         if (addGroupModal == null) {
-            waitVisibilityOfElement(By.xpath("//li[@class='ant-dropdown-menu-item ant-dropdown-menu-item-active ant-dropdown-menu-item-only-child']"));
-            addGroupModal = driver.findElement(By.xpath("//li[@class='ant-dropdown-menu-item ant-dropdown-menu-item-active ant-dropdown-menu-item-only-child']"));
+            waitVisibilityOfElement(By.xpath("//div[contains(text(),'Додати гурток')]"));
+            addGroupModal = driver.findElement(By.xpath("//div[contains(text(),'Додати гурток')]"));
         }
         return addGroupModal;
     }
@@ -46,8 +46,8 @@ public class AdminProfileMenuComponent extends BasePage {
 
     public WebElement getLogOutBtn() {
         if (logOutBtn == null) {
-            waitVisibilityOfElement(By.xpath("//div[contains(text(), 'Вийти')]//ancestor::li"));
-            logOutBtn = driver.findElement(By.xpath("//div[contains(text(), 'Вийти')]//ancestor::li"));
+            waitVisibilityOfElement(By.xpath("//span[contains(text(), 'Вийти')]//ancestor::li"));
+            logOutBtn = driver.findElement(By.xpath("//span[contains(text(), 'Вийти')]//ancestor::li"));
         }
         return logOutBtn;
     }

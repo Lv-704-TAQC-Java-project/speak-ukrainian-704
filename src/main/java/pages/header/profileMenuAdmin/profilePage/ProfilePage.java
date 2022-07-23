@@ -11,6 +11,7 @@ public class ProfilePage extends BasePage {
     private HeaderComponent header;
     private WebElement currentUserEmailField;
     private WebElement editProfileButton;
+    private WebElement pageIdentifier;
     private EditProfileModalComponent editProfileModalComponent;
 
 
@@ -52,5 +53,12 @@ public class ProfilePage extends BasePage {
     public EditProfileModalComponent clickEditProfileButton() {
         getEditProfileButton().click();
         return getEditProfileModalComponent();
+    }
+
+    public WebElement getPageIdentity(){
+        if (pageIdentifier == null) {
+            pageIdentifier = driver.findElement(By.xpath("//a[@href='/dev/about']"));
+        }
+        return pageIdentifier;
     }
 }
