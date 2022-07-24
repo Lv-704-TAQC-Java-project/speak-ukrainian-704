@@ -7,15 +7,15 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.*;
 import pages.clubs.ClubsPage;
+import pages.header.HeaderComponent;
 import pages.header.NavigationComponent;
 
 
 public class HeaderNavigationTest extends BaseTestOneWindowRunner {
 
-    @Test (priority = 0)
+    @Test
     public void goToClubsPageLinkTest() {
-        new HomePage(driver)
-                .getHeader()
+        new HeaderComponent(driver)
                 .openClubsPage();
 
         String url = new ClubsPage(driver)
@@ -34,9 +34,10 @@ public class HeaderNavigationTest extends BaseTestOneWindowRunner {
         softAssert.assertAll();
     }
 
-    @Test (priority = 1)
+    @Test
     public void goToHomePageLinkTest() {
-        new ClubsPage(driver)
+        new HeaderComponent(driver)
+                .openClubsPage()
                 .getHeader()
                 .openHomePage();
 
@@ -57,10 +58,9 @@ public class HeaderNavigationTest extends BaseTestOneWindowRunner {
         softAssert.assertAll();
     }
 
-    @Test (priority = 2)
+    @Test
     public void goToChallengesPageLinkTest() {
-        new HomePage(driver)
-                .getHeader()
+        new HeaderComponent(driver)
                 .openChallengeMenu()
                 .clickOnFirstChallengeFromList();
 
@@ -80,10 +80,9 @@ public class HeaderNavigationTest extends BaseTestOneWindowRunner {
         softAssert.assertAll();
     }
 
-    @Test (priority = 3)
+    @Test
     public void goToNewsPageLinkTest() {
-        new ChallengePage(driver)
-                .getHeader()
+        new HeaderComponent(driver)
                 .openNewsPage();
 
         String url = new NewsPage(driver)
@@ -102,10 +101,9 @@ public class HeaderNavigationTest extends BaseTestOneWindowRunner {
         softAssert.assertAll();
     }
 
-    @Test (priority = 4)
+    @Test
     public void goToAboutPageLinkTest() {
-        new NewsPage(driver)
-                .getHeader()
+        new HeaderComponent(driver)
                 .openAboutPage();
 
         String url = new AboutPage(driver)
@@ -124,10 +122,9 @@ public class HeaderNavigationTest extends BaseTestOneWindowRunner {
         softAssert.assertAll();
     }
 
-    @Test (priority = 5)
+    @Test
     public void goToServicePageLinkTest() {
-        new AboutPage(driver)
-                .getHeader()
+        new HeaderComponent(driver)
                 .openServicePage();
 
         String url = new ServicePage(driver)
