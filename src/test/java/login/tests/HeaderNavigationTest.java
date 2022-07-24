@@ -4,41 +4,14 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.AboutPage;
-import pages.HomePage;
-import pages.NewsPage;
-import pages.ServicePage;
+import pages.*;
 import pages.clubs.ClubsPage;
 import pages.header.NavigationComponent;
 
-public class HeaderNavigationTest extends BaseTestRunner {
 
-    @Test
-    public void goToHomePageLinkTest() {
-        new HomePage(driver)
-                .getHeader()
-                .openClubsPage()
-                .getHeader()
-                .openHomePage();
+public class HeaderNavigationTest extends BaseTestOneWindowRunner {
 
-        String url = new HomePage(driver)
-                .readCurrentUrl();
-
-        WebElement clubsLinkWrapper = new NavigationComponent(driver)
-                .getClubsLinkWrapperWithAttributeValue("border-bottom", "0px none rgb(0, 0, 0)");
-
-
-        String clubsLinkBorderBottomValue = ((JavascriptExecutor)driver)
-                .executeScript("return window.getComputedStyle(arguments[0], ':after').getPropertyValue('border-bottom');", clubsLinkWrapper).toString();
-
-        System.out.println();
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(clubsLinkBorderBottomValue.contains("0px none rgb(0, 0, 0)"), "Bottom border of ClubsPageLink is visible.");
-        softAssert.assertTrue(url.equals(String.format("%s/", configProps.getBaseUrl())), "Expected url is different from actual.");
-        softAssert.assertAll();
-    }
-
-    @Test
+    @Test (priority = 0)
     public void goToClubsPageLinkTest() {
         new HomePage(driver)
                 .getHeader()
@@ -60,7 +33,30 @@ public class HeaderNavigationTest extends BaseTestRunner {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test (priority = 1)
+    public void goToHomePageLinkTest() {
+        new ClubsPage(driver)
+                .getHeader()
+                .openHomePage();
+
+        String url = new HomePage(driver)
+                .readCurrentUrl();
+
+        WebElement clubsLinkWrapper = new NavigationComponent(driver)
+                .getClubsLinkWrapperWithAttributeValue("border-bottom", "0px none rgb(0, 0, 0)");
+
+
+        String clubsLinkBorderBottomValue = ((JavascriptExecutor)driver)
+                .executeScript("return window.getComputedStyle(arguments[0], ':after').getPropertyValue('border-bottom');", clubsLinkWrapper).toString();
+
+        System.out.println();
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(clubsLinkBorderBottomValue.contains("0px none rgb(0, 0, 0)"), "Bottom border of ClubsPageLink is visible.");
+        softAssert.assertTrue(url.equals(String.format("%s/", configProps.getBaseUrl())), "Expected url is different from actual.");
+        softAssert.assertAll();
+    }
+
+    @Test (priority = 2)
     public void goToChallengesPageLinkTest() {
         new HomePage(driver)
                 .getHeader()
@@ -83,9 +79,9 @@ public class HeaderNavigationTest extends BaseTestRunner {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test (priority = 3)
     public void goToNewsPageLinkTest() {
-        new HomePage(driver)
+        new ChallengePage(driver)
                 .getHeader()
                 .openNewsPage();
 
@@ -105,9 +101,9 @@ public class HeaderNavigationTest extends BaseTestRunner {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test (priority = 4)
     public void goToAboutPageLinkTest() {
-        new HomePage(driver)
+        new NewsPage(driver)
                 .getHeader()
                 .openAboutPage();
 
@@ -127,9 +123,9 @@ public class HeaderNavigationTest extends BaseTestRunner {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test (priority = 5)
     public void goToServicePageLinkTest() {
-        new HomePage(driver)
+        new AboutPage(driver)
                 .getHeader()
                 .openServicePage();
 

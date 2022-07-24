@@ -5,14 +5,12 @@ import login.tests.utils.ConfigProperties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
 
-public class BaseTestRunner {
+public class BaseTestOneWindowRunner {
     protected static ConfigProperties configProps;
     protected WebDriver driver;
 
@@ -22,24 +20,27 @@ public class BaseTestRunner {
         configProps = new ConfigProperties();
     }
 
-    @BeforeMethod
-    public void setUp() {
+    @BeforeClass
+
+    public void ClassSetUp() {
         ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--headless");
-////        options.addArguments("--window-size=1920,1080", "--no-sandbox", "--disable-dev-shm-usage");
+//        options.addArguments("--window-size=1920,1080", "--no-sandbox", "--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(configProps.getBaseUrl());
     }
 
-    @AfterMethod
+    @BeforeMethod
+    public void MethodSetUp() {
+    }
+
+    @AfterClass
     public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
     }
-
-
 }
 
