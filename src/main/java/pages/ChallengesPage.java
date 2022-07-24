@@ -6,11 +6,11 @@ import org.openqa.selenium.WebElement;
 import pages.clubs.ClubsPage;
 import pages.header.HeaderComponent;
 
-public class ChallengePage extends BasePage{
+public class ChallengesPage extends BasePage{
     private HeaderComponent header;
     private WebElement advancedSearchButton;
 
-    public ChallengePage(WebDriver driver) {
+    public ChallengesPage(WebDriver driver) {
         super(driver);
     }
 
