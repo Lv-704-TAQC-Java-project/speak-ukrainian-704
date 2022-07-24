@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.BasePage;
 
+import java.time.Duration;
+
 public class SortClubComponent extends BasePage {
 
     private WebElement sortByABCButton;
@@ -34,6 +36,7 @@ public class SortClubComponent extends BasePage {
 
     public WebElement getArrowUpButton() {
         if (arrowUpButton == null) {
+            waitVisibilityOfElements(By.xpath("//div/span[@aria-label = 'arrow-up']"));
             arrowUpButton = driver.findElement(By.xpath("//div/span[@aria-label = 'arrow-up']"));
         }
         return arrowUpButton;
@@ -41,6 +44,7 @@ public class SortClubComponent extends BasePage {
 
     public WebElement getArrowDownButton() {
         if (arrowDownButton == null) {
+            waitVisibilityOfElements(By.xpath("//div/span[@aria-label = 'arrow-down']"));
             arrowDownButton = driver.findElement(By.xpath("//div/span[@aria-label = 'arrow-down']"));
         }
         return arrowDownButton;
@@ -74,6 +78,7 @@ public class SortClubComponent extends BasePage {
     public SortClubComponent arrowUpButtonClick() {
         getArrowUpButton().click();
         return this;
+
     }
 
     public SortClubComponent arrowDownButtonClick() {

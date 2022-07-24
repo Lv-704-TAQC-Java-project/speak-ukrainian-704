@@ -37,11 +37,20 @@ public class ClubPageComponent extends BasePage {
     }
 
     public List<WebElement> getListOfCardNames() {
-        waitVisibilityOfElement(By.xpath("//div[(@class = 'ant-card-body')]"));
-        cardBody = driver.findElement(By.xpath("//div/div/div/div[(@class = 'ant-card-body')]"));
-        cardNamesList = cardBody.findElements(By.xpath("//div[1]/div[@class = 'name']"));
+        if (cardBody == null) {
+            cardBody = driver.findElement(By.xpath("//div[2]"));
+        }
+            cardNamesList = cardBody.findElements(By.xpath("//./div/div/div[1]/div[2]"));
+
         return cardNamesList;
     }
 
+    public List<String> getUpperCaseTextFromWebElementsList(List<WebElement> webElementList) {
+        List<String> elementsTextList = new ArrayList<>();
+        for (WebElement webElement : webElementList) {
+            elementsTextList.add(webElement.getText().toUpperCase());
+        }
+        return elementsTextList;
+    }
 
 }

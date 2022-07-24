@@ -60,4 +60,8 @@ public class BasePage {
         wait.until(ExpectedConditions.invisibilityOf(element));
     }
 
+    public void waitVisibilityOfWebElement(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
 }
