@@ -56,9 +56,9 @@ public class ProfilePage extends BasePage {
     }
 
     public WebElement getPageIdentity(){
-        if (pageIdentifier == null) {
-            pageIdentifier = driver.findElement(By.xpath("//a[@href='/dev/about']"));
-        }
+
+            pageIdentifier = driver.findElement(By.xpath("//div[@class='content-title']"));
+
         return pageIdentifier;
     }
 }

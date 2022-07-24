@@ -48,11 +48,8 @@ public class AdminProfileMenuTest extends BaseTestRunner {
                 .clickOnCloseCenterBtn()
                 .openAdminProfileMenu()
                 .openUserProfilePage();
-        Pattern pattern = Pattern.compile("\\w+\\z");
-        String hrefProfilePage = profilePage.getPageIdentity().getAttribute("href");
-        Matcher matcher = pattern.matcher(hrefProfilePage);
-        if (matcher.find())
-            hrefProfilePage = hrefProfilePage.substring(matcher.start());
+
+        String hrefProfilePage = profilePage.getPageIdentity().getText();
 
         HeaderComponent home = profilePage
                 .getHeader()
@@ -64,7 +61,7 @@ public class AdminProfileMenuTest extends BaseTestRunner {
 
         Assert.assertEquals(headerGroup,"Додати гурток");
         Assert.assertEquals(headerCenter,"Додати центр");
-        Assert.assertEquals(hrefProfilePage, "page");
+        Assert.assertEquals(hrefProfilePage, "Мій профіль");
         Assert.assertEquals(logOutString, "user");
     }
 }
