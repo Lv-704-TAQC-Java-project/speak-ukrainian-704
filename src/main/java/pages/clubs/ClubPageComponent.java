@@ -37,12 +37,7 @@ public class ClubPageComponent extends BasePage {
     }
 
     public List<WebElement> getListOfCardNames() {
-        if (cardBody == null) {
-            cardBody = driver.findElement(By.xpath("//div[2]"));
-        }
-            cardNamesList = cardBody.findElements(By.xpath("//./div/div/div[1]/div[2]"));
-
-        return cardNamesList;
+        return driver.findElements(By.xpath("//div[contains(@class, 'card-body')]//div[contains(@class, 'name')]"));
     }
 
     public List<String> getUpperCaseTextFromWebElementsList(List<WebElement> webElementList) {

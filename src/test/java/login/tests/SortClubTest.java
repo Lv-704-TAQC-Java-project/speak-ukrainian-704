@@ -63,7 +63,6 @@ public class SortClubTest extends BaseTestRunner {
 
         for (String string : namesActual) {
             softAssert.assertTrue(string.startsWith("A"));
-            System.out.println(string);
         }
 
         softAssert.assertAll();

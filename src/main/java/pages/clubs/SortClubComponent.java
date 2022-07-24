@@ -82,7 +82,9 @@ public class SortClubComponent extends BasePage {
     }
 
     public SortClubComponent arrowDownButtonClick() {
+        WebElement firstCardName = new ClubPageComponent(driver).getListOfCardNames().get(1);
         getArrowDownButton().click();
+        waitInvisibilityOfElement(firstCardName);
         return this;
     }
 
