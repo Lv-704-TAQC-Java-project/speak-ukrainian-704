@@ -66,7 +66,9 @@ public class SortClubComponent extends BasePage {
     }
 
     public SortClubComponent sortByABCButtonClick() {
+        WebElement firstCardName = new ClubPageComponent(driver).getListOfCardNames().get(1);
         getSortByABCButton().click();
+        waitInvisibilityOfElement(firstCardName);
         return this;
     }
 
@@ -76,7 +78,9 @@ public class SortClubComponent extends BasePage {
     }
 
     public SortClubComponent arrowUpButtonClick() {
+        WebElement firstCardName = new ClubPageComponent(driver).getListOfCardNames().get(1);
         getArrowUpButton().click();
+        waitInvisibilityOfElement(firstCardName);
         return this;
 
     }
