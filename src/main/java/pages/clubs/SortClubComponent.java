@@ -5,7 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.BasePage;
 
-public class FilterClubComponent extends BasePage {
+import java.time.Duration;
+
+public class SortClubComponent extends BasePage {
 
     private WebElement sortByABCButton;
     private WebElement sortByRatingButton;
@@ -14,7 +16,7 @@ public class FilterClubComponent extends BasePage {
     private WebElement listViewButton;
     private WebElement blockViewButton;
 
-    public FilterClubComponent(WebDriver driver) {
+    public SortClubComponent(WebDriver driver) {
         super(driver);
     }
 
@@ -34,6 +36,7 @@ public class FilterClubComponent extends BasePage {
 
     public WebElement getArrowUpButton() {
         if (arrowUpButton == null) {
+            waitVisibilityOfElements(By.xpath("//div/span[@aria-label = 'arrow-up']"));
             arrowUpButton = driver.findElement(By.xpath("//div/span[@aria-label = 'arrow-up']"));
         }
         return arrowUpButton;
@@ -41,6 +44,7 @@ public class FilterClubComponent extends BasePage {
 
     public WebElement getArrowDownButton() {
         if (arrowDownButton == null) {
+            waitVisibilityOfElements(By.xpath("//div/span[@aria-label = 'arrow-down']"));
             arrowDownButton = driver.findElement(By.xpath("//div/span[@aria-label = 'arrow-down']"));
         }
         return arrowDownButton;
@@ -48,44 +52,52 @@ public class FilterClubComponent extends BasePage {
 
     public WebElement getListViewButton() {
         if (listViewButton == null) {
-            listViewButton = driver.findElement(By.xpath("//div/label[@class = 'ant-radio-button-wrapper ant-radio-button-wrapper-checked club-view-button']"));
+            listViewButton = driver.findElement(By.xpath("//div/label[@class = 'ant-radio-button-wrapper club-view-button']"));
         }
         return listViewButton;
     }
 
     public WebElement getBlockViewButton() {
         if (blockViewButton == null) {
-            blockViewButton = driver.findElement(By.xpath("//div/label[@class = 'ant-radio-button-wrapper club-view-button']"));
+            blockViewButton = driver.findElement(By.xpath("//div/label[@class = 'ant-radio-button-wrapper ant-radio-button-wrapper-checked club-view-button']"));
+
         }
         return blockViewButton;
     }
 
-    public FilterClubComponent sortByABCButtonClick() {
+    public SortClubComponent sortByABCButtonClick() {
+        WebElement firstCardName = new ClubPageComponent(driver).getListOfCardNames().get(1);
         getSortByABCButton().click();
+        waitInvisibilityOfElement(firstCardName);
         return this;
     }
 
-    public FilterClubComponent sortByRatingButtonClick() {
+    public SortClubComponent sortByRatingButtonClick() {
         getSortByRatingButton().click();
         return this;
     }
 
-    public FilterClubComponent arrowUpButtonClick() {
+    public SortClubComponent arrowUpButtonClick() {
+        WebElement firstCardName = new ClubPageComponent(driver).getListOfCardNames().get(1);
         getArrowUpButton().click();
+        waitInvisibilityOfElement(firstCardName);
         return this;
+
     }
 
-    public FilterClubComponent arrowDownButtonClick() {
+    public SortClubComponent arrowDownButtonClick() {
+        WebElement firstCardName = new ClubPageComponent(driver).getListOfCardNames().get(1);
         getArrowDownButton().click();
+        waitInvisibilityOfElement(firstCardName);
         return this;
     }
 
-    public FilterClubComponent listViewButtonClick() {
+    public SortClubComponent listViewButtonClick() {
         getListViewButton().click();
         return this;
     }
 
-    public FilterClubComponent blockViewButtonClick() {
+    public SortClubComponent blockViewButtonClick() {
         getBlockViewButton().click();
         return this;
     }
