@@ -8,6 +8,7 @@ import pages.NewsPage;
 import pages.ServicePage;
 import pages.clubs.ClubsPage;
 import pages.header.HeaderComponent;
+import pages.header.NavigationComponent;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -52,10 +53,10 @@ public class PageWithHeaderMenuTest extends BaseTestRunner {
         if (matcher.find())
             servicePageString = servicePageString.substring(matcher.start());
 
-        HeaderComponent header = servicePage
+        NavigationComponent header = servicePage
                 .getHeader()
                 .openChallengeMenu();
-        Boolean challengeBoolean = header.getNavigationComponent().getChallengeMenu().isDisplayed();
+        Boolean challengeBoolean = header.getChallengeMenu().isDisplayed();
 
         Assert.assertEquals(clubsPageString,"clubs");
         Assert.assertEquals(aboutPageString,"about");

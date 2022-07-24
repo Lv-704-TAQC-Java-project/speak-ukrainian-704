@@ -87,13 +87,17 @@ public class HeaderComponent extends BasePage {
         return navigationComponent;
     }
 
+    public HomePage openHomePage() {
+        return getNavigationComponent().openHomePage();
+    }
+
     public ClubsPage openClubsPage() {
         return getNavigationComponent().openClubsPage();
     }
 
-    public HeaderComponent openChallengeMenu() {
+    public NavigationComponent openChallengeMenu() {
         getNavigationComponent().openChallengeMenu();
-        return this;
+        return navigationComponent;
     }
 
     public NewsPage openNewsPage() {
