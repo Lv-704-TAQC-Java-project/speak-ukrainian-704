@@ -20,10 +20,12 @@ public class NewsPage extends BasePage {
         return header;
     }
 
-    public WebElement getPageIdentity(){
-        if (pageIdentifier == null) {
-            pageIdentifier = driver.findElement(By.xpath("//a[@href='/dev/news']"));
+    public boolean getPageIdentity(){
+        try {
+            pageIdentifier = driver.findElement(By.xpath("//div[@class='global-padding news-content']"));
+        } catch (Exception e){
+            return false;
         }
-        return pageIdentifier;
+        return true;
     }
 }

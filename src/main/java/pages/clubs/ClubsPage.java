@@ -60,11 +60,13 @@ public class ClubsPage extends BasePage {
         getAdvancedSearchButton().click();
         return getAdvancedSearchPanelComponent();
     }
-    public WebElement getPageIdentity(){
-        if (pageIdentifier == null) {
-            pageIdentifier = driver.findElement(By.xpath("//a[@href='/dev/clubs']"));
+    public boolean getPageIdentity(){
+        try {
+            pageIdentifier = driver.findElement(By.xpath("//section[@class='ant-layout club-list']"));
+        } catch (Exception e){
+            return false;
         }
-        return pageIdentifier;
+        return true;
     }
 
 }
