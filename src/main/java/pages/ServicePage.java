@@ -19,10 +19,12 @@ public class ServicePage extends BasePage {
         return header;
     }
 
-    public WebElement getPageIdentity(){
-        if (pageIdentifier == null) {
-            pageIdentifier = driver.findElement(By.xpath("//a[@href='/dev/service']"));
+    public boolean getPageIdentity(){
+        try {
+            pageIdentifier = driver.findElement(By.xpath("//section[@class='ant-layout serviceInUkr global-padding']"));
+        } catch (Exception e){
+            return false;
         }
-        return pageIdentifier;
+        return true;
     }
 }

@@ -20,10 +20,12 @@ public class AboutPage extends BasePage {
         return header;
     }
 
-    public WebElement getPageIdentity(){
-        if (pageIdentifier == null) {
-            pageIdentifier = driver.findElement(By.xpath("//a[@href='/dev/about']"));
+    public boolean getPageIdentity(){
+        try {
+            pageIdentifier = driver.findElement(By.xpath("//section[@class='ant-layout aboutProject global-padding']"));
+        } catch (Exception e){
+            return false;
         }
-        return pageIdentifier;
+        return true;
     }
 }
