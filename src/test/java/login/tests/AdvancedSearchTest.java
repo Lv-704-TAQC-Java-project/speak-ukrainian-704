@@ -1,5 +1,6 @@
 package login.tests;
 
+import login.tests.runners.BaseTestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;

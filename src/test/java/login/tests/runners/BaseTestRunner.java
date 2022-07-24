@@ -1,4 +1,4 @@
-package login.tests;
+package login.tests.runners;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import login.tests.utils.ConfigProperties;

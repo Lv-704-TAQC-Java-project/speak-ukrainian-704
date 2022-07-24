@@ -1,6 +1,7 @@
 package login.tests;
 
 
+import login.tests.runners.BaseTestRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -9,9 +10,6 @@ import pages.header.HeaderComponent;
 import pages.header.profileMenuAdmin.AddCenterModalComponent;
 import pages.header.profileMenuAdmin.AddGroupModalComponent;
 import pages.header.profileMenuAdmin.profilePage.ProfilePage;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class AdminProfileMenuTest extends BaseTestRunner {
