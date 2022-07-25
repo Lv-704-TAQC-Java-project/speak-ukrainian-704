@@ -15,6 +15,7 @@ public class AdvancedSearchPanelComponent extends BasePage {
     private WebElement advancedSearchHeader;
     private WebElement citySelector;
     private WebElement basicCategoriesCheckList;
+    private WebElement isAvailableOnline;
 
     public AdvancedSearchPanelComponent(WebDriver driver) {
         super(driver);
@@ -54,6 +55,13 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return clubListSectionChildren;
     }
 
+    public WebElement getIsAvailableOnline() {
+        if (isAvailableOnline == null) {
+            isAvailableOnline = driver.findElement(By.xpath("//div[@id='basic_isOnline']"));
+        }
+        return isAvailableOnline;
+    }
+
     public String getAdvancedSearchHeaderText() {
         return getAdvancedSearchHeader().getText();
     }
@@ -70,6 +78,10 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return getBasicCategoriesCheckList().isDisplayed();
     }
 
+    public boolean isAvailableOnlineIsVisible() {
+        return getIsAvailableOnline().isDisplayed();
+    }
+
     public boolean advancedAsideMenuIsVisible() {
         try {
             return getAsideAdvancedSearchMenu().isDisplayed();
@@ -77,4 +89,10 @@ public class AdvancedSearchPanelComponent extends BasePage {
             return false;
         }
     }
+
+    public AdvancedSearchPanelComponent isOnlineCheckboxClick() {
+        getIsAvailableOnline().click();
+        return this;
+    }
+
 }
