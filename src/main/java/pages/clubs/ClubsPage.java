@@ -13,10 +13,20 @@ public class ClubsPage extends BasePage {
     private WebElement advancedSearchButton;
     private HeaderComponent header;
     private WebElement pageIdentifier;
+    private WebElement headerTitle;
 
 
     public ClubsPage(WebDriver driver) {
         super(driver);
+    }
+
+    public WebElement getHeaderTitle() {
+        waitVisibilityOfElement(By.xpath("//h2[@class='city-name']"));
+        return driver.findElement(By.xpath("//h2[@class='city-name']"));
+    }
+
+    public String readHeaderTitle() {
+        return getHeaderTitle().getText();
     }
 
     public HeaderComponent getHeader() {
@@ -75,10 +85,11 @@ public class ClubsPage extends BasePage {
         getAdvancedSearchButton().click();
         return getAdvancedSearchPanelComponent();
     }
-    public boolean getPageIdentity(){
+
+    public boolean getPageIdentity() {
         try {
             pageIdentifier = driver.findElement(By.xpath("//section[@class='ant-layout club-list']"));
-        } catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
         return true;

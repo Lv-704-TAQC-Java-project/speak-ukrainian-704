@@ -14,12 +14,17 @@ public class ClubPageComponent extends BasePage {
     private WebElement listCard;
     private WebElement blockCard;
     private WebElement cardBody;
-    List<WebElement> cardNamesList;
+    private List<WebElement> cardNamesList;
+    private List<WebElement> cardAddressesList;
     private WebElement isClubAvailableOnline;
     private List<WebElement> listOfCards;
 
     public ClubPageComponent(WebDriver driver) {
         super(driver);
+    }
+
+    public List<WebElement> getCardAddressesList() {
+        return driver.findElements(By.xpath("//span[@class='oneAddress']"));
     }
 
     public WebElement getListCard() {

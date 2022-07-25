@@ -15,10 +15,18 @@ public class HeaderComponent extends BasePage {
     private AdminProfileMenuComponent adminProfileMenuComponent;
     private PopupMessageComponent popupMessageComponent;
     private NavigationComponent navigationComponent;
+    private LocationComponent locationComponent;
     private WebElement imageUserComponent;
 
     public HeaderComponent(WebDriver driver) {
         super(driver);
+    }
+
+    public LocationComponent getLocationComponent() {
+        if (locationComponent == null) {
+            locationComponent = new LocationComponent(driver);
+        }
+        return locationComponent;
     }
 
     protected GuestProfileMenuComponent getGuestProfileMenuComponent() {
