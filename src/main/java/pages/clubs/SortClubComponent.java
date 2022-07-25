@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.BasePage;
+
 import java.util.List;
 
 public class SortClubComponent extends BasePage {
@@ -68,7 +69,8 @@ public class SortClubComponent extends BasePage {
         waitElementIsClickable(getSortByABCButton());
         List<WebElement> cardNameList = new ClubsPage(driver).getClubPageComponent().getListOfCardNames();
         getSortByABCButton().click();
-        if (!cardNameList.isEmpty()) {
+        if (!cardNameList.isEmpty() & cardNameList.get(1) != new ClubsPage(driver)
+                .getClubPageComponent().getListOfCardNames().get(1)) {
             waitInvisibilityOfElement(cardNameList.get(1));
         }
         return this;
@@ -83,7 +85,8 @@ public class SortClubComponent extends BasePage {
         waitElementIsClickable(getArrowUpButton());
         List<WebElement> cardNameList = new ClubsPage(driver).getClubPageComponent().getListOfCardNames();
         getArrowUpButton().click();
-        if (!cardNameList.isEmpty()) {
+        if (!cardNameList.isEmpty() & cardNameList.get(1) != new ClubsPage(driver)
+                .getClubPageComponent().getListOfCardNames().get(1)) {
             waitInvisibilityOfElement(cardNameList.get(1));
         }
         return this;
@@ -94,7 +97,8 @@ public class SortClubComponent extends BasePage {
         waitElementIsClickable(getArrowDownButton());
         List<WebElement> cardNameList = new ClubsPage(driver).getClubPageComponent().getListOfCardNames();
         getArrowDownButton().click();
-        if (!cardNameList.isEmpty()) {
+        if (!cardNameList.isEmpty() & cardNameList.get(1) != new ClubsPage(driver)
+                .getClubPageComponent().getListOfCardNames().get(1)) {
             waitInvisibilityOfElement(cardNameList.get(1));
         }
         return this;
