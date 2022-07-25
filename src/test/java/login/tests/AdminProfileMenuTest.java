@@ -1,7 +1,7 @@
 package login.tests;
 
 
-import login.tests.runners.BaseTestRunner;
+import runners.BaseTestRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

@@ -1,7 +1,7 @@
-package login.tests.runners;
+package runners;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import login.tests.utils.ConfigProperties;
+import utils.ConfigProperties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;

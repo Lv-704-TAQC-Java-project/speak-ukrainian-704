@@ -1,6 +1,6 @@
-package login.tests;
+package advancedSearchPanel.tests;
 
-import login.tests.runners.BaseTestRunner;
+import runners.BaseTestRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;

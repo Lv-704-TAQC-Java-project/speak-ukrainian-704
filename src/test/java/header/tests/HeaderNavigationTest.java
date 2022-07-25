@@ -1,6 +1,6 @@
-package login.tests;
+package header.tests;
 
-import login.tests.runners.BaseTestOneWindowRunner;
+import runners.BaseTestOneWindowRunner;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
