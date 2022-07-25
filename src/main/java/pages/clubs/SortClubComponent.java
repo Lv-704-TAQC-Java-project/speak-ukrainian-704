@@ -1,12 +1,10 @@
 package pages.clubs;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.BasePage;
-
-import java.time.Duration;
+import java.util.List;
 
 public class SortClubComponent extends BasePage {
 
@@ -67,14 +65,11 @@ public class SortClubComponent extends BasePage {
     }
 
     public SortClubComponent sortByABCButtonClick() {
-        WebElement firstCardName = new ClubPageComponent(driver).getListOfCardNames().get(1);
+        waitElementIsClickable(getSortByABCButton());
+        List<WebElement> cardNameList = new ClubsPage(driver).getClubPageComponent().getListOfCardNames();
         getSortByABCButton().click();
-        try {
-            if (firstCardName.isDisplayed()) {
-                waitInvisibilityOfElement(firstCardName);
-            }
-        } catch (StaleElementReferenceException e) {
-            System.out.println(e.getMessage());
+        if (!cardNameList.isEmpty()) {
+            waitInvisibilityOfElement(cardNameList.get(1));
         }
         return this;
     }
@@ -85,28 +80,22 @@ public class SortClubComponent extends BasePage {
     }
 
     public SortClubComponent arrowUpButtonClick() {
-        WebElement firstCardName = new ClubPageComponent(driver).getListOfCardNames().get(1);
+        waitElementIsClickable(getArrowUpButton());
+        List<WebElement> cardNameList = new ClubsPage(driver).getClubPageComponent().getListOfCardNames();
         getArrowUpButton().click();
-        try {
-            if (firstCardName.isDisplayed()) {
-                waitInvisibilityOfElement(firstCardName);
-            }
-        } catch (StaleElementReferenceException e) {
-            System.out.println(e.getMessage());
+        if (!cardNameList.isEmpty()) {
+            waitInvisibilityOfElement(cardNameList.get(1));
         }
         return this;
 
     }
 
     public SortClubComponent arrowDownButtonClick() {
-        WebElement firstCardName = new ClubPageComponent(driver).getListOfCardNames().get(1);
+        waitElementIsClickable(getArrowDownButton());
+        List<WebElement> cardNameList = new ClubsPage(driver).getClubPageComponent().getListOfCardNames();
         getArrowDownButton().click();
-        try {
-            if (firstCardName.isDisplayed()) {
-                waitInvisibilityOfElement(firstCardName);
-            }
-        } catch (StaleElementReferenceException e) {
-            System.out.println(e.getMessage());
+        if (!cardNameList.isEmpty()) {
+            waitInvisibilityOfElement(cardNameList.get(1));
         }
         return this;
     }
