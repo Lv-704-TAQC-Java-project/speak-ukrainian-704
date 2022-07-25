@@ -1,6 +1,7 @@
 package pages.header.profileMenuGuest;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -15,12 +16,20 @@ public class LoginModalComponent extends BasePage {
     private WebElement passwordFieldWrapper;
     private WebElement submitLoginFormBtn;
     private WebElement loginHeader;
+    private WebElement closeLoginModalButton;
 
 
     public LoginModalComponent(WebDriver driver) {
         super(driver);
     }
 
+    public WebElement getCloseLoginModalButton() {
+        return driver.findElement(By.xpath("//button[contains(@class, 'modal-close')]"));
+    }
+
+    public void closeLoginModal() {
+        getCloseLoginModalButton().click();
+    }
 
     public WebElement getLoginModal() {
         if (loginModal == null) {
@@ -82,11 +91,13 @@ public class LoginModalComponent extends BasePage {
     }
 
     public LoginModalComponent fillInEmail(String email) {
+        getEmailInputField().sendKeys(Keys.chord(Keys.CONTROL, "a"));
         getEmailInputField().sendKeys(email);
         return this;
     }
 
     public LoginModalComponent fillInPassword(String password) {
+        getPasswordField().sendKeys(Keys.chord(Keys.CONTROL, "a"));
         getPasswordField().sendKeys(password);
         return this;
     }

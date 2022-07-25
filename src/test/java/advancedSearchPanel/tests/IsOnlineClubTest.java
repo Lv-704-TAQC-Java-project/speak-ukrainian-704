@@ -1,6 +1,6 @@
 package advancedSearchPanel.tests;
 
-import login.tests.runners.BaseTestRunner;
+import runners.BaseTestRunner;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
