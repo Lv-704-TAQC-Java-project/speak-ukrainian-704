@@ -11,9 +11,12 @@ import java.util.List;
 
 public class AdvancedSearchPanelComponent extends BasePage {
     private List<WebElement> clubListSectionChildren;
+    private List<WebElement> districtListSectionChildren;
     private WebElement asideAdvancedSearchMenu;
     private WebElement advancedSearchHeader;
     private WebElement citySelector;
+    private WebElement districtSelector;
+    private WebElement clearDistrictSelector;
     private WebElement basicCategoriesCheckList;
     private WebElement isAvailableOnline;
 
@@ -43,6 +46,20 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return citySelector;
     }
 
+    public WebElement getDistrictSelector() {
+        if (districtSelector == null) {
+            districtSelector = driver.findElement(By.xpath("//input[@id='basic_districtName']"));
+        }
+        return districtSelector;
+    }
+
+    public WebElement getClearDistrictSelector() {
+        if (clearDistrictSelector == null) {
+            clearDistrictSelector = driver.findElement(By.xpath("//input[@id='basic_districtName']/../../following-sibling::span[@class='ant-select-clear']"));
+        }
+        return clearDistrictSelector;
+    }
+
     public WebElement getBasicCategoriesCheckList() {
         if (basicCategoriesCheckList == null) {
             basicCategoriesCheckList = driver.findElement(By.xpath("//div[@id='basic_categoriesName']"));
@@ -53,6 +70,11 @@ public class AdvancedSearchPanelComponent extends BasePage {
     public List<WebElement> getClubListSectionChildren() {
         clubListSectionChildren = driver.findElements(By.xpath("//section[contains(@class, 'club-list')]/child::*"));
         return clubListSectionChildren;
+    }
+
+    public List<WebElement> getDistrictListSectionChildren() {
+        districtListSectionChildren = driver.findElements(By.xpath("//div[@id='basic_districtName_list']/following-sibling::div//div[@class='rc-virtual-list-holder-inner']/div"));
+        return districtListSectionChildren;
     }
 
     public WebElement getIsAvailableOnline() {
@@ -92,6 +114,15 @@ public class AdvancedSearchPanelComponent extends BasePage {
 
     public AdvancedSearchPanelComponent isOnlineCheckboxClick() {
         getIsAvailableOnline().click();
+        return this;
+    }
+
+    public AdvancedSearchPanelComponent openDistrictInputSelect() {
+            getDistrictSelector().click();
+        return this;
+    }
+    public AdvancedSearchPanelComponent clearDistrictInputSelect() {
+            getClearDistrictSelector().click();
         return this;
     }
 
