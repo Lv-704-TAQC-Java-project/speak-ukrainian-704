@@ -1,6 +1,7 @@
 package pages.clubs;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.BasePage;
@@ -68,7 +69,13 @@ public class SortClubComponent extends BasePage {
     public SortClubComponent sortByABCButtonClick() {
         WebElement firstCardName = new ClubPageComponent(driver).getListOfCardNames().get(1);
         getSortByABCButton().click();
-        waitInvisibilityOfElement(firstCardName);
+        try {
+            if (firstCardName.isDisplayed()) {
+                waitInvisibilityOfElement(firstCardName);
+            }
+        } catch (StaleElementReferenceException e) {
+            System.out.println(e.getMessage());
+        }
         return this;
     }
 
@@ -80,7 +87,13 @@ public class SortClubComponent extends BasePage {
     public SortClubComponent arrowUpButtonClick() {
         WebElement firstCardName = new ClubPageComponent(driver).getListOfCardNames().get(1);
         getArrowUpButton().click();
-        waitInvisibilityOfElement(firstCardName);
+        try {
+            if (firstCardName.isDisplayed()) {
+                waitInvisibilityOfElement(firstCardName);
+            }
+        } catch (StaleElementReferenceException e) {
+            System.out.println(e.getMessage());
+        }
         return this;
 
     }
@@ -88,7 +101,13 @@ public class SortClubComponent extends BasePage {
     public SortClubComponent arrowDownButtonClick() {
         WebElement firstCardName = new ClubPageComponent(driver).getListOfCardNames().get(1);
         getArrowDownButton().click();
-        waitInvisibilityOfElement(firstCardName);
+        try {
+            if (firstCardName.isDisplayed()) {
+                waitInvisibilityOfElement(firstCardName);
+            }
+        } catch (StaleElementReferenceException e) {
+            System.out.println(e.getMessage());
+        }
         return this;
     }
 

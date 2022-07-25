@@ -37,6 +37,7 @@ public class ClubPageComponent extends BasePage {
     }
 
     public List<WebElement> getListOfCardNames() {
+        waitVisibilityOfElements(By.xpath("//div[contains(@class, 'card-body')]//div[contains(@class, 'name')]"));
         return driver.findElements(By.xpath("//div[contains(@class, 'card-body')]//div[contains(@class, 'name')]"));
     }
 
