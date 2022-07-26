@@ -3,20 +3,19 @@ package pages.clubs;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.BasePage;
-
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
+import pages.BasePage;
 
 public class CardComponent extends BasePage {
 
     private WebElement cardBody;
     private WebElement cardName;
+    private WebElement address;
     List<WebElement> starRatingZeroList;
     List<WebElement> starRatingFullList;
     private WebElement availableOnline;
-    
+
     public CardComponent(WebDriver driver) {
         super(driver);
     }
@@ -32,6 +31,12 @@ public class CardComponent extends BasePage {
             cardName = cardBody.findElement(By.xpath(".//div[contains(@class, 'name')]"));
         }
         return cardName;
+    }
+
+    public WebElement getAddress() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        address = cardBody.findElement(By.xpath(".//div[@class='address']"));
+        return address;
     }
 
     public String getTextCardName() {

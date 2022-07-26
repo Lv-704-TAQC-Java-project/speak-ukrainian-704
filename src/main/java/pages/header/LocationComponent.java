@@ -3,8 +3,9 @@ package pages.header;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.BasePage;
 import java.util.List;
+import pages.BasePage;
+import pages.clubs.ClubsPage;
 
 
 public class LocationComponent extends BasePage {
@@ -42,7 +43,13 @@ public class LocationComponent extends BasePage {
     }
 
     public void selectLocationByCity(String city) {
+        ClubsPage clubsPage = new ClubsPage(driver);
+        WebElement header = clubsPage.getHeaderTitle();
+        String url = clubsPage.readCurrentUrl();
         getLocationLinkByCityName(city).click();
+        if (url.contains("clubs")) {
+            waitForTextPresentInElement(header, city);
+        }
     }
 
     public LocationComponent clickLocationMenuButton() {

@@ -23,7 +23,7 @@ public class SortClubTest extends BaseTestRunner {
         SortClubComponent sortClubComponent = clubsPage.getSortClubComponent()
                 .blockViewButtonClick();
 
-        BlockCardComponent blockCardComponent = clubsPage.getBlockCardViewComponent();
+        BlockCardComponent blockCardComponent = clubsPage.getBlockCardComponent();
         boolean isDisplayed = blockCardComponent.getBlockCard().isDisplayed();
         Assert.assertTrue(isDisplayed);
     }
@@ -37,7 +37,7 @@ public class SortClubTest extends BaseTestRunner {
         SortClubComponent sortClubComponent = clubsPage.getSortClubComponent()
                 .listViewButtonClick();
 
-        WideCardComponent WideCardComponent = clubsPage.getListCardViewComponent();
+        WideCardComponent WideCardComponent = clubsPage.getWideCardComponent();
 
         boolean isDisplayed = WideCardComponent.getListCard().isDisplayed();
         Assert.assertTrue(isDisplayed);
@@ -60,7 +60,7 @@ public class SortClubTest extends BaseTestRunner {
         for (int i = 0; i < clubsPage.getCards().size(); i++) {
             cardNamesText.add(i, clubsPage.getCards().get(i).getTextCardName().toUpperCase());
             softAssert.assertTrue(cardNamesText.get(i).startsWith("A"));
-            System.out.println(cardNamesText.get(i));;
+            System.out.println(cardNamesText.get(i));
         }
 
         softAssert.assertAll();
@@ -88,7 +88,7 @@ public class SortClubTest extends BaseTestRunner {
         List<String> cardNamesText = new ArrayList<>();
         for (int i = 0; i < clubsPage.getCards().size(); i++) {
             cardNamesText.add(i, clubsPage.getCards().get(i).getTextCardName().toUpperCase());
-            System.out.println(cardNamesText.get(i));;
+//            System.out.println(cardNamesText.get(i));
         }
 
         softAssert.assertEquals(cardNamesText.toString(), cardNamesDECExpected.toString());

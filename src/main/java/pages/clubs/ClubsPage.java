@@ -3,7 +3,6 @@ package pages.clubs;
 import org.openqa.selenium.*;
 import pages.BasePage;
 import pages.header.HeaderComponent;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +10,11 @@ import java.util.List;
 public class ClubsPage extends BasePage {
     private PaginationComponent paginationComponent;
 
-    private WideCardComponent listCardViewComponent;
-    private BlockCardComponent blockCardViewComponent;
+    private WideCardComponent wideCardComponent;
+    private BlockCardComponent blockCardComponent;
 
     private SortClubComponent sortClubComponent;
-    private CardComponent clubPageComponent;
+    private CardComponent cardComponent;
     private AdvancedSearchPanelComponent advancedSearchPanelComponent;
     private WebElement advancedSearchButton;
     private HeaderComponent header;
@@ -50,7 +49,6 @@ public class ClubsPage extends BasePage {
     }
 
     public WebElement getHeaderTitle() {
-        waitVisibilityOfElement(By.xpath("//h2[@class='city-name']"));
         return driver.findElement(By.xpath("//h2[@class='city-name']"));
     }
 
@@ -88,19 +86,19 @@ public class ClubsPage extends BasePage {
         return getPaginationComponent().waitForPaginationComponentToOpen();
     }
 
-    public WideCardComponent getListCardViewComponent() {
-        if (listCardViewComponent == null) {
-            listCardViewComponent = new WideCardComponent(driver);
+    public WideCardComponent getWideCardComponent() {
+        if (wideCardComponent == null) {
+            wideCardComponent = new WideCardComponent(driver);
         }
-        return listCardViewComponent;
+        return wideCardComponent;
     }
 
-    public BlockCardComponent getBlockCardViewComponent() {
-        if (blockCardViewComponent == null) {
-            blockCardViewComponent = new BlockCardComponent(driver);
+    public BlockCardComponent getBlockCardComponent() {
+        if (blockCardComponent == null) {
+            blockCardComponent = new BlockCardComponent(driver);
         }
 
-        return blockCardViewComponent;
+        return blockCardComponent;
     }
 
     public SortClubComponent getSortClubComponent() {
@@ -110,11 +108,11 @@ public class ClubsPage extends BasePage {
         return sortClubComponent;
     }
 
-    public CardComponent getClubPageComponent() {
-        if (clubPageComponent == null) {
-            clubPageComponent = new CardComponent(driver);
+    public CardComponent getCardComponent() {
+        if (cardComponent == null) {
+            cardComponent = new CardComponent(driver);
         }
-        return clubPageComponent;
+        return cardComponent;
     }
 
     public WebElement getAdvancedSearchButton() {
@@ -137,6 +135,14 @@ public class ClubsPage extends BasePage {
             return false;
         }
         return true;
+    }
+
+    public boolean clubsNotFoundMessageVisible() {
+        return driver.findElement(By.xpath("//div[@class='clubs-not-found']")).isDisplayed();
+    }
+
+    public String clubsNotFoundMessage() {
+        return driver.findElement(By.xpath("//div[@class='clubs-not-found']")).getText();
     }
 
 }
