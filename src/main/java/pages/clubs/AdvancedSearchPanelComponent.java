@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import pages.BasePage;
+
 import java.time.Duration;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class AdvancedSearchPanelComponent extends BasePage {
     private WebElement districtSelector;
     private WebElement clearDistrictSelector;
     private WebElement basicCategoriesCheckList;
-    private WebElement isAvailableOnline;
+    private WebElement availableOnline;
 
     public AdvancedSearchPanelComponent(WebDriver driver) {
         super(driver);
@@ -77,11 +78,11 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return districtListSectionChildren;
     }
 
-    public WebElement getIsAvailableOnline() {
-        if (isAvailableOnline == null) {
-            isAvailableOnline = driver.findElement(By.xpath("//div[@id='basic_isOnline']"));
+    public WebElement getAvailableOnline() {
+        if (availableOnline == null) {
+            availableOnline = driver.findElement(By.xpath("//div[@id='basic_isOnline']"));
         }
-        return isAvailableOnline;
+        return availableOnline;
     }
 
     public String getAdvancedSearchHeaderText() {
@@ -100,8 +101,8 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return getBasicCategoriesCheckList().isDisplayed();
     }
 
-    public boolean isAvailableOnlineIsVisible() {
-        return getIsAvailableOnline().isDisplayed();
+    public boolean availableOnlineIsVisible() {
+        return getAvailableOnline().isDisplayed();
     }
 
     public boolean advancedAsideMenuIsVisible() {
@@ -112,8 +113,8 @@ public class AdvancedSearchPanelComponent extends BasePage {
         }
     }
 
-    public AdvancedSearchPanelComponent isOnlineCheckboxClick() {
-        getIsAvailableOnline().click();
+    public AdvancedSearchPanelComponent availableOnlineCheckboxClick() {
+        getAvailableOnline().click();
         return this;
     }
 
@@ -122,8 +123,9 @@ public class AdvancedSearchPanelComponent extends BasePage {
         actions.moveToElement(getDistrictSelector()).click().perform();
         return this;
     }
+
     public AdvancedSearchPanelComponent clearDistrictInputSelect() {
-            getClearDistrictSelector().click();
+        getClearDistrictSelector().click();
         return this;
     }
 
