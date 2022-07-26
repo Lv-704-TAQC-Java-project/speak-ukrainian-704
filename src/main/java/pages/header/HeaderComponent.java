@@ -80,8 +80,11 @@ public class HeaderComponent extends BasePage {
         return popupMessageComponent;
     }
 
-    public WebElement getLoginErrorMessage() {
-        return getPopupMessageComponent().getLoginErrorPopupMessage();
+    public String getLoginErrorMessage() {
+        WebElement errorPopup = getPopupMessageComponent().getLoginErrorPopupMessage();
+        String errorMessage = errorPopup.getText();
+        waitInvisibilityOfElement(errorPopup);
+        return errorMessage;
     }
 
     public WebElement getLoginSuccessMessage() {

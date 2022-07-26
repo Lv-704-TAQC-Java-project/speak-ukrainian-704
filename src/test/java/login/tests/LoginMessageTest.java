@@ -29,7 +29,7 @@ public class LoginMessageTest extends BaseTestOneWindowRunner {
                 .fillInPassword(password)
                 .clickLoginButton();
 
-        String errorMessageText = new HomePage(driver).getHeader().getLoginErrorMessage().getText();
+        String errorMessageText = new HomePage(driver).getHeader().getLoginErrorMessage();
         Assert.assertTrue(errorMessageText.contains("невірний"), "Error message doesn't contain key word 'невірний'.");
 
         loginModal.closeLoginModal();
