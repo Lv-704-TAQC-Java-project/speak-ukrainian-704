@@ -98,7 +98,7 @@ public class ClubsPage extends BasePage {
         return sortClubComponent;
     }
 
-    public CardComponent getCardComponent() {
+    public CardComponent getClubPageComponent() {
         if (clubPageComponent == null) {
             clubPageComponent = new CardComponent(driver);
         }
