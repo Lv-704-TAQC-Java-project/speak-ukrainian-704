@@ -1,9 +1,6 @@
 package pages.clubs;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import pages.BasePage;
 
@@ -17,9 +14,11 @@ public class AdvancedSearchPanelComponent extends BasePage {
     private WebElement advancedSearchHeader;
     private WebElement citySelector;
     private WebElement districtSelector;
+    private WebElement metroSelector;
     private WebElement clearDistrictSelector;
     private WebElement basicCategoriesCheckList;
     private WebElement availableOnline;
+    private WebElement scrollDistrictSelector;
 
     public AdvancedSearchPanelComponent(WebDriver driver) {
         super(driver);
@@ -54,6 +53,20 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return districtSelector;
     }
 
+    public WebElement getMetroSelector() {
+        if (metroSelector == null) {
+            metroSelector = driver.findElement(By.xpath("//input[@id='basic_stationName']"));
+        }
+        return metroSelector;
+    }
+
+    public WebElement getScrollDistrictSelector() {
+        if (scrollDistrictSelector == null) {
+            scrollDistrictSelector = driver.findElement(By.xpath("//div[@id='basic_districtName_list']/following-sibling::div//div[@class='rc-virtual-list-holder-inner']"));
+        }
+        return scrollDistrictSelector;
+    }
+
     public WebElement getClearDistrictSelector() {
         if (clearDistrictSelector == null) {
             clearDistrictSelector = driver.findElement(By.xpath("//input[@id='basic_districtName']/../../..//div"));
@@ -75,6 +88,11 @@ public class AdvancedSearchPanelComponent extends BasePage {
 
     public List<WebElement> getDistrictListSectionChildren() {
         districtListSectionChildren = driver.findElements(By.xpath("//div[@id='basic_districtName_list']/following-sibling::div//div[@class='rc-virtual-list-holder-inner']/div"));
+        return districtListSectionChildren;
+    }
+
+    public List<WebElement> getMetroListSectionChildren() {
+        districtListSectionChildren = driver.findElements(By.xpath("//div[@id='basic_stationName_list']/following-sibling::div//div[@class='rc-virtual-list-holder-inner']/div"));
         return districtListSectionChildren;
     }
 
@@ -121,6 +139,23 @@ public class AdvancedSearchPanelComponent extends BasePage {
     public AdvancedSearchPanelComponent openDistrictInputSelect() {
         Actions actions = new Actions(driver);
         actions.moveToElement(getDistrictSelector()).click().perform();
+        return this;
+    }
+
+    public AdvancedSearchPanelComponent openMetroInputSelect() {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(getMetroSelector()).click().perform();
+        return this;
+    }
+
+    public AdvancedSearchPanelComponent openCityInputSelect() {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(getCitySelector()).click().perform();
+        return this;
+    }
+
+    public AdvancedSearchPanelComponent scrollDistrictInputSelect() {
+//        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollTop=arguments[1].offsetTop",getScrollDistrictSelector());
         return this;
     }
 
