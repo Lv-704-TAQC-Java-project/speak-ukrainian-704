@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import pages.BasePage;
-
 import java.time.Duration;
 import java.util.List;
 
@@ -55,7 +55,7 @@ public class AdvancedSearchPanelComponent extends BasePage {
 
     public WebElement getClearDistrictSelector() {
         if (clearDistrictSelector == null) {
-            clearDistrictSelector = driver.findElement(By.xpath("//input[@id='basic_districtName']/../../following-sibling::span[@class='ant-select-clear']"));
+            clearDistrictSelector = driver.findElement(By.xpath("//input[@id='basic_districtName']/../../..//div"));
         }
         return clearDistrictSelector;
     }
@@ -118,7 +118,8 @@ public class AdvancedSearchPanelComponent extends BasePage {
     }
 
     public AdvancedSearchPanelComponent openDistrictInputSelect() {
-            getDistrictSelector().click();
+        Actions actions = new Actions(driver);
+        actions.moveToElement(getDistrictSelector()).click().perform();
         return this;
     }
     public AdvancedSearchPanelComponent clearDistrictInputSelect() {

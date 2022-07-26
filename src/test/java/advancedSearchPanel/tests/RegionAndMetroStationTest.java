@@ -28,17 +28,18 @@ public class RegionAndMetroStationTest extends BaseTestRunner {
                 .getAdvancedSearchPanelComponent()
                 .openDistrictInputSelect();
         List<WebElement> listDistricts=inputSearchDistrict.getDistrictListSectionChildren();
-        inputSearchDistrict.openDistrictInputSelect();
+        inputSearchDistrict
+                .openDistrictInputSelect();
 
-        for (int i = 0; i < listDistricts.size(); i++) {
+        inputSearchDistrict
+                .openDistrictInputSelect();
 
-            inputSearchDistrict.openDistrictInputSelect();
-
+        for (int i = 0; i < 8; i++) {
             listDistricts.get(i).click();
             int clubsNumber = new ClubsPage(driver).openPaginationComponent().getQuantityOfClubsOnCurrentPage();
             Assert.assertEquals(clubsNumber, countExpect[i]);
-            inputSearchDistrict.clearDistrictInputSelect();
-
+            inputSearchDistrict
+                    .openDistrictInputSelect();
         }
 
         Assert.assertEquals(listDistricts.size(),10);
