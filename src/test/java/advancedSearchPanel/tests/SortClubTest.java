@@ -1,4 +1,4 @@
-package login.tests;
+package advancedSearchPanel.tests;
 
 import jdk.jfr.Description;
 import runners.BaseTestRunner;
@@ -134,5 +134,3 @@ public class SortClubTest extends BaseTestRunner {
     }
 
 }
-
-
