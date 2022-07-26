@@ -8,22 +8,16 @@ import pages.HomePage;
 
 public class RegistrationModelComponent extends BasePage {
     private WebElement lastNameInputField;
-    private WebElement lastNameInputFieldWrapper;
 
     private WebElement nameInputField;
-    private WebElement nameInputFieldWrapper;
 
     private WebElement phoneInputField;
-    private WebElement phoneFieldWrapper;
 
     private WebElement emailInputField;
-    private WebElement emailInputFieldWrapper;
 
     private WebElement passwordInputField;
-    private WebElement passwordInputFieldWrapper;
 
     private WebElement confirmPasswordInputField;
-    private WebElement confirmPasswordInputFieldWrapper;
 
     private WebElement submitRegistrationFormBtn;
 
@@ -38,13 +32,6 @@ public class RegistrationModelComponent extends BasePage {
         return lastNameInputField;
     }
 
-    public WebElement getLastNameInputFieldWrapper(String color) {
-        if (lastNameInputFieldWrapper == null) {
-            waitAttributeOfElementContains(By.xpath("//input[@id='lastName']/parent::span"), "border-color", color);
-            lastNameInputFieldWrapper = driver.findElement(By.xpath("//input[@id='lastName']/parent::span"));
-        }
-        return lastNameInputFieldWrapper;
-    }
 
     public WebElement getNameInputField() {
         if (nameInputField == null) {
@@ -53,13 +40,6 @@ public class RegistrationModelComponent extends BasePage {
         return nameInputField;
     }
 
-    public WebElement getNameInputFieldWrapper(String color) {
-        if (nameInputFieldWrapper == null) {
-            waitAttributeOfElementContains(By.xpath("//input[@id='firstName']/parent::span"), "border-color", color);
-            nameInputFieldWrapper = driver.findElement(By.xpath("//input[@id='firstName']/parent::span"));
-        }
-        return nameInputFieldWrapper;
-    }
 
     public WebElement getPhoneInputField() {
         if (phoneInputField == null) {
@@ -68,13 +48,6 @@ public class RegistrationModelComponent extends BasePage {
         return phoneInputField;
     }
 
-    public WebElement getPhoneFieldWrapper(String color) {
-        if (phoneFieldWrapper == null) {
-            waitAttributeOfElementContains(By.xpath("//input[@id='phone']/parent::span"), "border-color", color);
-            phoneFieldWrapper = driver.findElement(By.xpath("//input[@id='phone']/parent::span"));
-        }
-        return phoneFieldWrapper;
-    }
 
     public WebElement getEmailInputField() {
         if (emailInputField == null) {
@@ -83,13 +56,6 @@ public class RegistrationModelComponent extends BasePage {
         return emailInputField;
     }
 
-    public WebElement getEmailInputFieldWrapper(String color) {
-        if (emailInputFieldWrapper == null) {
-            waitAttributeOfElementContains(By.xpath("//input[@id='email']/parent::span"), "border-color", color);
-            emailInputFieldWrapper = driver.findElement(By.xpath("//input[@id='email']/parent::span"));
-        }
-        return emailInputFieldWrapper;
-    }
 
     public WebElement getPasswordInputField() {
         if (passwordInputField == null) {
@@ -98,13 +64,6 @@ public class RegistrationModelComponent extends BasePage {
         return passwordInputField;
     }
 
-    public WebElement getPasswordInputFieldWrapper(String color) {
-        if (passwordInputFieldWrapper == null) {
-            waitAttributeOfElementContains(By.xpath("//input[@id='password']/parent::span"), "border-color", color);
-            passwordInputFieldWrapper = driver.findElement(By.xpath("//input[@id='password']/parent::span"));
-        }
-        return passwordInputFieldWrapper;
-    }
 
     public WebElement getConfirmPasswordInputField() {
         if (confirmPasswordInputField == null) {
@@ -113,13 +72,6 @@ public class RegistrationModelComponent extends BasePage {
         return confirmPasswordInputField;
     }
 
-    public WebElement getConfirmPasswordInputFieldWrapper(String color) {
-        if (confirmPasswordInputFieldWrapper == null) {
-            waitAttributeOfElementContains(By.xpath("//input[@id='confirm']/parent::span"), "border-color", color);
-            confirmPasswordInputFieldWrapper = driver.findElement(By.xpath("//input[@id='confirm']/parent::span"));
-        }
-        return confirmPasswordInputFieldWrapper;
-    }
 
     public WebElement getSubmitRegistrationFormBtn() {
         if (submitRegistrationFormBtn == null) {
@@ -128,32 +80,45 @@ public class RegistrationModelComponent extends BasePage {
         return submitRegistrationFormBtn;
     }
 
-    public RegistrationModelComponent fillInLastName(String lastName){
+    public String getMessageInvalidLastName() {
+        return driver.findElements(By.xpath("//div[@class='ant-form-item-explain-error']")).get(0).getText();
+    }
+
+    public String getMessageInvalidName() {
+        return driver.findElements(By.xpath("//div[@class='ant-form-item-explain-error']")).get(1).getText();
+    }
+
+    public String getMessageInvalidPhoneFormat() {
+        return driver.findElements(By.xpath("//div[@class='ant-form-item-explain-error']")).get(2).getText();
+    }
+
+
+    public RegistrationModelComponent fillInLastName(String lastName) {
         getLastNameInputField().sendKeys(lastName);
         return this;
     }
 
-    public RegistrationModelComponent fillInName(String name){
+    public RegistrationModelComponent fillInName(String name) {
         getNameInputField().sendKeys(name);
         return this;
     }
 
-    public RegistrationModelComponent fillInPhone(String phone){
+    public RegistrationModelComponent fillInPhone(String phone) {
         getPhoneInputField().sendKeys(phone);
         return this;
     }
 
-    public RegistrationModelComponent fillInEmail(String email){
+    public RegistrationModelComponent fillInEmail(String email) {
         getEmailInputField().sendKeys(email);
         return this;
     }
 
-    public RegistrationModelComponent fillInPassword(String password){
+    public RegistrationModelComponent fillInPassword(String password) {
         getPasswordInputField().sendKeys(password);
         return this;
     }
 
-    public RegistrationModelComponent fillInConfirmPassword(String confirmPassword){
+    public RegistrationModelComponent fillInConfirmPassword(String confirmPassword) {
         getConfirmPasswordInputField().sendKeys(confirmPassword);
         return this;
     }
