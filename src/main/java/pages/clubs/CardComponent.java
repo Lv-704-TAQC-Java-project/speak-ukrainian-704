@@ -14,44 +14,34 @@ public class CardComponent extends BasePage {
     List<WebElement> starRatingZeroList;
     List<WebElement> starRatingFullList;
     List<WebElement> cardNamesList;
-    List<WebElement> centerNamesList;
+    private ClubsPage clubsPage;
 
     public CardComponent(WebDriver driver) {
         super(driver);
     }
 
-//    public CardComponent(WebDriver driver, WebElement cardBody) {
-//        super(driver);
-//        cardBody = cardBody;
+    public CardComponent(WebDriver driver, WebElement cardBody) {
+        super(driver);
+        cardBody = cardBody;
+    }
+
+    public WebElement getCardName() {
+        return driver.findElement(By.xpath(".//div[contains(@class, 'name')]"));
+    }
+
+    public String getTextCardName(WebElement element) {
+        return element.getText();
+    }
+
+
+//    public List<WebElement> getStarRatingZeroList() {
+//        List<WebElement> cards = driver.findElements(By.xpath("//div[contains(@class, 'card-body')]"));
+//        return cards.get(0).findElements(By.xpath(".//li[contains(@class, 'zero')]"));
 //    }
-
-
-    public List<WebElement> getStarRatingZeroList() {
-        List<WebElement> cards = driver.findElements(By.xpath("//div[contains(@class, 'card-body')]"));
-        return cards.get(0).findElements(By.xpath(".//li[contains(@class, 'zero')]"));
-    }
-
-    public List<WebElement> getStarRatingFullList() {
-        List<WebElement> cards = driver.findElements(By.xpath("//div[contains(@class, 'card-body')]"));
-        return cards.get(0).findElements(By.xpath(".//li[contains(@class, 'full')]"));
-    }
-
-    public List<WebElement> getCardNamesList() {
-
-      //  return driver.findElements(By.xpath(".//div[contains(@class, 'name')]"));
-        return driver.findElements(By.xpath("//div[contains(@class, 'card-body')]//div[contains(@class, 'name')]"));
-    }
-
-    public List<WebElement> getCenterNamesList() {
-        return driver.findElements(By.xpath("//div[contains(@class, 'card-body')]//div[contains(@class, 'center-name')]"));
-    }
-
-    public List<String> getUpperCaseTextFromWebElementsList(List<WebElement> webElementList) {
-        List<String> elementsTextList = new ArrayList<>();
-        for (WebElement webElement : webElementList) {
-            elementsTextList.add(webElement.getText().toUpperCase());
-        }
-        return elementsTextList;
-    }
+//
+//    public List<WebElement> getStarRatingFullList() {
+//        List<WebElement> cards = driver.findElements(By.xpath("//div[contains(@class, 'card-body')]"));
+//        return cards.get(0).findElements(By.xpath(".//li[contains(@class, 'full')]"));
+//    }
 
 }

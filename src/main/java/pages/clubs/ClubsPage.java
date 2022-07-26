@@ -21,15 +21,16 @@ public class ClubsPage extends BasePage {
     private HeaderComponent header;
     private WebElement pageIdentifier;
 
-//    List<CardComponent> cards;
-//
-//    public void getCards() {
-//        List<WebElement> cards = driver.findElements(By.xpath("//div[contains(@class, 'card-body')]"));
-//        this.cards = new ArrayList<>();
-//        for (WebElement card : cards) {
-//            this.cards.add(new CardComponent(driver, card));
-//        }
-//    }
+    List<CardComponent> cards;
+
+    public List<CardComponent> getCards() {
+        List<WebElement> cards = driver.findElements(By.xpath("//div[contains(@class, 'card-body')]"));
+        this.cards = new ArrayList<>();
+        for (WebElement card : cards) {
+            this.cards.add(new CardComponent(driver, card));
+        }
+        return this.cards;
+    }
 
     public ClubsPage(WebDriver driver) {
         super(driver);
@@ -76,6 +77,7 @@ public class ClubsPage extends BasePage {
         if (blockCardViewComponent == null) {
             blockCardViewComponent = new BlockCardViewComponent(driver);
         }
+//        cards.get(0).getCardName();
         return blockCardViewComponent;
     }
 
@@ -86,7 +88,7 @@ public class ClubsPage extends BasePage {
         return sortClubComponent;
     }
 
-    public CardComponent getClubPageComponent() {
+    public CardComponent getCardComponent() {
         if (clubPageComponent == null) {
             clubPageComponent = new CardComponent(driver);
         }
