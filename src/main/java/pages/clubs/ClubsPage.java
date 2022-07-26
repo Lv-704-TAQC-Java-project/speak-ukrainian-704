@@ -4,37 +4,39 @@ import org.openqa.selenium.*;
 import pages.BasePage;
 import pages.header.HeaderComponent;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class ClubsPage extends BasePage {
     private PaginationComponent paginationComponent;
-
     private WideCardComponent listCardViewComponent;
     private BlockCardComponent blockCardViewComponent;
-
     private SortClubComponent sortClubComponent;
     private CardComponent clubPageComponent;
     private AdvancedSearchPanelComponent advancedSearchPanelComponent;
+    private ExpandedCardComponent expandedCardComponent;
     private WebElement advancedSearchButton;
     private HeaderComponent header;
     private WebElement pageIdentifier;
     private WebElement headerTitle;
-
     List<CardComponent> cards;
-
-    public List<CardComponent> getCards() {
-        List<WebElement> cards = driver.findElements(By.xpath("//div[contains(@class, 'card-body')]"));
-        this.cards = new ArrayList<>();
-        for (WebElement card : cards) {
-            this.cards.add(new CardComponent(driver, card));
-        }
-        return this.cards;
-    }
 
     public ClubsPage(WebDriver driver) {
         super(driver);
+    }
+
+    private List<WebElement> getCardsBody() {
+        return driver.findElements(By.xpath("//div[contains(@class, 'card-body')]"));
+    }
+
+    public List<CardComponent> getCards() {
+        this.cards = new ArrayList<>();
+        for (WebElement card : getCardsBody()) {
+            this.cards.add(new CardComponent(driver, card));
+        }
+        return this.cards;
     }
 
     public WebElement getHeaderTitle() {
@@ -63,6 +65,13 @@ public class ClubsPage extends BasePage {
             advancedSearchPanelComponent = new AdvancedSearchPanelComponent(driver);
         }
         return advancedSearchPanelComponent;
+    }
+
+    public ExpandedCardComponent getExpandedCardComponent() {
+        if (expandedCardComponent == null) {
+            expandedCardComponent = new ExpandedCardComponent(driver);
+        }
+        return expandedCardComponent;
     }
 
     public PaginationComponent getPaginationComponent() {

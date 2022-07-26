@@ -18,8 +18,9 @@ public class AdvancedSearchPanelComponent extends BasePage {
     private WebElement citySelector;
     private WebElement districtSelector;
     private WebElement clearDistrictSelector;
-    private WebElement basicCategoriesCheckList;
     private WebElement availableOnline;
+    private WebElement basicCategoriesCheckList;
+    private List<WebElement> listOfCategoriesCheckList;
 
     public AdvancedSearchPanelComponent(WebDriver driver) {
         super(driver);
@@ -85,6 +86,14 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return availableOnline;
     }
 
+    public List<WebElement> getListOfCategoriesCheckList() {
+        if (listOfCategoriesCheckList == null) {
+            listOfCategoriesCheckList = getBasicCategoriesCheckList()
+                    .findElements(By.xpath(".//input[@type='checkbox']"));
+        }
+        return listOfCategoriesCheckList;
+    }
+
     public String getAdvancedSearchHeaderText() {
         return getAdvancedSearchHeader().getText();
     }
@@ -124,9 +133,14 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return this;
     }
 
+    public void categoryClick(String category) {
+        driver.findElement(By.xpath(String.format("//input[@value='%s']", category))).click();
+    }
+
     public AdvancedSearchPanelComponent clearDistrictInputSelect() {
         getClearDistrictSelector().click();
         return this;
     }
+
 
 }
