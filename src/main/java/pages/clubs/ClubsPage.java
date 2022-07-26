@@ -11,8 +11,8 @@ import java.util.List;
 public class ClubsPage extends BasePage {
     private PaginationComponent paginationComponent;
 
-    private ListCardViewComponent listCardViewComponent;
-    private BlockCardViewComponent blockCardViewComponent;
+    private WideCardComponent listCardViewComponent;
+    private BlockCardComponent blockCardViewComponent;
 
     private SortClubComponent sortClubComponent;
     private CardComponent clubPageComponent;
@@ -66,18 +66,18 @@ public class ClubsPage extends BasePage {
         return getPaginationComponent().waitForPaginationComponentToOpen();
     }
 
-    public ListCardViewComponent getListCardViewComponent() {
+    public WideCardComponent getListCardViewComponent() {
         if (listCardViewComponent == null) {
-            listCardViewComponent = new ListCardViewComponent(driver);
+            listCardViewComponent = new WideCardComponent(driver);
         }
         return listCardViewComponent;
     }
 
-    public BlockCardViewComponent getBlockCardViewComponent() {
+    public BlockCardComponent getBlockCardViewComponent() {
         if (blockCardViewComponent == null) {
-            blockCardViewComponent = new BlockCardViewComponent(driver);
+            blockCardViewComponent = new BlockCardComponent(driver);
         }
-//        cards.get(0).getCardName();
+
         return blockCardViewComponent;
     }
 

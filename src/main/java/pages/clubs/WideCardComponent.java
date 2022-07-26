@@ -3,13 +3,12 @@ package pages.clubs;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.BasePage;
 
-public class ListCardViewComponent extends BasePage {
+public class WideCardComponent extends CardComponent {
 
     private WebElement listCard;
 
-    public ListCardViewComponent(WebDriver driver) {
+    public WideCardComponent(WebDriver driver) {
         super(driver);
     }
 

@@ -22,26 +22,24 @@ public class CardComponent extends BasePage {
 
     public CardComponent(WebDriver driver, WebElement cardBody) {
         super(driver);
-        cardBody = cardBody;
+        this.cardBody = cardBody;
     }
 
     public WebElement getCardName() {
-        return driver.findElement(By.xpath(".//div[contains(@class, 'name')]"));
+        return cardBody.findElement(By.xpath(".//div[contains(@class, 'name')]"));
     }
 
-    public String getTextCardName(WebElement element) {
-        return element.getText();
+    public String getTextCardName() {
+        return getCardName().getText().toUpperCase();
     }
 
 
-//    public List<WebElement> getStarRatingZeroList() {
-//        List<WebElement> cards = driver.findElements(By.xpath("//div[contains(@class, 'card-body')]"));
-//        return cards.get(0).findElements(By.xpath(".//li[contains(@class, 'zero')]"));
-//    }
-//
-//    public List<WebElement> getStarRatingFullList() {
-//        List<WebElement> cards = driver.findElements(By.xpath("//div[contains(@class, 'card-body')]"));
-//        return cards.get(0).findElements(By.xpath(".//li[contains(@class, 'full')]"));
-//    }
+    public List<WebElement> getStarRatingZeroList() {
+        return cardBody.findElements(By.xpath(".//li[contains(@class, 'zero')]"));
+    }
+
+    public List<WebElement> getStarRatingFullList() {
+        return cardBody.findElements(By.xpath(".//li[contains(@class, 'full')]"));
+    }
 
 }

@@ -3,13 +3,12 @@ package pages.clubs;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.BasePage;
 
-public class BlockCardViewComponent extends BasePage {
+public class BlockCardComponent extends CardComponent {
 
     private WebElement blockCard;
 
-    public BlockCardViewComponent(WebDriver driver) {
+    public BlockCardComponent(WebDriver driver) {
         super(driver);
     }
 

@@ -2,7 +2,6 @@ package login.tests;
 
 import jdk.jfr.Description;
 import login.tests.runners.BaseTestRunner;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -23,8 +22,8 @@ public class SortClubTest extends BaseTestRunner {
         SortClubComponent sortClubComponent = clubsPage.getSortClubComponent()
                 .blockViewButtonClick();
 
-        BlockCardViewComponent blockCardViewComponent = clubsPage.getBlockCardViewComponent();
-        boolean isDisplayed = blockCardViewComponent.getBlockCard().isDisplayed();
+        BlockCardComponent blockCardComponent = clubsPage.getBlockCardViewComponent();
+        boolean isDisplayed = blockCardComponent.getBlockCard().isDisplayed();
         Assert.assertTrue(isDisplayed);
     }
 
@@ -37,9 +36,9 @@ public class SortClubTest extends BaseTestRunner {
         SortClubComponent sortClubComponent = clubsPage.getSortClubComponent()
                 .listViewButtonClick();
 
-        ListCardViewComponent listCardViewComponent = clubsPage.getListCardViewComponent();
+        WideCardComponent WideCardComponent = clubsPage.getListCardViewComponent();
 
-        boolean isDisplayed = listCardViewComponent.getListCard().isDisplayed();
+        boolean isDisplayed = WideCardComponent.getListCard().isDisplayed();
         Assert.assertTrue(isDisplayed);
     }
 
@@ -58,8 +57,9 @@ public class SortClubTest extends BaseTestRunner {
 
         List<String> cardNamesText = new ArrayList<>();
         for (int i = 0; i < clubsPage.getCards().size(); i++) {
-            cardNamesText.add(i, clubsPage.getCards().get(i).getTextCardName(clubsPage.getCards().get(i).getCardName()));
+            cardNamesText.add(i, clubsPage.getCards().get(i).getTextCardName());
             softAssert.assertTrue(cardNamesText.get(i).startsWith("A"));
+            System.out.println(cardNamesText.get(i));;
         }
 
         softAssert.assertAll();
