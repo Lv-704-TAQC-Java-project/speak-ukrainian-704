@@ -10,13 +10,12 @@ import pages.HomePage;
 
 public class LoginModalComponent extends BasePage {
     private WebElement loginModal;
-    private WebElement emailInputField;
-    private WebElement emailInputFieldWrapper;
+    private WebElement emailField;
+    private WebElement emailFieldWrapper;
     private WebElement passwordField;
     private WebElement passwordFieldWrapper;
-    private WebElement submitLoginFormBtn;
+    private WebElement loginButton;
     private WebElement loginHeader;
-    private WebElement closeLoginModalButton;
 
 
     public LoginModalComponent(WebDriver driver) {
@@ -39,19 +38,19 @@ public class LoginModalComponent extends BasePage {
         return loginModal;
     }
 
-    public WebElement getEmailInputField() {
-        if (emailInputField == null) {
-            emailInputField = driver.findElement(By.xpath("//input[@id='basic_email']"));
+    public WebElement getEmailField() {
+        if (emailField == null) {
+            emailField = driver.findElement(By.xpath("//input[@id='basic_email']"));
         }
-        return emailInputField;
+        return emailField;
     }
 
     public WebElement getEmailFieldWrapper(String color) {
-        if (emailInputFieldWrapper == null) {
+        if (emailFieldWrapper == null) {
             waitAttributeOfElementContains(By.xpath("//input[@id='basic_email']/parent::span"), "border-color", color);
-            emailInputFieldWrapper = driver.findElement(By.xpath("//input[@id='basic_email']/parent::span"));
+            emailFieldWrapper = getEmailField().findElement(By.xpath("./parent::span"));
         }
-        return emailInputFieldWrapper;
+        return emailFieldWrapper;
     }
 
     public WebElement getPasswordField() {
@@ -64,16 +63,16 @@ public class LoginModalComponent extends BasePage {
     public WebElement getPasswordFieldWrapper(String color) {
         if (passwordFieldWrapper == null) {
             waitAttributeOfElementContains(By.xpath("//input[@id='basic_password']/parent::span"), "border-color", color);
-            passwordFieldWrapper = driver.findElement(By.xpath("//input[@id='basic_password']/parent::span"));
+            passwordFieldWrapper = getPasswordField().findElement(By.xpath("./parent::span"));
         }
         return passwordFieldWrapper;
     }
 
-    public WebElement getSubmitLoginFormBtn() {
-        if (submitLoginFormBtn == null) {
-            submitLoginFormBtn = driver.findElement(By.xpath("//button[contains(@class, 'login-button')]"));
+    public WebElement getLoginButton() {
+        if (loginButton == null) {
+            loginButton = driver.findElement(By.xpath("//button[contains(@class, 'login-button')]"));
         }
-        return submitLoginFormBtn;
+        return loginButton;
     }
 
     public WebElement getLoginHeader() {
@@ -83,7 +82,6 @@ public class LoginModalComponent extends BasePage {
         return loginHeader;
     }
 
-
     public LoginModalComponent clickOnLoginHeader() {
         Actions action = new Actions(driver);
         action.moveToElement(getLoginHeader()).click();
@@ -91,8 +89,8 @@ public class LoginModalComponent extends BasePage {
     }
 
     public LoginModalComponent fillInEmail(String email) {
-        getEmailInputField().sendKeys(Keys.chord(Keys.CONTROL, "a"));
-        getEmailInputField().sendKeys(email);
+        getEmailField().sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        getEmailField().sendKeys(email);
         return this;
     }
 
@@ -103,7 +101,7 @@ public class LoginModalComponent extends BasePage {
     }
 
     public LoginModalComponent clickLoginButton() {
-        getSubmitLoginFormBtn().click();
+        getLoginButton().click();
         return this;
     }
 
