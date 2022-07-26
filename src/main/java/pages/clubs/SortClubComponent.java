@@ -70,18 +70,39 @@ public class SortClubComponent extends BasePage {
     public SortClubComponent sortByABCButtonClick() {
         waitElementIsClickable(getSortByABCButton());
         getSortByABCButton().click();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return this;
     }
 
     public SortClubComponent sortByRatingButtonClick() {
         waitElementIsClickable(getSortByRatingButton());
         getSortByRatingButton().click();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return this;
     }
 
     public SortClubComponent arrowUpButtonClick() {
         waitElementIsClickable(getArrowUpButton());
         getArrowUpButton().click();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return this;
 
     }
@@ -89,6 +110,13 @@ public class SortClubComponent extends BasePage {
     public SortClubComponent arrowDownButtonClick() {
         waitElementIsClickable(getArrowDownButton());
         getArrowDownButton().click();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return this;
     }
 
