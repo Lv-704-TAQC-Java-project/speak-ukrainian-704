@@ -7,9 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.HomePage;
-import pages.clubs.ClubPageComponent;
-import pages.clubs.ClubsPage;
-import pages.clubs.SortClubComponent;
+import pages.clubs.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +23,8 @@ public class SortClubTest extends BaseTestRunner {
         SortClubComponent sortClubComponent = clubsPage.getSortClubComponent()
                 .blockViewButtonClick();
 
-        ClubPageComponent clubPageComponent = clubsPage.getClubPageComponent();
-
-        boolean isDisplayed = clubPageComponent.getBlockCard().isDisplayed();
+        BlockCardViewComponent blockCardViewComponent = clubsPage.getBlockCardViewComponent();
+        boolean isDisplayed = blockCardViewComponent.getBlockCard().isDisplayed();
         Assert.assertTrue(isDisplayed);
     }
 
@@ -40,9 +37,9 @@ public class SortClubTest extends BaseTestRunner {
         SortClubComponent sortClubComponent = clubsPage.getSortClubComponent()
                 .listViewButtonClick();
 
-        ClubPageComponent clubPageComponent = clubsPage.getClubPageComponent();
+        ListCardViewComponent listCardViewComponent = clubsPage.getListCardViewComponent();
 
-        boolean isDisplayed = clubPageComponent.getListCard().isDisplayed();
+        boolean isDisplayed = listCardViewComponent.getListCard().isDisplayed();
         Assert.assertTrue(isDisplayed);
     }
 
@@ -59,7 +56,7 @@ public class SortClubTest extends BaseTestRunner {
 
         SoftAssert softAssert = new SoftAssert();
 
-        ClubPageComponent clubPageComponent = clubsPage.getClubPageComponent();
+        CardComponent clubPageComponent = clubsPage.getClubPageComponent();
 
         List<String> namesActual = clubPageComponent
                 .getUpperCaseTextFromWebElementsList(clubPageComponent.getCardNamesList());
@@ -81,7 +78,7 @@ public class SortClubTest extends BaseTestRunner {
                 .sortByABCButtonClick()
                 .arrowUpButtonClick();
 
-        ClubPageComponent clubPageComponent = clubsPage.getClubPageComponent();
+        CardComponent clubPageComponent = clubsPage.getClubPageComponent();
 
         List<String> cardNamesDECActual = clubPageComponent
                 .getUpperCaseTextFromWebElementsList(clubPageComponent.getCardNamesList());
@@ -108,8 +105,8 @@ public class SortClubTest extends BaseTestRunner {
         SortClubComponent sortClubComponent = clubsPage.getSortClubComponent()
                 .sortByRatingButtonClick();
 
-        boolean zeroStar = clubsPage.getClubPageComponent()
-                .getStarRatingZeroList().get(1).isDisplayed();
+       // boolean zeroStar = clubsPage.getClubPageComponent()
+        //        .getStarRatingZeroList().get(0).isDisplayed();
 
         sortClubComponent.arrowUpButtonClick();
 
@@ -117,32 +114,31 @@ public class SortClubTest extends BaseTestRunner {
                 .getStarRatingFullList();
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertFalse(zeroStar);
+       // softAssert.assertFalse(zeroStar);
         softAssert.assertEquals(starsAmountList.size(), 5);
 
         softAssert.assertAll();
     }
 
-//    @Test
-//    @Description("Verify that cards are sorted in ascending order by rating")
-//    public void sortByRatingASCTest() {
-//        ClubsPage clubsPage = new HomePage(driver)
-//                .clickAdvancedSearchButton();
-//
-//        SortClubComponent sortClubComponent = clubsPage.getSortClubComponent()
-//                .sortByRatingButtonClick()
-//                .arrowUpButtonClick()
-//                .arrowDownButtonClick();
-//
-//
-//        List<WebElement> starsAmountList = clubsPage.getClubPageComponent()
-//                .getStarRatingZeroList();
-//
-//        SoftAssert softAssert = new SoftAssert();
-//
-//        softAssert.assertEquals(starsAmountList.size(), 30);
-//        softAssert.assertAll();
-//    }
+    @Test
+    @Description("Verify that cards are sorted in ascending order by rating")
+    public void sortByRatingASCTest() {
+        ClubsPage clubsPage = new HomePage(driver)
+                .clickAdvancedSearchButton();
+
+        SortClubComponent sortClubComponent = clubsPage.getSortClubComponent()
+                .sortByRatingButtonClick()
+                .arrowUpButtonClick()
+                .arrowDownButtonClick();
+
+        List<WebElement> starsAmountList = clubsPage.getClubPageComponent()
+                .getStarRatingZeroList();
+
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertEquals(starsAmountList.size(), 5);
+        softAssert.assertAll();
+    }
 
 }
 
