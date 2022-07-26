@@ -11,10 +11,9 @@ import java.util.List;
 public class CardComponent extends BasePage {
 
     private WebElement cardBody;
+    private WebElement cardName;
     List<WebElement> starRatingZeroList;
     List<WebElement> starRatingFullList;
-    List<WebElement> cardNamesList;
-    private ClubsPage clubsPage;
 
     public CardComponent(WebDriver driver) {
         super(driver);
@@ -26,20 +25,31 @@ public class CardComponent extends BasePage {
     }
 
     public WebElement getCardName() {
-        return cardBody.findElement(By.xpath(".//div[contains(@class, 'name')]"));
+        if (cardName == null) {
+            waitVisibilityOfElement(By.xpath(".//div[contains(@class, 'name')]"));
+            cardName = cardBody.findElement(By.xpath(".//div[contains(@class, 'name')]"));
+        }
+        return cardName;
     }
 
     public String getTextCardName() {
-        return getCardName().getText().toUpperCase();
+        return getCardName().getText();
     }
 
-
     public List<WebElement> getStarRatingZeroList() {
-        return cardBody.findElements(By.xpath(".//li[contains(@class, 'zero')]"));
+        if (starRatingZeroList == null) {
+            waitVisibilityOfElements(cardBody.findElements(By.xpath(".//li[contains(@class, 'zero')]")));
+            starRatingZeroList = cardBody.findElements(By.xpath(".//li[contains(@class, 'zero')]"));
+        }
+        return starRatingZeroList;
     }
 
     public List<WebElement> getStarRatingFullList() {
-        return cardBody.findElements(By.xpath(".//li[contains(@class, 'full')]"));
+        if (starRatingFullList == null) {
+            waitVisibilityOfElements(cardBody.findElements(By.xpath(".//li[contains(@class, 'full')]")));
+            starRatingFullList = cardBody.findElements(By.xpath(".//li[contains(@class, 'full')]"));
+        }
+        return starRatingFullList;
     }
 
 }

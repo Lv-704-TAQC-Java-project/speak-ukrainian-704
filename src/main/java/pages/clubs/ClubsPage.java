@@ -23,14 +23,26 @@ public class ClubsPage extends BasePage {
     private WebElement headerTitle;
 
     List<CardComponent> cards;
+    List<CenterComponent> centers;
+
+    private List<WebElement> getCardsBody() {
+        return driver.findElements(By.xpath("//div[contains(@class, 'card-body')]"));
+    }
 
     public List<CardComponent> getCards() {
-        List<WebElement> cards = driver.findElements(By.xpath("//div[contains(@class, 'card-body')]"));
         this.cards = new ArrayList<>();
-        for (WebElement card : cards) {
+        for (WebElement card : getCardsBody()) {
             this.cards.add(new CardComponent(driver, card));
         }
         return this.cards;
+    }
+
+    public List<CenterComponent> getCenters() {
+        this.centers = new ArrayList<>();
+        for (WebElement card : getCardsBody()) {
+            this.centers.add(new CenterComponent(driver, card));
+        }
+        return this.centers;
     }
 
     public ClubsPage(WebDriver driver) {
