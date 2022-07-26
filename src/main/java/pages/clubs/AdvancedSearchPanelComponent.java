@@ -10,15 +10,23 @@ import java.time.Duration;
 import java.util.List;
 
 public class AdvancedSearchPanelComponent extends BasePage {
+    private ClubPageComponent clubPageComponent;
     private List<WebElement> clubListSectionChildren;
     private WebElement asideAdvancedSearchMenu;
     private WebElement advancedSearchHeader;
     private WebElement citySelector;
-    private WebElement basicCategoriesCheckList;
     private WebElement isAvailableOnline;
-
+    private WebElement basicCategoriesCheckList;
+    private List<WebElement> listOfBasicCategoriesCheckList;
     public AdvancedSearchPanelComponent(WebDriver driver) {
         super(driver);
+    }
+
+    public ClubPageComponent getClubPageComponent() {
+        if (clubPageComponent == null) {
+            clubPageComponent = new ClubPageComponent(driver);
+        }
+        return clubPageComponent;
     }
 
     public WebElement getAsideAdvancedSearchMenu() {
@@ -66,6 +74,14 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return getAdvancedSearchHeader().getText();
     }
 
+    public List<WebElement> getListOfBasicCategoriesCheckList() {
+        if (listOfBasicCategoriesCheckList == null) {
+            listOfBasicCategoriesCheckList = getBasicCategoriesCheckList()
+                    .findElements(By.xpath(".//input[@type='checkbox']"));
+        }
+        return listOfBasicCategoriesCheckList;
+    }
+
     public boolean advancedSearchSideMenuIsVisible() {
         return getAsideAdvancedSearchMenu().isDisplayed();
     }
@@ -95,4 +111,18 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return this;
     }
 
+    public boolean sectionsClick(){
+        boolean isCategoryAvailableOnCard = true;
+        List<WebElement> categories = getListOfBasicCategoriesCheckList();
+        ClubPageComponent clubPageComponent = getClubPageComponent();
+        for (WebElement category : categories){
+            category.click();
+            String categoryName = category.getAttribute("value");
+//            sleep(5);
+            List<WebElement> cards = clubPageComponent.getListOfCards();
+            isCategoryAvailableOnCard = clubPageComponent.isCategoryAvailableOnCard(cards, categoryName);
+            category.click();
+        }
+        return isCategoryAvailableOnCard;
+    }
 }

@@ -17,6 +17,8 @@ public class ClubPageComponent extends BasePage {
     List<WebElement> cardNamesList;
     private WebElement isClubAvailableOnline;
     private List<WebElement> listOfCards;
+    private List<WebElement> listOfCategoriesOnCard;
+    private WebElement titleOfCard;
 
     public ClubPageComponent(WebDriver driver) {
         super(driver);
@@ -52,18 +54,60 @@ public class ClubPageComponent extends BasePage {
 
     public List<WebElement> getListOfCards() {
         if (listOfCards == null) {
-            waitVisibilityOfElement(By.xpath("//div[contains(@class, 'card-body')]"), Duration.ofSeconds(2));
+            sleep(5);
+            waitVisibilityOfElement(By.xpath("//div[contains(@class, 'card-body')]"), Duration.ofSeconds(5));
             listOfCards = driver.findElements(By.xpath("//div[contains(@class, 'card-body')]"));
         }
         return listOfCards;
     }
 
     public WebElement getIsClubAvailableOnline(WebElement card) {
-        if (isClubAvailableOnline == null) {
-            waitVisibilityOfElement(By.xpath("//div[contains(@class, 'club-online')]"), Duration.ofSeconds(2));
-            isClubAvailableOnline = card.findElement(By.xpath("//div[contains(@class, 'club-online')]"));
-        }
+        waitVisibilityOfElement(By.xpath("//div[contains(@class, 'club-online')]"), Duration.ofSeconds(2));
+        isClubAvailableOnline = card.findElement(By.xpath("//div[contains(@class, 'club-online')]"));
         return isClubAvailableOnline;
+    }
+
+    public List<WebElement> getListOfCategoriesOnCard(WebElement card) {
+        if (listOfCategoriesOnCard == null) {
+            waitVisibilityOfElement(By.xpath("//div[contains(@class, 'card-body')]"), Duration.ofSeconds(2));
+            listOfCategoriesOnCard = card.findElements(By.xpath("//div[contains(@class, 'club-tags-box')]//span"));
+        }
+        return listOfCategoriesOnCard;
+    }
+
+    public WebElement getTitleOfCard(WebElement card) {
+        sleep(5);
+        waitVisibilityOfElement(By.xpath(".//div[@class='title']"), Duration.ofSeconds(5));
+        return card.findElement(By.xpath(".//div[@class='title']"));
+    }
+
+    public ExpandedCardComponent titleOfCardClick(WebElement card) {
+        sleep(5);
+        waitElementIsClickable(getTitleOfCard(card));
+        getTitleOfCard(card).click();
+        return new ExpandedCardComponent(driver);
+    }
+
+    public boolean isCategoryAvailableOnCard(List<WebElement> cards, String nameOfCategory) {
+        boolean isSectionAvailableOnCard = true;
+        ExpandedCardComponent ex = new ExpandedCardComponent(driver);
+//        List<WebElement> cards = getListOfCards();
+        outer:
+        for (WebElement card : cards) {
+            titleOfCardClick(card);
+            List<WebElement> listOfCategories = ex.getListOfCategories();
+            for (WebElement category : listOfCategories) {
+                String name = category.getText();
+                if (!name.equals(nameOfCategory)) {
+                    isSectionAvailableOnCard = false;
+                } else {
+                    ex.exitButtonClick();
+                    continue outer;
+                }
+            }
+            ex.exitButtonClick();
+        }
+        return isSectionAvailableOnCard;
     }
 
     public boolean isAllClubsAvailableOnline(List<WebElement> cards) {
