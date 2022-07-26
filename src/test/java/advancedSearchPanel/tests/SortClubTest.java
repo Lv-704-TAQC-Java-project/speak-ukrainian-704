@@ -58,7 +58,7 @@ public class SortClubTest extends BaseTestRunner {
 
         List<String> cardNamesText = new ArrayList<>();
         for (int i = 0; i < clubsPage.getCards().size(); i++) {
-            cardNamesText.add(i, clubsPage.getCards().get(i).getTextCardName());
+            cardNamesText.add(i, clubsPage.getCards().get(i).getTextCardName().toUpperCase());
             softAssert.assertTrue(cardNamesText.get(i).startsWith("A"));
             System.out.println(cardNamesText.get(i));;
         }
@@ -87,7 +87,7 @@ public class SortClubTest extends BaseTestRunner {
 
         List<String> cardNamesText = new ArrayList<>();
         for (int i = 0; i < clubsPage.getCards().size(); i++) {
-            cardNamesText.add(i, clubsPage.getCards().get(i).getTextCardName());
+            cardNamesText.add(i, clubsPage.getCards().get(i).getTextCardName().toUpperCase());
             System.out.println(cardNamesText.get(i));;
         }
 

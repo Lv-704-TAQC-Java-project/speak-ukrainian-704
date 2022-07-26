@@ -19,7 +19,10 @@ public class AdvancedSearchPanelComponent extends BasePage {
     private WebElement districtSelector;
     private WebElement clearDistrictSelector;
     private WebElement basicCategoriesCheckList;
+    private WebElement clubRadioButton;
+    private WebElement centerRadioButton;
     private WebElement availableOnline;
+
 
     public AdvancedSearchPanelComponent(WebDriver driver) {
         super(driver);
@@ -85,6 +88,20 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return availableOnline;
     }
 
+    public WebElement getClubRadioButton() {
+        if (clubRadioButton == null) {
+            clubRadioButton = driver.findElement(By.xpath("//span[@class = 'ant-radio']"));
+        }
+        return clubRadioButton;
+    }
+
+    public WebElement getCenterRadioButton() {
+        if (centerRadioButton == null) {
+            centerRadioButton = driver.findElement(By.xpath("//span[@class = 'ant-radio ant-radio-checked']"));
+        }
+        return centerRadioButton;
+    }
+
     public String getAdvancedSearchHeaderText() {
         return getAdvancedSearchHeader().getText();
     }
@@ -127,6 +144,16 @@ public class AdvancedSearchPanelComponent extends BasePage {
     public AdvancedSearchPanelComponent clearDistrictInputSelect() {
         getClearDistrictSelector().click();
         return this;
+    }
+
+    public void clubRadioButtonClick() {
+        waitVisibilityOfWebElement(getClubRadioButton());
+        getClubRadioButton().click();
+    }
+
+    public void centerRadioButtonClick() {
+        waitVisibilityOfWebElement(getCenterRadioButton());
+        getCenterRadioButton().click();
     }
 
 }
