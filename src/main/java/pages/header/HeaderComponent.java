@@ -15,10 +15,18 @@ public class HeaderComponent extends BasePage {
     private AdminProfileMenuComponent adminProfileMenuComponent;
     private PopupMessageComponent popupMessageComponent;
     private NavigationComponent navigationComponent;
+    private LocationComponent locationComponent;
     private WebElement imageUserComponent;
 
     public HeaderComponent(WebDriver driver) {
         super(driver);
+    }
+
+    public LocationComponent getLocationComponent() {
+        if (locationComponent == null) {
+            locationComponent = new LocationComponent(driver);
+        }
+        return locationComponent;
     }
 
     protected GuestProfileMenuComponent getGuestProfileMenuComponent() {
@@ -72,8 +80,11 @@ public class HeaderComponent extends BasePage {
         return popupMessageComponent;
     }
 
-    public WebElement getLoginErrorMessage() {
-        return getPopupMessageComponent().getLoginErrorPopupMessage();
+    public String getLoginErrorMessage() {
+        WebElement errorPopup = getPopupMessageComponent().getLoginErrorPopupMessage();
+        String errorMessage = errorPopup.getText();
+        waitInvisibilityOfElement(errorPopup);
+        return errorMessage;
     }
 
     public WebElement getLoginSuccessMessage() {

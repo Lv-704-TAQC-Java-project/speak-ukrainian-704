@@ -1,7 +1,7 @@
 package login.tests;
 
 import jdk.jfr.Description;
-import login.tests.runners.BaseTestRunner;
+import runners.BaseTestRunner;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -64,7 +64,6 @@ public class SortClubTest extends BaseTestRunner {
         }
 
         softAssert.assertAll();
-
     }
 
     @Test
