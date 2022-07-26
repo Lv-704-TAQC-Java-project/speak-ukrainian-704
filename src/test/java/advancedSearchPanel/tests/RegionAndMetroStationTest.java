@@ -1,6 +1,5 @@
 package advancedSearchPanel.tests;
 
-import login.tests.runners.BaseTestRunner;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -8,6 +7,7 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.clubs.AdvancedSearchPanelComponent;
 import pages.clubs.ClubsPage;
+import runners.BaseTestRunner;
 
 import java.util.List;
 

@@ -23,6 +23,14 @@ public class ClubPageComponent extends BasePage {
         super(driver);
     }
 
+    public boolean clubsNotFoundMessageVisible() {
+        return driver.findElement(By.xpath("//div[@class='clubs-not-found']")).isDisplayed();
+    }
+
+    public String clubsNotFoundMessage() {
+        return driver.findElement(By.xpath("//div[@class='clubs-not-found']")).getText();
+    }
+
     public List<WebElement> getCardAddressesList() {
         return driver.findElements(By.xpath("//span[@class='oneAddress']"));
     }
