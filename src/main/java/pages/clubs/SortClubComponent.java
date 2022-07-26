@@ -16,7 +16,6 @@ public class SortClubComponent extends BasePage {
     private WebElement arrowDownButton;
     private WebElement listViewButton;
     private WebElement blockViewButton;
-    //  private ClubsPage clubsPage;
 
     public SortClubComponent(WebDriver driver) {
         super(driver);
