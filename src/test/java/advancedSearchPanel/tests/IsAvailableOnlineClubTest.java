@@ -1,17 +1,16 @@
 package advancedSearchPanel.tests;
 
-import runners.BaseTestRunner;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.clubs.AdvancedSearchPanelComponent;
-import pages.clubs.ClubPageComponent;
+import pages.clubs.CardComponent;
 import pages.clubs.ClubsPage;
+import runners.BaseTestRunner;
 
 import java.util.List;
 
-public class IsOnlineClubTest extends BaseTestRunner {
+public class IsAvailableOnlineClubTest extends BaseTestRunner {
     @Test
     public void checkIsAllClubsIsAvailableOnline() {
         ClubsPage clubsPage = new HomePage(driver)
@@ -19,10 +18,13 @@ public class IsOnlineClubTest extends BaseTestRunner {
 
         AdvancedSearchPanelComponent advancedSearchPanelComponent = clubsPage.getAdvancedSearchPanelComponent();
 
-        advancedSearchPanelComponent.isOnlineCheckboxClick();
+        advancedSearchPanelComponent.availableOnlineCheckboxClick();
 
-//        ClubPageComponent clubPageComponent = clubsPage.getClubPageComponent();
-//        List<WebElement> cards = clubPageComponent.getListOfCards();
-//        Assert.assertTrue(clubPageComponent.isAllClubsAvailableOnline(cards), "Some of clubs are not available online");
+        List<CardComponent> cards = clubsPage.getCards();
+
+        for (CardComponent card : cards) {
+            Assert.assertTrue(card.isClubAvailableOnline(),
+                    String.format("%s is not available online", card.getTextCardName()));
+        }
     }
 }

@@ -27,7 +27,7 @@ public class AdvancedSearchTest extends BaseTestRunner {
         softAssert.assertEquals(advancedSearchPanelComponent.getAdvancedSearchHeaderText().trim(), "Розширений пошук",
                 "Advanced search header title is not as expected.");
         softAssert.assertTrue(advancedSearchPanelComponent.citySelectionInputIsVisible(), "City selector is not visible.");
-        softAssert.assertTrue(advancedSearchPanelComponent.isAvailableOnlineIsVisible(), "Checkbox 'available online' is not visible.");
+        softAssert.assertTrue(advancedSearchPanelComponent.availableOnlineIsVisible(), "Checkbox 'available online' is not visible.");
         softAssert.assertTrue(advancedSearchPanelComponent.basicCategoriesCheckListIsVisible(), "Basic category check list is not visible.");
 
         softAssert.assertAll();

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.BasePage;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,8 @@ public class CardComponent extends BasePage {
     private WebElement cardName;
     List<WebElement> starRatingZeroList;
     List<WebElement> starRatingFullList;
-
+    private WebElement availableOnline;
+    
     public CardComponent(WebDriver driver) {
         super(driver);
     }
@@ -50,6 +52,18 @@ public class CardComponent extends BasePage {
             starRatingFullList = cardBody.findElements(By.xpath(".//li[contains(@class, 'full')]"));
         }
         return starRatingFullList;
+    }
+
+    public WebElement getAvailableOnline() {
+        if (availableOnline == null) {
+            waitVisibilityOfElement(By.xpath("//div[contains(@class, 'club-online')]"), Duration.ofSeconds(2));
+            availableOnline = cardBody.findElement(By.xpath("//div[contains(@class, 'club-online')]"));
+        }
+        return availableOnline;
+    }
+
+    public boolean isClubAvailableOnline() {
+        return getAvailableOnline().isDisplayed();
     }
 
 }
