@@ -3,6 +3,7 @@ package pages.clubs;
 import org.openqa.selenium.*;
 import pages.BasePage;
 import pages.clubs.card.components.BlockCardComponent;
+import pages.clubs.card.components.CardComponent;
 import pages.clubs.card.components.CenterComponent;
 import pages.clubs.card.components.WideCardComponent;
 import pages.header.HeaderComponent;
@@ -24,48 +25,32 @@ public class ClubsPage extends BasePage {
     private HeaderComponent header;
     private WebElement pageIdentifier;
     private WebElement headerTitle;
+    List<CardComponent> cards;
 
     List<BlockCardComponent> blockCards;
     List<WideCardComponent> wideCards;
     List<CenterComponent> centers;
 
-    private List<WebElement> getBlockCardsBody() {
+    private List<WebElement> getCardsBody() {
         if (getBlockCardContainer() == null) {
             return null;
         }
         return getBlockCardContainer().findElements(By.xpath(".//div[contains(@class, 'card-body')]"));
     }
 
-    private List<WebElement> getWideCardsBody() {
-        if (getWideCardContainer() == null) {
-            return null;
+
+    public List<CardComponent> getCards() {
+        this.cards = new ArrayList<>();
+        for (WebElement card : getCardsBody()) {
+            this.cards.add(new CardComponent(driver, card));
         }
-        return getWideCardContainer().findElements(By.xpath(".//div[contains(@class, 'card-body')]"));
+        return this.cards;
     }
 
-    public List<BlockCardComponent> getBlockCards() {
-        this.blockCards = new ArrayList<>();
-        if (getBlockCardsBody() != null) {
-            for (WebElement card : getBlockCardsBody()) {
-                this.blockCards.add(new BlockCardComponent(driver, card));
-            }
-        }
-        return this.blockCards;
-    }
-
-    public List<WideCardComponent> getWideCards() {
-        this.wideCards = new ArrayList<>();
-        if (getWideCardsBody() != null) {
-            for (WebElement card : getWideCardsBody()) {
-                this.wideCards.add(new WideCardComponent(driver, card));
-            }
-        }
-        return this.wideCards;
-    }
 
     public List<CenterComponent> getCenters() {
         this.centers = new ArrayList<>();
-        for (WebElement card : getBlockCardsBody()) {
+        for (WebElement card : getCardsBody()) {
             this.centers.add(new CenterComponent(driver, card));
         }
         return this.centers;
