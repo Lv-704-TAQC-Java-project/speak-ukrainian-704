@@ -155,6 +155,10 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return this;
     }
 
+    public boolean availableOnlineCheckboxIsDisplayed() {
+        return getAvailableOnline().isDisplayed();
+    }
+
     public AdvancedSearchPanelComponent openDistrictInputSelect() {
         Actions actions = new Actions(driver);
         actions.moveToElement(getDistrictSelector()).click().perform();
@@ -191,6 +195,20 @@ public class AdvancedSearchPanelComponent extends BasePage {
     public void centerRadioButtonClick() {
         waitVisibilityOfWebElement(getCenterRadioButton());
         getCenterRadioButton().click();
+    }
+
+    public AdvancedSearchPanelComponent centerRadioButtonClick2() {
+        waitVisibilityOfWebElement(getClubRadioButton());
+        getClubRadioButton().click();
+        return this;
+    }
+
+    public boolean IsClubButtonSelected() {
+        return getClubRadioButton().isSelected();
+    }
+
+    public boolean IsCenterButtonSelected() {
+        return getCenterRadioButton().isSelected();
     }
 
 }
