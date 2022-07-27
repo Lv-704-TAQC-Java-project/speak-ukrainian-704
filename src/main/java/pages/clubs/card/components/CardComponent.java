@@ -31,8 +31,7 @@ public class CardComponent extends BasePage {
     }
 
     public WebElement getCardTitle() {
-        if (cardTitle == null) {
-            waitVisibilityOfElement(By.xpath(".//div[@class='title']"), Duration.ofSeconds(2));
+        if (cardTitle == null){
             cardTitle = cardBody.findElement(By.xpath(".//div[@class='title']"));
         }
         return cardTitle;

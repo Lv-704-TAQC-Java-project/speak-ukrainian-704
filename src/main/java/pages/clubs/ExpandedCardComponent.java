@@ -49,6 +49,11 @@ public class ExpandedCardComponent extends BasePage {
     public ClubsPage exitButtonClick() {
         waitElementIsClickable(getExitButton());
         getExitButton().click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return new ClubsPage(driver);
     }
 }

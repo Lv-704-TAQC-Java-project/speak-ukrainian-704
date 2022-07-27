@@ -10,36 +10,45 @@ import pages.clubs.CardComponent;
 import pages.clubs.ClubsPage;
 import pages.clubs.ExpandedCardComponent;
 import pages.clubs.card.components.BlockCardComponent;
+import runners.BaseTestOneWindowRunner;
+import runners.BaseTestOpenAdvancedSearch;
 import runners.BaseTestRunner;
 
 import java.util.List;
 
-public class CategoriesTest extends BaseTestRunner {
+public class CategoriesTest extends BaseTestOpenAdvancedSearch {
     @DataProvider(name = "categoriesChecklist")
     public Object[][] locationSelectionData() {
         return new Object[][]{
-                {"Спортивні секції", "Спортивні секції"},
-                {"Танці, хореографія", "Танці, хореографія"},
-                {"Студії раннього розв...", "Студії раннього розвитку"},
-                {"Програмування, роб...", "Програмування, робототехніка, STEM"},
-                {"Вокальна студія, музи...", "Вокальна студія, музика, музичні інструменти"},
-                {"Акторська майстерні...", "Акторська майстерність, театр"},
-                {"Вчіться, діти", "Вчіться, діти"},
-                {"Основи", "Основи"},
-                {"Основи Java444", "Основи Java444"},
-                {"Особистісний розвит...", "Особистісний розвиток"},
-                {"Журналістика, дитяче...", "Журналістика, дитяче телебачення, монтаж відео, влогів"},
-                {"Центр розвитку", "Центр розвитку"},
-                {"Інше", "Інше"},
+                {"Спортивні секції"},
+                {"Танці, хореографія"},
+                {"Студії раннього розвитку"},
+                {"Програмування, робототехніка, STEM"},
+                {"Вокальна студія, музика, музичні інструменти"},
+                {"Акторська майстерність, театр"},
+                {"Вчіться, діти"},
+                {"Основи"},
+                {"Основи Java444"},
+                {"Особистісний розвиток"},
+                {"Журналістика, дитяче телебачення, монтаж відео, влогів"},
+                {"Центр розвитку"},
+                {"Інше"},
         };
     }
 
     @Test(dataProvider = "categoriesChecklist")
-    public void checkIsAllCategoriesIsAvailableOnCard(String categoryToClick) {
-        new HomePage(driver)
-                .clickAdvancedSearchButton()
-                .getAdvancedSearchPanelComponent()
-                .categoryClick(categoryToClick);
+    public void checkIsAllCategoriesIsAvailableOnCard(String categoryName) {
+//        ClubsPage clubsPage = new HomePage(driver)
+//                .clickAdvancedSearchButton();
+//
+//
+//        if (!clubsPage.getAdvancedSearchPanelComponent().advancedSearchSideMenuIsVisible()) {
+//            clubsPage.clickAdvancedSearchButton();
+//        }
+
+        AdvancedSearchPanelComponent advancedSearchPanelComponent = new ClubsPage(driver).getAdvancedSearchPanelComponent();
+
+        advancedSearchPanelComponent.categoryClick(categoryName);
 
         ExpandedCardComponent expandedCardComponent = new ClubsPage(driver).getExpandedCardComponent();
 
@@ -47,9 +56,10 @@ public class CategoriesTest extends BaseTestRunner {
 
         for (BlockCardComponent card : new ClubsPage(driver).getBlockCards()) {
             card.cardTitleClick();
-            softAssert.assertTrue(expandedCardComponent.getListOfNamesOfCategories().contains(categoryToClick));
+            softAssert.assertTrue(expandedCardComponent.getListOfNamesOfCategories().contains(categoryName));
             expandedCardComponent.exitButtonClick();
         }
+        advancedSearchPanelComponent.categoryClick(categoryName);
         softAssert.assertAll();
     }
 }

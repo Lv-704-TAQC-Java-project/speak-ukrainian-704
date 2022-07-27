@@ -3,6 +3,7 @@ package pages.clubs;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import pages.BasePage;
+import pages.clubs.card.components.CardComponent;
 
 import java.time.Duration;
 import java.util.List;
@@ -102,7 +103,6 @@ public class AdvancedSearchPanelComponent extends BasePage {
 
     public WebElement getAvailableOnline() {
         if (availableOnline == null) {
-//            waitVisibilityOfElement(By.xpath("//div[@id='basic_isOnline']"), Duration.ofSeconds(2));
             availableOnline = driver.findElement(By.xpath("//div[@id='basic_isOnline']"));
         }
 
@@ -136,7 +136,11 @@ public class AdvancedSearchPanelComponent extends BasePage {
     }
 
     public boolean advancedSearchSideMenuIsVisible() {
-        return getAsideAdvancedSearchMenu().isDisplayed();
+        try {
+            return getAsideAdvancedSearchMenu().isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
     public boolean citySelectionInputIsVisible() {
@@ -193,9 +197,14 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return this;
     }
 
-    public AdvancedSearchPanelComponent categoryClick(String category) {
+    public WebElement getCategoryFromString(String name) {
+//        waitVisibilityOfElement(By.xpath(String.format("//input[@value='%s']", name)), Duration.ofSeconds(2));
+        return driver.findElement(By.xpath(String.format("//input[@value='%s']", name)));
+    }
+
+    public AdvancedSearchPanelComponent categoryClick(String categoryName) {
         WebElement card = driver.findElement(By.xpath("//div[contains(@class, 'card-body')]"));
-        driver.findElement(By.xpath(String.format("//input[@value='%s']", category))).click();
+        driver.findElement(By.xpath(String.format("//input[@value='%s']", categoryName))).click();
         waitStalenessOfElement(card);
         return this;
     }
