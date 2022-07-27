@@ -2,6 +2,7 @@ package advancedSearchPanel.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.HomePage;
 import pages.clubs.AdvancedSearchPanelComponent;
 import pages.clubs.card.components.BlockCardComponent;
@@ -13,18 +14,16 @@ import java.util.List;
 public class IsAvailableOnlineClubTest extends BaseTestRunner {
     @Test
     public void checkIsAllClubsIsAvailableOnline() {
-        ClubsPage clubsPage = new HomePage(driver)
-                .clickAdvancedSearchButton();
+        new HomePage(driver)
+                .clickAdvancedSearchButton()
+                .getAdvancedSearchPanelComponent()
+                .availableOnlineCheckboxClick();
 
-        AdvancedSearchPanelComponent advancedSearchPanelComponent = clubsPage.getAdvancedSearchPanelComponent();
-
-        advancedSearchPanelComponent.availableOnlineCheckboxClick();
-
-        List<BlockCardComponent> cards = clubsPage.getBlockCards();
-
-        for (BlockCardComponent card : cards) {
-            Assert.assertTrue(card.isClubAvailableOnline(),
+        SoftAssert softAssert = new SoftAssert();
+        for (BlockCardComponent card : new ClubsPage(driver).getBlockCards()) {
+            softAssert.assertTrue(card.isClubAvailableOnline(),
                     String.format("%s is not available online", card.getTextCardName()));
         }
+        softAssert.assertAll();
     }
 }

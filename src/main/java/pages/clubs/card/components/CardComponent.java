@@ -27,10 +27,7 @@ public class CardComponent extends BasePage {
     }
 
     public WebElement getCardName() {
-        if (cardName == null) {
-            waitVisibilityOfElement(By.xpath(".//div[contains(@class, 'name')]"));
-            cardName = cardBody.findElement(By.xpath(".//div[contains(@class, 'name')]"));
-        }
+        cardName = cardBody.findElement(By.xpath(".//div[contains(@class, 'name')]"));
         return cardName;
     }
 
@@ -61,10 +58,7 @@ public class CardComponent extends BasePage {
     }
 
     public WebElement getAvailableOnline() {
-        if (availableOnline == null) {
-            waitVisibilityOfElement(By.xpath("//div[contains(@class, 'club-online')]"), Duration.ofSeconds(2));
-            availableOnline = cardBody.findElement(By.xpath("//div[contains(@class, 'club-online')]"));
-        }
+        availableOnline = cardBody.findElement(By.xpath("//div[contains(@class, 'club-online')]"));
         return availableOnline;
     }
 

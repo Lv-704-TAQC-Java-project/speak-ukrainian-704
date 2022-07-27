@@ -149,7 +149,9 @@ public class AdvancedSearchPanelComponent extends BasePage {
     }
 
     public AdvancedSearchPanelComponent availableOnlineCheckboxClick() {
+        WebElement card = driver.findElement(By.xpath("//div[contains(@class, 'card-body')]"));
         getAvailableOnline().click();
+        waitStalenessOfElement(card);
         return this;
     }
 
