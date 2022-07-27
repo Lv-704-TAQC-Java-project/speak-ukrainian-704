@@ -3,6 +3,7 @@ package pages.clubs;
 import org.openqa.selenium.*;
 import pages.BasePage;
 import pages.clubs.card.components.BlockCardComponent;
+import pages.clubs.card.components.CenterComponent;
 import pages.clubs.card.components.WideCardComponent;
 import pages.header.HeaderComponent;
 
