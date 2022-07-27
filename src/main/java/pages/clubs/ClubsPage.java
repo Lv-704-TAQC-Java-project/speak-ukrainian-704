@@ -7,6 +7,7 @@ import pages.clubs.card.components.CardComponent;
 import pages.clubs.card.components.CenterComponent;
 import pages.clubs.card.components.WideCardComponent;
 import pages.header.HeaderComponent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -146,11 +147,7 @@ public class ClubsPage extends BasePage {
 
     public WebElement getBlockCardContainer() {
         if (blockCardContainer == null) {
-            try {
-                blockCardContainer = driver.findElement(By.xpath("//div[@class = 'content-clubs-list content-clubs-block']"));
-            } catch (NoSuchElementException e) {
-                blockCardContainer = null;
-            }
+            blockCardContainer = driver.findElement(By.xpath("//div[@class = 'content-clubs-list content-clubs-block']"));
 //            blockCardContainer.findElement(By.xpath("//div/div[@class = 'ant-card ant-card-bordered card']"));
         }
         return blockCardContainer;
@@ -158,11 +155,7 @@ public class ClubsPage extends BasePage {
 
     public WebElement getWideCardContainer() {
         if (listCardContainer == null) {
-            try {
-                listCardContainer = driver.findElement(By.xpath("//div[@class = 'content-clubs-list false']"));
-            } catch (NoSuchElementException e) {
-                listCardContainer = null;
-            }
+            listCardContainer = driver.findElement(By.xpath("//div[@class = 'content-clubs-list false']"));
 //            listCardContainer.findElement(By.xpath("//div/div[@class = 'ant-card ant-card-bordered card list-rectangle-item']"));
         }
         return listCardContainer;
