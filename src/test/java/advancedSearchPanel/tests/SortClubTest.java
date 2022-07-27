@@ -17,29 +17,24 @@ public class SortClubTest extends BaseTestRunner {
     @Test
     @Description("Verify that cards are displayed in a block view")
     public void blockCardViewIsDisplayed() {
-        ClubsPage clubsPage = new HomePage(driver)
-                .clickAdvancedSearchButton();
-
-        SortClubComponent sortClubComponent = clubsPage.getSortClubComponent()
+        new HomePage(driver)
+                .clickAdvancedSearchButton()
+                .getSortClubComponent()
                 .blockViewButtonClick();
 
-        BlockCardComponent blockCardComponent = clubsPage.getBlockCardComponent();
-        boolean isDisplayed = blockCardComponent.getBlockCard().isDisplayed();
+        boolean isDisplayed = new ClubsPage(driver).getBlockCardContainer().isDisplayed();
         Assert.assertTrue(isDisplayed);
     }
 
     @Test
     @Description("Verify that cards are displayed in a list view")
     public void listCardViewIsDisplayed() {
-        ClubsPage clubsPage = new HomePage(driver)
-                .clickAdvancedSearchButton();
-
-        SortClubComponent sortClubComponent = clubsPage.getSortClubComponent()
+        new HomePage(driver)
+                .clickAdvancedSearchButton()
+                .getSortClubComponent()
                 .listViewButtonClick();
 
-        WideCardComponent WideCardComponent = clubsPage.getWideCardComponent();
-
-        boolean isDisplayed = WideCardComponent.getListCard().isDisplayed();
+        boolean isDisplayed = new ClubsPage(driver).getListCardContainer().isDisplayed();
         Assert.assertTrue(isDisplayed);
     }
 
