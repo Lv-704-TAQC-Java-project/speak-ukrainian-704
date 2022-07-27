@@ -191,4 +191,10 @@ public class AdvancedSearchPanelComponent extends BasePage {
         getCenterRadioButton().click();
     }
 
+    public AdvancedSearchPanelComponent centerRadioButtonClick2() {
+        waitVisibilityOfWebElement(getClubRadioButton());
+        getClubRadioButton().click();
+        return this;
+    }
+
 }

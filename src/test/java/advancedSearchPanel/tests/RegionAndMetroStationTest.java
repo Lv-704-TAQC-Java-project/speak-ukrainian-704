@@ -27,6 +27,20 @@ public class RegionAndMetroStationTest extends BaseTestRunner {
         };
     }
 
+    @DataProvider(name = "countDistrictsCenter")
+    public Object[][] countDistrictsCenter() {
+        return new Object[][]{
+                {0, new int[]{6, 6, 1, 3, 2, 4, 1, 5}}
+        };
+    }
+
+    @DataProvider(name = "countMetrosCenter")
+    public Object[][] countMetrosCenter() {
+        return new Object[][]{
+                {0, new int[]{6, 3, 0, 0, 2, 0, 3, 0}}
+        };
+    }
+
 
     @Test(dataProvider = "countDistricts")
     public void checkClubsInRegionsOfCity(int indexCity, int[] countExpect) {
@@ -47,6 +61,7 @@ public class RegionAndMetroStationTest extends BaseTestRunner {
         for (int i = 0; i < 8; i++) {
             listDistricts.get(i).click();
             int clubsNumber = new ClubsPage(driver).openPaginationComponent().getQuantityOfClubsOnCurrentPage();
+            System.out.println(listDistricts.get(i).getAccessibleName() + " " + clubsNumber + " groups");
             Assert.assertEquals(clubsNumber, countExpect[i]);
             inputSearchDistrict
                     .openDistrictInputSelect();
@@ -64,6 +79,64 @@ public class RegionAndMetroStationTest extends BaseTestRunner {
                 .getAdvancedSearchPanelComponent()
                 .openMetroInputSelect();
         List<WebElement> listMetros=inputSearchMetro.getMetroListSectionChildren();
+        inputSearchMetro
+                .openMetroInputSelect();
+
+        inputSearchMetro
+                .openMetroInputSelect();
+
+//        for (int i = 0; i < listDistricts.size(); i++) {
+//            if (i >= 8) inputSearchDistrict.scrollDistrictInputSelect();
+        for (int i = 0; i < 8; i++) {
+            listMetros.get(i).click();
+            int clubsNumber = new ClubsPage(driver).openPaginationComponent().getQuantityOfClubsOnCurrentPage();
+            System.out.println(listMetros.get(i).getAccessibleName() + " " + clubsNumber + " groups");
+            Assert.assertEquals(clubsNumber, countExpect[i]);
+            inputSearchMetro
+                    .openMetroInputSelect();
+            if (i == listMetros.size()-1) break;
+        }
+        Assert.assertEquals(listMetros.size(),10);
+    }
+
+    @Test(dataProvider = "countDistrictsCenter")
+    public void checkCentersInRegionsOfCity(int indexCity, int[] countExpect) {
+        AdvancedSearchPanelComponent inputSearchDistrict= new HomePage(driver)
+                .clickAdvancedSearchButton()
+                .getAdvancedSearchPanelComponent()
+                .centerRadioButtonClick2()
+                .openDistrictInputSelect();
+        List<WebElement> listDistricts=inputSearchDistrict.getDistrictListSectionChildren();
+        inputSearchDistrict
+                .openDistrictInputSelect();
+
+        inputSearchDistrict
+                .openDistrictInputSelect();
+
+//        for (int i = 0; i < listDistricts.size(); i++) {
+//            if (i >= 8) inputSearchDistrict.scrollDistrictInputSelect();
+
+        for (int i = 0; i < 8; i++) {
+            listDistricts.get(i).click();
+            int clubsNumber = new ClubsPage(driver).openPaginationComponent().getQuantityOfClubsOnCurrentPage();
+            System.out.println(listDistricts.get(i).getAccessibleName() + " " + clubsNumber + " groups");
+            Assert.assertEquals(clubsNumber, countExpect[i]);
+            inputSearchDistrict
+                    .openDistrictInputSelect();
+            if (i == listDistricts.size()-1) break;
+        }
+        Assert.assertEquals(listDistricts.size(),10);
+    }
+
+    @Test(dataProvider = "countMetrosCenter")
+    public void checkCentersNearMetroOfCity(int indexCity, int[] countExpect) {
+
+        AdvancedSearchPanelComponent inputSearchMetro= new HomePage(driver)
+                .clickAdvancedSearchButton()
+                .getAdvancedSearchPanelComponent()
+                .centerRadioButtonClick2()
+                .openMetroInputSelect();
+        List<WebElement> listMetros=inputSearchMetro.getMetroListSectionChildren();
         System.out.println(listMetros.size());
         inputSearchMetro
                 .openMetroInputSelect();
@@ -76,6 +149,7 @@ public class RegionAndMetroStationTest extends BaseTestRunner {
         for (int i = 0; i < 8; i++) {
             listMetros.get(i).click();
             int clubsNumber = new ClubsPage(driver).openPaginationComponent().getQuantityOfClubsOnCurrentPage();
+            System.out.println(listMetros.get(i).getAccessibleName() + " " + clubsNumber + " groups");
             Assert.assertEquals(clubsNumber, countExpect[i]);
             inputSearchMetro
                     .openMetroInputSelect();
