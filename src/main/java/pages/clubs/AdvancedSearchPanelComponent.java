@@ -3,6 +3,7 @@ package pages.clubs;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import pages.BasePage;
+import pages.clubs.card.components.CardComponent;
 
 import java.time.Duration;
 import java.util.List;
@@ -149,9 +150,13 @@ public class AdvancedSearchPanelComponent extends BasePage {
     }
 
     public AdvancedSearchPanelComponent availableOnlineCheckboxClick() {
-        WebElement card = driver.findElement(By.xpath("//div[contains(@class, 'card-body')]"));
+        List<CardComponent> cards = new ClubsPage(driver).getCards();
         getAvailableOnline().click();
-        waitStalenessOfElement(card);
+        for (CardComponent card: cards) {
+            waitStalenessOfElement(card.getCardBody());
+        }
+//        sleep(1000);
+//        waitStalenessOfElement(card);
         return this;
     }
 

@@ -26,6 +26,10 @@ public class CardComponent extends BasePage {
         this.cardBody = cardBody;
     }
 
+    public WebElement getCardBody() {
+        return cardBody;
+    }
+
     public WebElement getCardName() {
         cardName = cardBody.findElement(By.xpath(".//div[contains(@class, 'name')]"));
         return cardName;
