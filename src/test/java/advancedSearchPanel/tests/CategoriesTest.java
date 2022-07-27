@@ -3,11 +3,13 @@ package advancedSearchPanel.tests;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.HomePage;
 import pages.clubs.AdvancedSearchPanelComponent;
 import pages.clubs.CardComponent;
 import pages.clubs.ClubsPage;
 import pages.clubs.ExpandedCardComponent;
+import pages.clubs.card.components.BlockCardComponent;
 import runners.BaseTestRunner;
 
 import java.util.List;
@@ -33,22 +35,21 @@ public class CategoriesTest extends BaseTestRunner {
     }
 
     @Test(dataProvider = "categoriesChecklist")
-    public void checkIsAllClubsIsAvailableOnline(String categoryToCompare, String categoryToClick) {
-        ClubsPage clubsPage = new HomePage(driver)
-                .clickAdvancedSearchButton();
+    public void checkIsAllCategoriesIsAvailableOnCard(String categoryToClick) {
+        new HomePage(driver)
+                .clickAdvancedSearchButton()
+                .getAdvancedSearchPanelComponent()
+                .categoryClick(categoryToClick);
 
-        AdvancedSearchPanelComponent advancedSearchPanelComponent = clubsPage.getAdvancedSearchPanelComponent();
+        ExpandedCardComponent expandedCardComponent = new ClubsPage(driver).getExpandedCardComponent();
 
-        advancedSearchPanelComponent.categoryClick(categoryToClick);
+        SoftAssert softAssert = new SoftAssert();
 
-//        List<CardComponent> cards = clubsPage.getCards();
-
-        ExpandedCardComponent expandedCardComponent = clubsPage.getExpandedCardComponent();
-
-        for (CardComponent card : clubsPage.getCards()) {
+        for (BlockCardComponent card : new ClubsPage(driver).getBlockCards()) {
             card.cardTitleClick();
-            Assert.assertTrue(expandedCardComponent.getListOfNamesOfCategories().contains(categoryToClick));
+            softAssert.assertTrue(expandedCardComponent.getListOfNamesOfCategories().contains(categoryToClick));
             expandedCardComponent.exitButtonClick();
         }
+        softAssert.assertAll();
     }
 }
