@@ -5,7 +5,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.clubs.ClubsPage;
 import pages.clubs.card.components.CardComponent;
-import pages.clubs.card.components.CenterComponent;
 
 import java.time.Duration;
 import java.util.List;

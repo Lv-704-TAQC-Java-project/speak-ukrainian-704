@@ -31,23 +31,16 @@ public class CategoriesTest extends BaseTestOpenAdvancedSearch {
 
     @Test(dataProvider = "categoriesChecklist")
     public void checkIsAllCategoriesIsAvailableOnCard(String categoryName) {
-//        ClubsPage clubsPage = new HomePage(driver)
-//                .clickAdvancedSearchButton();
-//
-//
-//        if (!clubsPage.getAdvancedSearchPanelComponent().advancedSearchSideMenuIsVisible()) {
-//            clubsPage.clickAdvancedSearchButton();
-//        }
-
-        AdvancedSearchPanelComponent advancedSearchPanelComponent = new ClubsPage(driver).getAdvancedSearchPanelComponent();
+        ClubsPage clubsPage = new ClubsPage(driver);
+        AdvancedSearchPanelComponent advancedSearchPanelComponent = clubsPage.getAdvancedSearchPanelComponent();
 
         advancedSearchPanelComponent.categoryClick(categoryName);
 
-        ExpandedCardComponent expandedCardComponent = new ClubsPage(driver).getExpandedCardComponent();
+        ExpandedCardComponent expandedCardComponent = clubsPage.getExpandedCardComponent();
 
         SoftAssert softAssert = new SoftAssert();
 
-        for (CardComponent card : new ClubsPage(driver).getCards()) {
+        for (CardComponent card : clubsPage.getCards()) {
             card.cardTitleClick();
             softAssert.assertTrue(expandedCardComponent.getListOfNamesOfCategories().contains(categoryName));
             expandedCardComponent.exitButtonClick();

@@ -3,7 +3,6 @@ package pages.clubs;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import pages.BasePage;
-import pages.clubs.card.components.CardComponent;
 
 import java.time.Duration;
 import java.util.List;
@@ -296,11 +295,13 @@ public class AdvancedSearchPanelComponent extends BasePage {
         }
     }
 
+
     public AdvancedSearchPanelComponent enterChildAge(Integer age){
         getChildAgeInput().sendKeys(age.toString());
         clickManagingClubsPageElement(getChildAgeInput());
         return this;
     }
+
 
 
 
