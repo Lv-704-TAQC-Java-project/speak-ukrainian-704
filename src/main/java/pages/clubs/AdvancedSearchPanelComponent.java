@@ -3,7 +3,6 @@ package pages.clubs;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import pages.BasePage;
-import pages.clubs.card.components.CardComponent;
 
 import java.time.Duration;
 import java.util.List;
@@ -287,6 +286,5 @@ public class AdvancedSearchPanelComponent extends BasePage {
             return false;
         }
     }
-
 
 }

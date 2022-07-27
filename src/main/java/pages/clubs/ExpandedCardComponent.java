@@ -13,8 +13,6 @@ public class ExpandedCardComponent extends BasePage {
     private WebElement exitButton;
     private List<WebElement> listOfCategories;
 
-    private WebElement nameOfCategoryOnCard;
-
     public ExpandedCardComponent(WebDriver driver) {
         super(driver);
     }
@@ -29,19 +27,13 @@ public class ExpandedCardComponent extends BasePage {
 
     public List<WebElement> getListOfCategories() {
         waitVisibilityOfElement(By.xpath("//div[@class='container']//span[@class='name']"), Duration.ofSeconds(2));
-        listOfCategories = driver.findElements(By.xpath("//div[@class='container']//span[@class='name']"));
-        return listOfCategories;
-    }
-
-    public WebElement getNameOfCategoryOnCard(WebElement category) {
-        waitVisibilityOfElement(By.xpath("//div[@class='container']//span[@class='name']"), Duration.ofSeconds(3));
-        return category.findElement(By.xpath("//span[@class='name']"));
+        return driver.findElements(By.xpath("//div[@class='container']//span[@class='name']"));
     }
 
     public List<String> getListOfNamesOfCategories(){
         List<String> listOfNameOfCategories = new ArrayList<>();
-        List<WebElement> categories = getListOfCategories();
-        for (WebElement category : categories){
+        listOfCategories = getListOfCategories();
+        for (WebElement category : listOfCategories){
             listOfNameOfCategories.add(category.getText());
         }
         return listOfNameOfCategories;

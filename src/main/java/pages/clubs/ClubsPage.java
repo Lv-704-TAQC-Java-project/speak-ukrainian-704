@@ -14,10 +14,8 @@ import java.util.List;
 
 public class ClubsPage extends BasePage {
     private PaginationComponent paginationComponent;
-
     private WebElement blockCardContainer;
     private WebElement listCardContainer;
-
     private SortClubComponent sortClubComponent;
     private BlockCardComponent cardComponent;
     private AdvancedSearchPanelComponent advancedSearchPanelComponent;
@@ -26,16 +24,18 @@ public class ClubsPage extends BasePage {
     private HeaderComponent header;
     private WebElement pageIdentifier;
     private WebElement headerTitle;
-    List<CardComponent> cards;
+    private List<CardComponent> cards;
+    private List<BlockCardComponent> blockCards;
+    private List<WideCardComponent> wideCards;
+    private List<CenterComponent> centers;
 
-    List<BlockCardComponent> blockCards;
-    List<WideCardComponent> wideCards;
-    List<CenterComponent> centers;
+    public ClubsPage(WebDriver driver) {
+        super(driver);
+    }
 
     private List<WebElement> getCardsBody() {
         return driver.findElements(By.xpath(".//div[contains(@class, 'card-body')]"));
     }
-
 
     public List<CardComponent> getCards() {
         this.cards = new ArrayList<>();
@@ -45,17 +45,12 @@ public class ClubsPage extends BasePage {
         return this.cards;
     }
 
-
     public List<CenterComponent> getCenters() {
         this.centers = new ArrayList<>();
         for (WebElement card : getCardsBody()) {
             this.centers.add(new CenterComponent(driver, card));
         }
         return this.centers;
-    }
-
-    public ClubsPage(WebDriver driver) {
-        super(driver);
     }
 
     public WebElement getHeaderTitle() {
