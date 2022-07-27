@@ -30,11 +30,15 @@ public class CardComponent extends BasePage {
         this.cardBody = cardBody;
     }
 
+
     public WebElement getCardTitle() {
         if (cardTitle == null){
             cardTitle = cardBody.findElement(By.xpath(".//div[@class='title']"));
         }
         return cardTitle;
+    }
+    public WebElement getCardBody() {
+        return cardBody;
     }
 
     public WebElement getCardName() {

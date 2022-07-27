@@ -111,14 +111,14 @@ public class AdvancedSearchPanelComponent extends BasePage {
 
     public WebElement getClubRadioButton() {
         if (clubRadioButton == null) {
-            clubRadioButton = driver.findElement(By.xpath("//span[@class = 'ant-radio']"));
+            clubRadioButton = driver.findElement(By.xpath("//label/span[contains(text(),'Гурток')"));
         }
         return clubRadioButton;
     }
 
     public WebElement getCenterRadioButton() {
         if (centerRadioButton == null) {
-            centerRadioButton = driver.findElement(By.xpath("//span[@class = 'ant-radio ant-radio-checked']"));
+            centerRadioButton = driver.findElement(By.xpath("//label/span[contains(text(),'Центр')]"));
         }
         return centerRadioButton;
     }
@@ -164,14 +164,23 @@ public class AdvancedSearchPanelComponent extends BasePage {
     }
 
     public AdvancedSearchPanelComponent availableOnlineCheckboxClick() {
-        WebElement card = driver.findElement(By.xpath("//div[contains(@class, 'card-body')]"));
+        List<CardComponent> cards = new ClubsPage(driver).getCards();
         getAvailableOnline().click();
-        waitStalenessOfElement(card);
+        for (CardComponent card: cards) {
+            waitStalenessOfElement(card.getCardBody());
+        }
+//        sleep(1000);
+//        waitStalenessOfElement(card);
         return this;
     }
 
     public boolean availableOnlineCheckboxIsDisplayed() {
-        return getAvailableOnline().isDisplayed();
+        try{
+            return getAvailableOnline().isDisplayed();
+        }
+       catch (NoSuchElementException e) {
+           return false;
+       }
     }
 
     public AdvancedSearchPanelComponent openDistrictInputSelect() {
@@ -214,14 +223,21 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return this;
     }
 
-    public void clubRadioButtonClick() {
+    public AdvancedSearchPanelComponent clubRadioButtonClick() {
         waitVisibilityOfWebElement(getClubRadioButton());
         getClubRadioButton().click();
+        return this;
     }
 
-    public void centerRadioButtonClick() {
+    public AdvancedSearchPanelComponent centerRadioButtonClick() {
         waitVisibilityOfWebElement(getCenterRadioButton());
         getCenterRadioButton().click();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return this;
     }
 
     public AdvancedSearchPanelComponent centerRadioButtonClick2() {

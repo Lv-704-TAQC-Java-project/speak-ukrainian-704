@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.clubs.card.components.BlockCardComponent;
 import pages.clubs.ClubsPage;
+import pages.clubs.card.components.CardComponent;
 import pages.header.HeaderComponent;
 import runners.BaseTestOneWindowRunner;
 
@@ -40,15 +41,15 @@ public class LocationTest extends BaseTestOneWindowRunner {
                 .readHeaderTitle();
         softAssert.assertTrue(headerTitle.contains(city), "Missing searched city name in 'Clubs' page header.");
 
-        List<BlockCardComponent> cards = new ClubsPage(driver).getBlockCards();
+        List<CardComponent> cards = new ClubsPage(driver).getCards();
 
-        if (cards == null) {
+        if (cards.isEmpty()) {
             boolean clubsNotFoundMessageIsVisible = new ClubsPage(driver).clubsNotFoundMessageVisible();
             String clubsNotFoundMessage = new ClubsPage(driver).clubsNotFoundMessage();
             softAssert.assertTrue(clubsNotFoundMessageIsVisible, "Missing not found clubs for selected city message.");
             softAssert.assertTrue(clubsNotFoundMessage.contains("гуртків не знайдено"), "Not found message does not contain expected phrase.");
         } else {
-            for (BlockCardComponent club : cards) {
+            for (CardComponent club : cards) {
                 softAssert.assertTrue(club.getAddress().getText().contains(city),
                         String.format("Club address '%s' does not contain searched city %s.", club.getAddress().getText(), city));
             }
