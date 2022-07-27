@@ -108,14 +108,14 @@ public class AdvancedSearchPanelComponent extends BasePage {
 
     public WebElement getClubRadioButton() {
         if (clubRadioButton == null) {
-            clubRadioButton = driver.findElement(By.xpath("//span[@class = 'ant-radio']"));
+            clubRadioButton = driver.findElement(By.xpath("//label/span[contains(text(),'Гурток')"));
         }
         return clubRadioButton;
     }
 
     public WebElement getCenterRadioButton() {
         if (centerRadioButton == null) {
-            centerRadioButton = driver.findElement(By.xpath("//span[@class = 'ant-radio ant-radio-checked']"));
+            centerRadioButton = driver.findElement(By.xpath("//label/span[contains(text(),'Центр')]"));
         }
         return centerRadioButton;
     }
@@ -193,6 +193,11 @@ public class AdvancedSearchPanelComponent extends BasePage {
     public void centerRadioButtonClick() {
         waitVisibilityOfWebElement(getCenterRadioButton());
         getCenterRadioButton().click();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public AdvancedSearchPanelComponent centerRadioButtonClick2() {
