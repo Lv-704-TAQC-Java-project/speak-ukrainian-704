@@ -6,7 +6,7 @@ import org.testng.asserts.SoftAssert;
 import pages.clubs.AdvancedSearchPanelComponent;
 import pages.clubs.ClubsPage;
 import pages.clubs.ExpandedCardComponent;
-import pages.clubs.card.components.BlockCardComponent;
+import pages.clubs.card.components.CardComponent;
 import runners.BaseTestOpenAdvancedSearch;
 
 public class CategoriesTest extends BaseTestOpenAdvancedSearch {
@@ -47,7 +47,7 @@ public class CategoriesTest extends BaseTestOpenAdvancedSearch {
 
         SoftAssert softAssert = new SoftAssert();
 
-        for (BlockCardComponent card : new ClubsPage(driver).getBlockCards()) {
+        for (CardComponent card : new ClubsPage(driver).getCards()) {
             card.cardTitleClick();
             softAssert.assertTrue(expandedCardComponent.getListOfNamesOfCategories().contains(categoryName));
             expandedCardComponent.exitButtonClick();

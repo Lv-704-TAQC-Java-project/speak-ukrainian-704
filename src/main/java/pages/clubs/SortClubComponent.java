@@ -67,55 +67,23 @@ public class SortClubComponent extends BasePage {
     }
 
     public SortClubComponent sortByABCButtonClick() {
-        waitElementIsClickable(getSortByABCButton());
-        getSortByABCButton().click();
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+        clickManagingClubsPageElement(getSortByABCButton());
         return this;
     }
 
     public SortClubComponent sortByRatingButtonClick() {
-        waitElementIsClickable(getSortByRatingButton());
-        getSortByRatingButton().click();
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+        clickManagingClubsPageElement(getSortByRatingButton());
         return this;
     }
 
     public SortClubComponent arrowUpButtonClick() {
-        waitElementIsClickable(getArrowUpButton());
-        getArrowUpButton().click();
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+        clickManagingClubsPageElement(getArrowUpButton());
         return this;
 
     }
 
     public SortClubComponent arrowDownButtonClick() {
-        waitElementIsClickable(getArrowDownButton());
-        getArrowDownButton().click();
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+        clickManagingClubsPageElement(getArrowDownButton());
         return this;
     }
 

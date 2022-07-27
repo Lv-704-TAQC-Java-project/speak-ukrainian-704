@@ -1,11 +1,11 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.clubs.ClubsPage;
+import pages.clubs.card.components.CardComponent;
+
 import java.time.Duration;
 import java.util.List;
 
@@ -113,5 +113,15 @@ public class BasePage {
     public void waitForTextPresentInElement(WebElement element, String text) {
         WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
         wait.until(ExpectedConditions.textToBePresentInElement(element, text));
+    }
+    public void clickManagingClubsPageElement(WebElement element) {
+        List<CardComponent> cards = new ClubsPage(driver).getCards();
+        element.click();
+        for (CardComponent card : cards) {
+            try {
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+                waitStalenessOfElement(card.getCardBody());
+            } catch (TimeoutException ignored) {}
+        }
     }
 }

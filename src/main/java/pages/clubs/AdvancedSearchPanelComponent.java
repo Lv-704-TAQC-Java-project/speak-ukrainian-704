@@ -164,24 +164,15 @@ public class AdvancedSearchPanelComponent extends BasePage {
     }
 
     public AdvancedSearchPanelComponent availableOnlineCheckboxClick() {
-        clickManagingElement(getAvailableOnline());
+        clickManagingClubsPageElement(getAvailableOnline());
         return this;
     }
-    public void clickManagingElement(WebElement element) {
-        List<CardComponent> cards = new ClubsPage(driver).getCards();
-        element.click();
-        for (CardComponent card: cards) {
-            waitStalenessOfElement(card.getCardBody());
-        }
-    }
-
     public boolean availableOnlineCheckboxIsDisplayed() {
-        try{
+        try {
             return getAvailableOnline().isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
         }
-       catch (NoSuchElementException e) {
-           return false;
-       }
     }
 
     public AdvancedSearchPanelComponent openDistrictInputSelect() {
@@ -213,9 +204,7 @@ public class AdvancedSearchPanelComponent extends BasePage {
     }
 
     public AdvancedSearchPanelComponent categoryClick(String categoryName) {
-        WebElement card = driver.findElement(By.xpath("//div[contains(@class, 'card-body')]"));
-        driver.findElement(By.xpath(String.format("//input[@value='%s']", categoryName))).click();
-        waitStalenessOfElement(card);
+        clickManagingClubsPageElement(getCategoryFromString(categoryName));
         return this;
     }
 
