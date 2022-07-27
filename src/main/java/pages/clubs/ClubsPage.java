@@ -8,6 +8,7 @@ import pages.clubs.card.components.CenterComponent;
 import pages.clubs.card.components.WideCardComponent;
 import pages.header.HeaderComponent;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +19,12 @@ public class ClubsPage extends BasePage {
     private WebElement blockCardContainer;
     private WebElement listCardContainer;
 
+    private WideCardComponent listCardViewComponent;
+    private BlockCardComponent blockCardViewComponent;
     private SortClubComponent sortClubComponent;
     private BlockCardComponent cardComponent;
     private AdvancedSearchPanelComponent advancedSearchPanelComponent;
+    private ExpandedCardComponent expandedCardComponent;
     private WebElement advancedSearchButton;
     private HeaderComponent header;
     private WebElement pageIdentifier;
@@ -85,6 +89,13 @@ public class ClubsPage extends BasePage {
             advancedSearchPanelComponent = new AdvancedSearchPanelComponent(driver);
         }
         return advancedSearchPanelComponent;
+    }
+
+    public ExpandedCardComponent getExpandedCardComponent() {
+        if (expandedCardComponent == null) {
+            expandedCardComponent = new ExpandedCardComponent(driver);
+        }
+        return expandedCardComponent;
     }
 
     public PaginationComponent getPaginationComponent() {
