@@ -135,6 +135,10 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return this;
     }
 
+    public boolean availableOnlineCheckboxIsDisplayed() {
+        return getAvailableOnline().isDisplayed();
+    }
+
     public AdvancedSearchPanelComponent openDistrictInputSelect() {
         Actions actions = new Actions(driver);
         actions.moveToElement(getDistrictSelector()).click().perform();

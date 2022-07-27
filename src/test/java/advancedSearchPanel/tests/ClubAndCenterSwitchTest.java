@@ -16,13 +16,14 @@ public class ClubAndCenterSwitchTest extends BaseTestRunner {
         ClubsPage clubsPage = new HomePage(driver)
                 .clickAdvancedSearchButton();
 
+        Boolean centerSelected = clubsPage
+                .getAdvancedSearchPanelComponent().availableOnlineCheckboxIsDisplayed();
+
         clubsPage
                 .getAdvancedSearchPanelComponent()
                 .centerRadioButtonClick();
 
         SoftAssert softAssert = new SoftAssert();
-
-        // softAssert.assertTrue(clubsPage.getAdvancedSearchPanelComponent().IsCenterButtonSelected());
 
         List<String> centerNamesExpected = new ArrayList<>();
         centerNamesExpected.add("jerome it school");
@@ -36,10 +37,14 @@ public class ClubAndCenterSwitchTest extends BaseTestRunner {
         List<String> centerNamesText = new ArrayList<>();
         for (int i = 0; i < clubsPage.getCenters().size(); i++) {
             centerNamesText.add(i, clubsPage.getCenters().get(i).getCenterName().getText().toLowerCase());
-            System.out.println(centerNamesText.get(i));;
         }
 
-        softAssert.assertEquals(centerNamesText.toString(), centerNamesExpected.toString());
+        softAssert.assertEquals(centerNamesText.toString(), centerNamesExpected.toString(),
+                "Center names do not correspond to expected");
+        softAssert.assertTrue(clubsPage.getAdvancedSearchPanelComponent().IsCenterButtonSelected(),
+                "Center Button is not selected");
+
+        softAssert.assertFalse(centerSelected, "availableOnlineCheckbox is Displayed");
         softAssert.assertAll();
 
     }
