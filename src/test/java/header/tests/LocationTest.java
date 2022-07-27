@@ -42,7 +42,7 @@ public class LocationTest extends BaseTestOneWindowRunner {
 
         List<BlockCardComponent> cards = new ClubsPage(driver).getBlockCards();
 
-        if (cards.isEmpty()) {
+        if (cards == null) {
             boolean clubsNotFoundMessageIsVisible = new ClubsPage(driver).clubsNotFoundMessageVisible();
             String clubsNotFoundMessage = new ClubsPage(driver).clubsNotFoundMessage();
             softAssert.assertTrue(clubsNotFoundMessageIsVisible, "Missing not found clubs for selected city message.");

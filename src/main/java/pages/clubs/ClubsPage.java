@@ -29,36 +29,46 @@ public class ClubsPage extends BasePage {
     List<CenterComponent> centers;
 
     private List<WebElement> getBlockCardsBody() {
+        if (getBlockCardContainer() == null) {
+            return null;
+        }
         return getBlockCardContainer().findElements(By.xpath(".//div[contains(@class, 'card-body')]"));
     }
 
     private List<WebElement> getWideCardsBody() {
+        if (getWideCardContainer() == null) {
+            return null;
+        }
         return getWideCardContainer().findElements(By.xpath(".//div[contains(@class, 'card-body')]"));
     }
 
     public List<BlockCardComponent> getBlockCards() {
         this.blockCards = new ArrayList<>();
-        for (WebElement card : getBlockCardsBody()) {
-            this.blockCards.add(new BlockCardComponent(driver, card));
+        if (getBlockCardsBody() != null) {
+            for (WebElement card : getBlockCardsBody()) {
+                this.blockCards.add(new BlockCardComponent(driver, card));
+            }
         }
         return this.blockCards;
     }
 
     public List<WideCardComponent> getWideCards() {
         this.wideCards = new ArrayList<>();
-        for (WebElement card : getWideCardsBody()) {
-            this.wideCards.add(new WideCardComponent(driver, card));
+        if (getWideCardsBody() != null) {
+            for (WebElement card : getWideCardsBody()) {
+                this.wideCards.add(new WideCardComponent(driver, card));
+            }
         }
         return this.wideCards;
     }
 
-    public List<CenterComponent> getCenters() {
-        this.centers = new ArrayList<>();
-        for (WebElement card : getBlockCardsBody()) {
-            this.centers.add(new CenterComponent(driver, card));
-        }
-        return this.centers;
-    }
+//    public List<CenterComponent> getCenters() {
+//        this.centers = new ArrayList<>();
+//        for (WebElement card : getBlockCardsBody()) {
+//            this.centers.add(new CenterComponent(driver, card));
+//        }
+//        return this.centers;
+//    }
 
     public ClubsPage(WebDriver driver) {
         super(driver);
@@ -141,7 +151,11 @@ public class ClubsPage extends BasePage {
 
     public WebElement getBlockCardContainer() {
         if (blockCardContainer == null) {
-            blockCardContainer = driver.findElement(By.xpath("//div[@class = 'content-clubs-list content-clubs-block']"));
+            try {
+                blockCardContainer = driver.findElement(By.xpath("//div[@class = 'content-clubs-list content-clubs-block']"));
+            } catch (NoSuchElementException e) {
+                blockCardContainer = null;
+            }
 //            blockCardContainer.findElement(By.xpath("//div/div[@class = 'ant-card ant-card-bordered card']"));
         }
         return blockCardContainer;
@@ -149,7 +163,11 @@ public class ClubsPage extends BasePage {
 
     public WebElement getWideCardContainer() {
         if (listCardContainer == null) {
-            listCardContainer = driver.findElement(By.xpath("//div[@class = 'content-clubs-list false']"));
+            try {
+                listCardContainer = driver.findElement(By.xpath("//div[@class = 'content-clubs-list false']"));
+            } catch (NoSuchElementException e) {
+                listCardContainer = null;
+            }
 //            listCardContainer.findElement(By.xpath("//div/div[@class = 'ant-card ant-card-bordered card list-rectangle-item']"));
         }
         return listCardContainer;
