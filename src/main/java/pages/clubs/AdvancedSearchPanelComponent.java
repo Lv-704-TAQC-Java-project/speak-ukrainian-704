@@ -150,14 +150,15 @@ public class AdvancedSearchPanelComponent extends BasePage {
     }
 
     public AdvancedSearchPanelComponent availableOnlineCheckboxClick() {
+        clickManagingElement(getAvailableOnline());
+        return this;
+    }
+    public void clickManagingElement(WebElement element) {
         List<CardComponent> cards = new ClubsPage(driver).getCards();
-        getAvailableOnline().click();
+        element.click();
         for (CardComponent card: cards) {
             waitStalenessOfElement(card.getCardBody());
         }
-//        sleep(1000);
-//        waitStalenessOfElement(card);
-        return this;
     }
 
     public boolean availableOnlineCheckboxIsDisplayed() {
