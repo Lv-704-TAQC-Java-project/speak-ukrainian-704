@@ -5,6 +5,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.clubs.ClubsPage;
 import pages.clubs.card.components.CardComponent;
+import pages.clubs.card.components.CenterComponent;
 
 import java.time.Duration;
 import java.util.List;
@@ -20,7 +21,7 @@ public class BasePage {
         this.driver = driver;
     }
 
-    public void openUrl(String url){
+    public void openUrl(String url) {
         driver.get(url);
     }
 
@@ -50,7 +51,7 @@ public class BasePage {
     public void waitForAttributeValueWithJS(WebElement element, String attribute, String value) {
         try {
             WebDriverWait wait = new WebDriverWait(this.driver, TIMEOUT);
-            wait.until(driver -> ((JavascriptExecutor)driver)
+            wait.until(driver -> ((JavascriptExecutor) driver)
                     .executeScript(String.format("return window.getComputedStyle(arguments[0], ':after').getPropertyValue('%s');", attribute), element)
                     .toString().equals(value));
         } catch (Throwable error) {
@@ -115,6 +116,7 @@ public class BasePage {
         WebDriverWait wait = new WebDriverWait(driver, SHORT_TIMEOUT);
         wait.until(ExpectedConditions.textToBePresentInElement(element, text));
     }
+
     public void clickManagingClubsPageElement(WebElement element) {
         List<CardComponent> cards = new ClubsPage(driver).getCards();
         element.click();
@@ -122,7 +124,9 @@ public class BasePage {
             try {
                 driver.manage().timeouts().implicitlyWait(SHORT_TIMEOUT);
                 waitStalenessOfElement(card.getCardBody());
-            } catch (TimeoutException ignored) {}
+            } catch (TimeoutException ignored) {
+            }
         }
     }
+
 }

@@ -21,6 +21,8 @@ public class AdvancedSearchPanelComponent extends BasePage {
     private WebElement clubRadioButton;
     private WebElement centerRadioButton;
     private WebElement availableOnline;
+    private WebElement categoriesBlock;
+    private WebElement childAgeBlock;
     private WebElement scrollDistrictSelector;
 
     private List<WebElement> listOfCategoriesCheckList;
@@ -111,7 +113,7 @@ public class AdvancedSearchPanelComponent extends BasePage {
 
     public WebElement getClubRadioButton() {
         if (clubRadioButton == null) {
-            clubRadioButton = driver.findElement(By.xpath("//label/span[contains(text(),'Гурток')"));
+            clubRadioButton = driver.findElement(By.xpath("//label/span[contains(text(),'Гурток')]"));
         }
         return clubRadioButton;
     }
@@ -122,6 +124,21 @@ public class AdvancedSearchPanelComponent extends BasePage {
         }
         return centerRadioButton;
     }
+
+    public WebElement getCategoriesBlock() {
+        if (categoriesBlock == null) {
+            categoriesBlock = driver.findElement(By.xpath("//label[contains(text(),'Категорії')]/../.."));
+        }
+        return categoriesBlock;
+    }
+
+    public WebElement getChildAgeBlock() {
+        if (childAgeBlock == null) {
+            childAgeBlock = driver.findElement(By.xpath("//label[contains(text(),'Вік дитини')]/../.."));
+        }
+        return childAgeBlock;
+    }
+
 
     public List<WebElement> getListOfCategoriesCheckList() {
         if (listOfCategoriesCheckList == null) {
@@ -167,9 +184,26 @@ public class AdvancedSearchPanelComponent extends BasePage {
         clickManagingClubsPageElement(getAvailableOnline());
         return this;
     }
+
     public boolean availableOnlineCheckboxIsDisplayed() {
         try {
             return getAvailableOnline().isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    public boolean categoriesBlockIsDisplayed() {
+        try {
+            return getCategoriesBlock().isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    public boolean childAgeBlockIsDisplayed() {
+        try {
+            return getChildAgeBlock().isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }
@@ -216,17 +250,19 @@ public class AdvancedSearchPanelComponent extends BasePage {
     public AdvancedSearchPanelComponent clubRadioButtonClick() {
         waitVisibilityOfWebElement(getClubRadioButton());
         getClubRadioButton().click();
-        return this;
-    }
 
-    public AdvancedSearchPanelComponent centerRadioButtonClick() {
-        waitVisibilityOfWebElement(getCenterRadioButton());
-        getCenterRadioButton().click();
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        return this;
+    }
+
+    public AdvancedSearchPanelComponent centerRadioButtonClick() {
+        waitVisibilityOfWebElement(getCenterRadioButton());
+        clickManagingClubsPageElement(getCenterRadioButton());
         return this;
     }
 
@@ -237,11 +273,20 @@ public class AdvancedSearchPanelComponent extends BasePage {
     }
 
     public boolean IsClubButtonSelected() {
-        return getClubRadioButton().isSelected();
+        try {
+            return driver.findElement(By.xpath("//label[contains(@class,'ant-radio-wrapper-checked')]/span[contains(text(),'Гурток')]")).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
     public boolean IsCenterButtonSelected() {
-        return getCenterRadioButton().isSelected();
+        try {
+            return driver.findElement(By.xpath("//label[contains(@class,'ant-radio-wrapper-checked')]/span[contains(text(),'Центр')]")).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
+
 
 }

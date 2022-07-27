@@ -18,8 +18,6 @@ public class ClubsPage extends BasePage {
     private WebElement blockCardContainer;
     private WebElement listCardContainer;
 
-    private WideCardComponent listCardViewComponent;
-    private BlockCardComponent blockCardViewComponent;
     private SortClubComponent sortClubComponent;
     private BlockCardComponent cardComponent;
     private AdvancedSearchPanelComponent advancedSearchPanelComponent;
@@ -35,9 +33,6 @@ public class ClubsPage extends BasePage {
     List<CenterComponent> centers;
 
     private List<WebElement> getCardsBody() {
-//        if (getBlockCardContainer() == null) {
-//            return null;
-//        }
         return driver.findElements(By.xpath(".//div[contains(@class, 'card-body')]"));
     }
 
