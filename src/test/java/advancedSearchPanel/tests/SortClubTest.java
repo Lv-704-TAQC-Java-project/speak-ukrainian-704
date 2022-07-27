@@ -101,8 +101,10 @@ public class SortClubTest extends BaseTestRunner {
 
         sortClubComponent.arrowUpButtonClick();
 
-        List <WebElement> starsFull = new ArrayList<>();
-        starsFull.addAll(clubsPage.getCards().get(0).getStarRatingFullList());
+        List<WebElement> starsFull = new ArrayList<>();
+        if (!clubsPage.getCards().isEmpty()) {
+            starsFull.addAll(clubsPage.getCards().get(0).getStarRatingFullList());
+        }
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(starsFull.size(), 5);
@@ -120,7 +122,7 @@ public class SortClubTest extends BaseTestRunner {
                 .arrowUpButtonClick()
                 .arrowDownButtonClick();
 
-        List <WebElement> starsZero = new ArrayList<>();
+        List<WebElement> starsZero = new ArrayList<>();
         starsZero.addAll(clubsPage.getCards().get(0).getStarRatingZeroList());
 
         SoftAssert softAssert = new SoftAssert();
