@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import pages.BasePage;
 import pages.HomePage;
 
+import java.util.List;
+
 public class RegistrationModelComponent extends BasePage {
     private WebElement lastNameInputField;
 
@@ -80,16 +82,24 @@ public class RegistrationModelComponent extends BasePage {
         return submitRegistrationFormBtn;
     }
 
-    public String getMessageInvalidLastName() {
-        return driver.findElements(By.xpath("//div[@class='ant-form-item-explain-error']")).get(0).getText();
-    }
+    public String getAllErrorMessages() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        List<WebElement> divsWithMessages = driver.findElements(By.xpath("//div[@class='ant-form-item-explain-error']"));
 
-    public String getMessageInvalidName() {
-        return driver.findElements(By.xpath("//div[@class='ant-form-item-explain-error']")).get(1).getText();
-    }
+        if (divsWithMessages == null) {
+            return "";
+        }
 
-    public String getMessageInvalidPhoneFormat() {
-        return driver.findElements(By.xpath("//div[@class='ant-form-item-explain-error']")).get(2).getText();
+        StringBuilder result = new StringBuilder();
+        for (WebElement div : divsWithMessages) {
+            result.append(div.getText()).append(" ");
+        }
+
+        return result.toString();
     }
 
 

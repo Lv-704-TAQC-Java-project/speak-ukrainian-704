@@ -18,18 +18,14 @@ public class RegistrationTest extends BaseTestRunner {
 
     @Test(dataProvider = "invalidDataRegistration")
     public void invalidDataRegistration(String lastName, String name, String phone) {
-        RegistrationModelComponent reg = new HomePage(driver)
+        RegistrationModelComponent registrationComponent = new HomePage(driver)
                 .getHeader()
                 .openGuestProfileMenu()
                 .clickRegistrationButton()
                 .fillInLastName(lastName)
                 .fillInName(name)
                 .fillInPhone(phone);
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        String errorMessages = registrationComponent.getAllErrorMessages();
         SoftAssert softAssert = new SoftAssert();
 
         String invalidName = "Ім`я повинно починатися і закінчуватися літерою";
@@ -37,9 +33,9 @@ public class RegistrationTest extends BaseTestRunner {
         String invalidPhone = "Телефон не відповідає вказаному формату";
 
 
-        softAssert.assertEquals(reg.getMessageInvalidLastName(), invalidLastName);
-        softAssert.assertEquals(reg.getMessageInvalidName(), invalidName);
-        softAssert.assertEquals(reg.getMessageInvalidPhoneFormat(), invalidPhone);
+        softAssert.assertTrue(errorMessages.contains(invalidLastName), "Invalid error name message");
+        softAssert.assertTrue(errorMessages.contains(invalidName), "Invalid error last name message");
+        softAssert.assertTrue(errorMessages.contains(invalidPhone), "Invalid error phone message");
 
 
         softAssert.assertAll();
