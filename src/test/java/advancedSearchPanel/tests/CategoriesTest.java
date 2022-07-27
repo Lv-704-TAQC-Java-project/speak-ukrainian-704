@@ -1,20 +1,13 @@
 package advancedSearchPanel.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.HomePage;
 import pages.clubs.AdvancedSearchPanelComponent;
-import pages.clubs.CardComponent;
 import pages.clubs.ClubsPage;
 import pages.clubs.ExpandedCardComponent;
 import pages.clubs.card.components.BlockCardComponent;
-import runners.BaseTestOneWindowRunner;
 import runners.BaseTestOpenAdvancedSearch;
-import runners.BaseTestRunner;
-
-import java.util.List;
 
 public class CategoriesTest extends BaseTestOpenAdvancedSearch {
     @DataProvider(name = "categoriesChecklist")
