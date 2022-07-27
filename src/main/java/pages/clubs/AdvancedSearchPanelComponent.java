@@ -81,8 +81,10 @@ public class AdvancedSearchPanelComponent extends BasePage {
 
     public WebElement getAvailableOnline() {
         if (availableOnline == null) {
+            waitVisibilityOfElement(By.xpath("//div[@id='basic_isOnline']"), Duration.ofSeconds(2));
             availableOnline = driver.findElement(By.xpath("//div[@id='basic_isOnline']"));
         }
+
         return availableOnline;
     }
 
@@ -123,7 +125,9 @@ public class AdvancedSearchPanelComponent extends BasePage {
     }
 
     public AdvancedSearchPanelComponent availableOnlineCheckboxClick() {
+        WebElement card = driver.findElement(By.xpath("//div[contains(@class, 'card-body')]"));
         getAvailableOnline().click();
+        waitStalenessOfElement(card);
         return this;
     }
 
@@ -134,13 +138,14 @@ public class AdvancedSearchPanelComponent extends BasePage {
     }
 
     public void categoryClick(String category) {
+        WebElement card = driver.findElement(By.xpath("//div[contains(@class, 'card-body')]"));
         driver.findElement(By.xpath(String.format("//input[@value='%s']", category))).click();
+        waitStalenessOfElement(card);
     }
 
     public AdvancedSearchPanelComponent clearDistrictInputSelect() {
         getClearDistrictSelector().click();
         return this;
     }
-
 
 }

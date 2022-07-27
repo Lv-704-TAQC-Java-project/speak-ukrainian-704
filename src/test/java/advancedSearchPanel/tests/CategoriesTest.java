@@ -39,15 +39,13 @@ public class CategoriesTest extends BaseTestRunner {
 
         AdvancedSearchPanelComponent advancedSearchPanelComponent = clubsPage.getAdvancedSearchPanelComponent();
 
-        clubsPage.waitForClubsPageToOpen();
-
         advancedSearchPanelComponent.categoryClick(categoryToClick);
 
-        List<CardComponent> cards = clubsPage.getCards();
+//        List<CardComponent> cards = clubsPage.getCards();
 
         ExpandedCardComponent expandedCardComponent = clubsPage.getExpandedCardComponent();
 
-        for (CardComponent card : cards) {
+        for (CardComponent card : clubsPage.getCards()) {
             card.cardTitleClick();
             Assert.assertTrue(expandedCardComponent.getListOfNamesOfCategories().contains(categoryToClick));
             expandedCardComponent.exitButtonClick();

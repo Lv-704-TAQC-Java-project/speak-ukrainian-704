@@ -16,6 +16,7 @@ public class IsAvailableOnlineClubTest extends BaseTestRunner {
         ClubsPage clubsPage = new HomePage(driver)
                 .clickAdvancedSearchButton();
 
+
         AdvancedSearchPanelComponent advancedSearchPanelComponent = clubsPage.getAdvancedSearchPanelComponent();
 
         advancedSearchPanelComponent.availableOnlineCheckboxClick();

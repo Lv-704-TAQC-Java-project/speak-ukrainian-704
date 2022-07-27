@@ -21,16 +21,15 @@ public class ExpandedCardComponent extends BasePage {
 
     public WebElement getExitButton() {
         if (exitButton == null) {
-//            waitVisibilityOfElement(By.xpath("//button[contains(@class,'close')]"), Duration.ofSeconds(3));
+            waitVisibilityOfElement(By.xpath("//button[contains(@class,'close')]"), Duration.ofSeconds(2));
             exitButton = driver.findElement(By.xpath("//button[contains(@class,'close')]"));
         }
         return exitButton;
     }
 
     public List<WebElement> getListOfCategories() {
-        sleep(5);
         waitVisibilityOfElement(By.xpath("//div[@class='container']//span[@class='name']"), Duration.ofSeconds(2));
-        listOfCategories =  driver.findElements(By.xpath("//div[@class='container']//span[@class='name']"));
+        listOfCategories = driver.findElements(By.xpath("//div[@class='container']//span[@class='name']"));
         return listOfCategories;
     }
 

@@ -6,19 +6,19 @@ import org.openqa.selenium.WebElement;
 import pages.BasePage;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CardComponent extends BasePage {
 
     private WebElement cardBody;
-    private WebElement title;
+    private WebElement cardTitle;
     List<WebElement> starRatingZeroList;
     List<WebElement> starRatingFullList;
     List<WebElement> cardNamesList;
     private WebElement availableOnline;
     private List<WebElement> listOfCategoriesOnCard;
     private ClubsPage clubsPage;
+    public WebElement cardName;
 
 
     public CardComponent(WebDriver driver) {
@@ -31,7 +31,11 @@ public class CardComponent extends BasePage {
     }
 
     public WebElement getCardName() {
-        return cardBody.findElement(By.xpath(".//div[contains(@class, 'name')]"));
+        if (cardName == null){
+            waitVisibilityOfElement(By.xpath(".//div[contains(@class, 'name')]"), Duration.ofSeconds(2));
+            cardName = cardBody.findElement(By.xpath(".//div[contains(@class, 'name')]"));
+        }
+        return cardName;
     }
 
     public String getTextCardName() {
@@ -46,22 +50,21 @@ public class CardComponent extends BasePage {
         return cardBody.findElements(By.xpath(".//li[contains(@class, 'full')]"));
     }
 
-    public WebElement getTitle() {
-        if (title == null) {
-            waitVisibilityOfElement(By.xpath(".//div[@class='title']"), Duration.ofSeconds(5));
-            title = cardBody.findElement(By.xpath(".//div[@class='title']"));
+    public WebElement getCardTitle() {
+        if (cardTitle == null) {
+            waitVisibilityOfElement(By.xpath(".//div[@class='title']"), Duration.ofSeconds(2));
+            cardTitle = cardBody.findElement(By.xpath(".//div[@class='title']"));
         }
-        return title;
+        return cardTitle;
     }
 
     public ExpandedCardComponent cardTitleClick() {
-        getTitle().click();
+        getCardTitle().click();
         return new ExpandedCardComponent(driver);
     }
 
     public WebElement getAvailableOnline() {
         if (availableOnline == null) {
-            waitVisibilityOfElement(By.xpath("//div[contains(@class, 'club-online')]"), Duration.ofSeconds(2));
             availableOnline = cardBody.findElement(By.xpath("//div[contains(@class, 'club-online')]"));
         }
         return availableOnline;
