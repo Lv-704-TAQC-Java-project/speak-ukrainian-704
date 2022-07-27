@@ -22,7 +22,7 @@ public class CenterComponent extends BasePage {
     public WebElement getCenterName() {
         if (centerName == null) {
             waitVisibilityOfElement(By.xpath(".//div[contains(@class, 'center-name')]"));
-            centerName= cardBody.findElement(By.xpath(".//div[contains(@class, 'center-name')]"));
+            centerName = cardBody.findElement(By.xpath(".//div[contains(@class, 'center-name')]"));
         }
         return centerName;
     }

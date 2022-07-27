@@ -90,14 +90,14 @@ public class AdvancedSearchPanelComponent extends BasePage {
 
     public WebElement getClubRadioButton() {
         if (clubRadioButton == null) {
-            clubRadioButton = driver.findElement(By.xpath("//span[@class = 'ant-radio']"));
+            clubRadioButton = driver.findElement(By.xpath("//label/span[contains(text(),'Гурток')"));
         }
         return clubRadioButton;
     }
 
     public WebElement getCenterRadioButton() {
         if (centerRadioButton == null) {
-            centerRadioButton = driver.findElement(By.xpath("//span[@class = 'ant-radio ant-radio-checked']"));
+            centerRadioButton = driver.findElement(By.xpath("//label/span[contains(text(),'Центр')]"));
         }
         return centerRadioButton;
     }
@@ -146,14 +146,36 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return this;
     }
 
-    public void clubRadioButtonClick() {
+    public AdvancedSearchPanelComponent clubRadioButtonClick() {
         waitVisibilityOfWebElement(getClubRadioButton());
         getClubRadioButton().click();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return this;
     }
 
-    public void centerRadioButtonClick() {
+    public AdvancedSearchPanelComponent centerRadioButtonClick() {
         waitVisibilityOfWebElement(getCenterRadioButton());
         getCenterRadioButton().click();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+
+    public boolean IsClubButtonSelected() {
+        return getClubRadioButton().isSelected();
+    }
+
+    public boolean IsCenterButtonSelected() {
+        return getCenterRadioButton().isSelected();
     }
 
 }
