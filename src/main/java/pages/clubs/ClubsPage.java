@@ -32,10 +32,10 @@ public class ClubsPage extends BasePage {
     List<CenterComponent> centers;
 
     private List<WebElement> getCardsBody() {
-        if (getBlockCardContainer() == null) {
-            return null;
-        }
-        return getBlockCardContainer().findElements(By.xpath(".//div[contains(@class, 'card-body')]"));
+//        if (getBlockCardContainer() == null) {
+//            return null;
+//        }
+        return driver.findElements(By.xpath(".//div[contains(@class, 'card-body')]"));
     }
 
 

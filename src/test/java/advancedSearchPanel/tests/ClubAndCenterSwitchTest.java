@@ -15,12 +15,12 @@ public class ClubAndCenterSwitchTest extends BaseTestRunner {
         ClubsPage clubsPage = new HomePage(driver)
                 .clickAdvancedSearchButton();
 
-        Boolean centerSelected = clubsPage
-                .getAdvancedSearchPanelComponent().availableOnlineCheckboxIsDisplayed();
-
         clubsPage
                 .getAdvancedSearchPanelComponent()
                 .centerRadioButtonClick();
+
+        Boolean availableOnlineCheckboxIsDisplayed = clubsPage
+                .getAdvancedSearchPanelComponent().availableOnlineCheckboxIsDisplayed();
 
         SoftAssert softAssert = new SoftAssert();
 
@@ -43,7 +43,7 @@ public class ClubAndCenterSwitchTest extends BaseTestRunner {
         softAssert.assertTrue(clubsPage.getAdvancedSearchPanelComponent().IsCenterButtonSelected(),
                 "Center Button is not selected");
 
-        softAssert.assertFalse(centerSelected, "availableOnlineCheckbox is Displayed");
+        softAssert.assertFalse(availableOnlineCheckboxIsDisplayed, "availableOnlineCheckbox is Displayed");
         softAssert.assertAll();
 
     }

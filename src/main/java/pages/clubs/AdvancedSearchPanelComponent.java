@@ -161,7 +161,12 @@ public class AdvancedSearchPanelComponent extends BasePage {
     }
 
     public boolean availableOnlineCheckboxIsDisplayed() {
-        return getAvailableOnline().isDisplayed();
+        try{
+            return getAvailableOnline().isDisplayed();
+        }
+       catch (NoSuchElementException e) {
+           return false;
+       }
     }
 
     public AdvancedSearchPanelComponent openDistrictInputSelect() {
