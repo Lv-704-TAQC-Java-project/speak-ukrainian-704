@@ -63,13 +63,13 @@ public class ClubsPage extends BasePage {
         return this.wideCards;
     }
 
-//    public List<CenterComponent> getCenters() {
-//        this.centers = new ArrayList<>();
-//        for (WebElement card : getBlockCardsBody()) {
-//            this.centers.add(new CenterComponent(driver, card));
-//        }
-//        return this.centers;
-//    }
+    public List<CenterComponent> getCenters() {
+        this.centers = new ArrayList<>();
+        for (WebElement card : getBlockCardsBody()) {
+            this.centers.add(new CenterComponent(driver, card));
+        }
+        return this.centers;
+    }
 
     public ClubsPage(WebDriver driver) {
         super(driver);
