@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.clubs.AdvancedSearchPanelComponent;
-import pages.clubs.CardComponent;
+import pages.clubs.card.components.BlockCardComponent;
 import pages.clubs.ClubsPage;
 import runners.BaseTestRunner;
 
@@ -20,9 +20,9 @@ public class IsAvailableOnlineClubTest extends BaseTestRunner {
 
         advancedSearchPanelComponent.availableOnlineCheckboxClick();
 
-        List<CardComponent> cards = clubsPage.getCards();
+        List<BlockCardComponent> cards = clubsPage.getBlockCards();
 
-        for (CardComponent card : cards) {
+        for (BlockCardComponent card : cards) {
             Assert.assertTrue(card.isClubAvailableOnline(),
                     String.format("%s is not available online", card.getTextCardName()));
         }

@@ -1,4 +1,4 @@
-package pages.clubs;
+package pages.clubs.card.components;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +7,7 @@ import java.time.Duration;
 import java.util.List;
 import pages.BasePage;
 
-public class CardComponent extends BasePage {
+public class BlockCardComponent extends BasePage {
 
     private WebElement cardBody;
     private WebElement cardName;
@@ -16,11 +16,11 @@ public class CardComponent extends BasePage {
     List<WebElement> starRatingFullList;
     private WebElement availableOnline;
 
-    public CardComponent(WebDriver driver) {
+    public BlockCardComponent(WebDriver driver) {
         super(driver);
     }
 
-    public CardComponent(WebDriver driver, WebElement cardBody) {
+    public BlockCardComponent(WebDriver driver, WebElement cardBody) {
         super(driver);
         this.cardBody = cardBody;
     }

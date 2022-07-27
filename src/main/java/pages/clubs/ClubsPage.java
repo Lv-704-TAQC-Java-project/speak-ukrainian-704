@@ -2,7 +2,10 @@ package pages.clubs;
 
 import org.openqa.selenium.*;
 import pages.BasePage;
+import pages.clubs.card.components.BlockCardComponent;
+import pages.clubs.card.components.WideCardComponent;
 import pages.header.HeaderComponent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,31 +17,44 @@ public class ClubsPage extends BasePage {
     private WebElement listCardContainer;
 
     private SortClubComponent sortClubComponent;
-    private CardComponent cardComponent;
+    private BlockCardComponent cardComponent;
     private AdvancedSearchPanelComponent advancedSearchPanelComponent;
     private WebElement advancedSearchButton;
     private HeaderComponent header;
     private WebElement pageIdentifier;
     private WebElement headerTitle;
 
-    List<CardComponent> cards;
+    List<BlockCardComponent> blockCards;
+    List<WideCardComponent> wideCards;
     List<CenterComponent> centers;
 
-    private List<WebElement> getCardsBody() {
-        return driver.findElements(By.xpath("//div[contains(@class, 'card-body')]"));
+    private List<WebElement> getBlockCardsBody() {
+        return getBlockCardContainer().findElements(By.xpath(".//div[contains(@class, 'card-body')]"));
     }
 
-    public List<CardComponent> getCards() {
-        this.cards = new ArrayList<>();
-        for (WebElement card : getCardsBody()) {
-            this.cards.add(new CardComponent(driver, card));
+    private List<WebElement> getWideCardsBody() {
+        return getWideCardContainer().findElements(By.xpath(".//div[contains(@class, 'card-body')]"));
+    }
+
+    public List<BlockCardComponent> getBlockCards() {
+        this.blockCards = new ArrayList<>();
+        for (WebElement card : getBlockCardsBody()) {
+            this.blockCards.add(new BlockCardComponent(driver, card));
         }
-        return this.cards;
+        return this.blockCards;
+    }
+
+    public List<WideCardComponent> getWideCards() {
+        this.wideCards = new ArrayList<>();
+        for (WebElement card : getWideCardsBody()) {
+            this.wideCards.add(new WideCardComponent(driver, card));
+        }
+        return this.wideCards;
     }
 
     public List<CenterComponent> getCenters() {
         this.centers = new ArrayList<>();
-        for (WebElement card : getCardsBody()) {
+        for (WebElement card : getBlockCardsBody()) {
             this.centers.add(new CenterComponent(driver, card));
         }
         return this.centers;
@@ -126,15 +142,15 @@ public class ClubsPage extends BasePage {
     public WebElement getBlockCardContainer() {
         if (blockCardContainer == null) {
             blockCardContainer = driver.findElement(By.xpath("//div[@class = 'content-clubs-list content-clubs-block']"));
-            blockCardContainer.findElement(By.xpath("//div/div[@class = 'ant-card ant-card-bordered card']"));
+//            blockCardContainer.findElement(By.xpath("//div/div[@class = 'ant-card ant-card-bordered card']"));
         }
         return blockCardContainer;
     }
 
-    public WebElement getListCardContainer() {
+    public WebElement getWideCardContainer() {
         if (listCardContainer == null) {
             listCardContainer = driver.findElement(By.xpath("//div[@class = 'content-clubs-list false']"));
-            listCardContainer.findElement(By.xpath("//div/div[@class = 'ant-card ant-card-bordered card list-rectangle-item']"));
+//            listCardContainer.findElement(By.xpath("//div/div[@class = 'ant-card ant-card-bordered card list-rectangle-item']"));
         }
         return listCardContainer;
     }

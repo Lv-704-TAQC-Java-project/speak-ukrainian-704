@@ -34,7 +34,7 @@ public class SortClubTest extends BaseTestRunner {
                 .getSortClubComponent()
                 .listViewButtonClick();
 
-        boolean isDisplayed = new ClubsPage(driver).getListCardContainer().isDisplayed();
+        boolean isDisplayed = new ClubsPage(driver).getWideCardContainer().isDisplayed();
         Assert.assertTrue(isDisplayed);
     }
 
@@ -52,8 +52,8 @@ public class SortClubTest extends BaseTestRunner {
         SoftAssert softAssert = new SoftAssert();
 
         List<String> cardNamesText = new ArrayList<>();
-        for (int i = 0; i < clubsPage.getCards().size(); i++) {
-            cardNamesText.add(i, clubsPage.getCards().get(i).getTextCardName().toUpperCase());
+        for (int i = 0; i < clubsPage.getBlockCards().size(); i++) {
+            cardNamesText.add(i, clubsPage.getBlockCards().get(i).getTextCardName().toUpperCase());
             softAssert.assertTrue(cardNamesText.get(i).startsWith("A"));
             System.out.println(cardNamesText.get(i));
         }
@@ -81,8 +81,8 @@ public class SortClubTest extends BaseTestRunner {
         cardNamesDECExpected.add("ШКОЛА БОЙОВОГО ГОПАКА «ШАБЛЕЗУБ»");
 
         List<String> cardNamesText = new ArrayList<>();
-        for (int i = 0; i < clubsPage.getCards().size(); i++) {
-            cardNamesText.add(i, clubsPage.getCards().get(i).getTextCardName().toUpperCase());
+        for (int i = 0; i < clubsPage.getBlockCards().size(); i++) {
+            cardNamesText.add(i, clubsPage.getBlockCards().get(i).getTextCardName().toUpperCase());
 //            System.out.println(cardNamesText.get(i));
         }
 
@@ -102,7 +102,7 @@ public class SortClubTest extends BaseTestRunner {
         sortClubComponent.arrowUpButtonClick();
 
         List <WebElement> starsFull = new ArrayList<>();
-        starsFull.addAll(clubsPage.getCards().get(0).getStarRatingFullList());
+        starsFull.addAll(clubsPage.getBlockCards().get(0).getStarRatingFullList());
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(starsFull.size(), 5);
@@ -121,7 +121,7 @@ public class SortClubTest extends BaseTestRunner {
                 .arrowDownButtonClick();
 
         List <WebElement> starsZero = new ArrayList<>();
-        starsZero.addAll(clubsPage.getCards().get(0).getStarRatingZeroList());
+        starsZero.addAll(clubsPage.getBlockCards().get(0).getStarRatingZeroList());
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(starsZero.size(), 5);
