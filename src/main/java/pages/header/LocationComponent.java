@@ -1,6 +1,7 @@
 package pages.header;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import java.util.List;
@@ -39,17 +40,16 @@ public class LocationComponent extends BasePage {
     }
 
     public WebElement getLocationLinkByCityName(String city) {
-        return driver.findElement(By.xpath(String.format("//li[contains(@data-menu-id, '%s')]", city)));
+        driver.findElements(By.xpath("//div[contains(@class, 'ant-dropdown-show-arrow') and not(contains(@class, 'hidden'))]//li[contains(@class, 'dropdown-menu-item')]"));
+        return driver.findElement(By.xpath(String.format("//span[contains(@class, 'title-content') and contains(text(), '%s')]", city)));
     }
 
     public void selectLocationByCity(String city) {
-        ClubsPage clubsPage = new ClubsPage(driver);
-        WebElement header = clubsPage.getHeaderTitle();
-        String url = clubsPage.readCurrentUrl();
         getLocationLinkByCityName(city).click();
-        if (url.contains("clubs")) {
-            waitForTextPresentInElement(header, city);
-        }
+        waitVisibilityOfElement(By.xpath("//div[contains(@class, 'trigger city')]"));
+        try {
+            waitForTextPresentInElement(new ClubsPage(driver).getHeaderTitle(), city);
+        } catch (TimeoutException ignored) {}
     }
 
     public LocationComponent clickLocationMenuButton() {

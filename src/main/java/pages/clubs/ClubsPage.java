@@ -7,8 +7,6 @@ import pages.clubs.card.components.CardComponent;
 import pages.clubs.card.components.CenterComponent;
 import pages.clubs.card.components.WideCardComponent;
 import pages.header.HeaderComponent;
-
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +66,7 @@ public class ClubsPage extends BasePage {
         return driver.findElement(By.xpath("//h2[@class='city-name']"));
     }
 
-    public String readHeaderTitle() {
+    public String headerTitleText() {
         return getHeaderTitle().getText();
     }
 

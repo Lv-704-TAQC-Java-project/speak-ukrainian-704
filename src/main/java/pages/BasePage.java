@@ -12,6 +12,7 @@ import java.util.List;
 
 public class BasePage {
     protected final Duration TIMEOUT = Duration.ofSeconds(12);
+    protected final Duration SHORT_TIMEOUT = Duration.ofSeconds(3);
     protected WebDriver driver;
 
 
@@ -111,7 +112,7 @@ public class BasePage {
     }
 
     public void waitForTextPresentInElement(WebElement element, String text) {
-        WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
+        WebDriverWait wait = new WebDriverWait(driver, SHORT_TIMEOUT);
         wait.until(ExpectedConditions.textToBePresentInElement(element, text));
     }
     public void clickManagingClubsPageElement(WebElement element) {
@@ -119,7 +120,7 @@ public class BasePage {
         element.click();
         for (CardComponent card : cards) {
             try {
-                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+                driver.manage().timeouts().implicitlyWait(SHORT_TIMEOUT);
                 waitStalenessOfElement(card.getCardBody());
             } catch (TimeoutException ignored) {}
         }
