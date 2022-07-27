@@ -4,8 +4,6 @@ import org.openqa.selenium.*;
 import pages.clubs.ClubsPage;
 import pages.header.HeaderComponent;
 
-import java.time.Duration;
-
 
 public class HomePage extends BasePage {
     private HeaderComponent header;
