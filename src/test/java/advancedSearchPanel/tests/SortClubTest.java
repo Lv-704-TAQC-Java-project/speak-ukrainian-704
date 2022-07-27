@@ -17,29 +17,24 @@ public class SortClubTest extends BaseTestRunner {
     @Test
     @Description("Verify that cards are displayed in a block view")
     public void blockCardViewIsDisplayed() {
-        ClubsPage clubsPage = new HomePage(driver)
-                .clickAdvancedSearchButton();
-
-        SortClubComponent sortClubComponent = clubsPage.getSortClubComponent()
+        new HomePage(driver)
+                .clickAdvancedSearchButton()
+                .getSortClubComponent()
                 .blockViewButtonClick();
 
-        BlockCardComponent blockCardComponent = clubsPage.getBlockCardViewComponent();
-        boolean isDisplayed = blockCardComponent.getBlockCard().isDisplayed();
+        boolean isDisplayed = new ClubsPage(driver).getBlockCardContainer().isDisplayed();
         Assert.assertTrue(isDisplayed);
     }
 
     @Test
     @Description("Verify that cards are displayed in a list view")
     public void listCardViewIsDisplayed() {
-        ClubsPage clubsPage = new HomePage(driver)
-                .clickAdvancedSearchButton();
-
-        SortClubComponent sortClubComponent = clubsPage.getSortClubComponent()
+        new HomePage(driver)
+                .clickAdvancedSearchButton()
+                .getSortClubComponent()
                 .listViewButtonClick();
 
-        WideCardComponent WideCardComponent = clubsPage.getListCardViewComponent();
-
-        boolean isDisplayed = WideCardComponent.getListCard().isDisplayed();
+        boolean isDisplayed = new ClubsPage(driver).getWideCardContainer().isDisplayed();
         Assert.assertTrue(isDisplayed);
     }
 
@@ -57,10 +52,10 @@ public class SortClubTest extends BaseTestRunner {
         SoftAssert softAssert = new SoftAssert();
 
         List<String> cardNamesText = new ArrayList<>();
-        for (int i = 0; i < clubsPage.getCards().size(); i++) {
-            cardNamesText.add(i, clubsPage.getCards().get(i).getTextCardName());
+        for (int i = 0; i < clubsPage.getBlockCards().size(); i++) {
+            cardNamesText.add(i, clubsPage.getBlockCards().get(i).getTextCardName().toUpperCase());
             softAssert.assertTrue(cardNamesText.get(i).startsWith("A"));
-            System.out.println(cardNamesText.get(i));;
+            System.out.println(cardNamesText.get(i));
         }
 
         softAssert.assertAll();
@@ -86,9 +81,9 @@ public class SortClubTest extends BaseTestRunner {
         cardNamesDECExpected.add("ШКОЛА БОЙОВОГО ГОПАКА «ШАБЛЕЗУБ»");
 
         List<String> cardNamesText = new ArrayList<>();
-        for (int i = 0; i < clubsPage.getCards().size(); i++) {
-            cardNamesText.add(i, clubsPage.getCards().get(i).getTextCardName());
-            System.out.println(cardNamesText.get(i));;
+        for (int i = 0; i < clubsPage.getBlockCards().size(); i++) {
+            cardNamesText.add(i, clubsPage.getBlockCards().get(i).getTextCardName().toUpperCase());
+//            System.out.println(cardNamesText.get(i));
         }
 
         softAssert.assertEquals(cardNamesText.toString(), cardNamesDECExpected.toString());
@@ -107,7 +102,7 @@ public class SortClubTest extends BaseTestRunner {
         sortClubComponent.arrowUpButtonClick();
 
         List <WebElement> starsFull = new ArrayList<>();
-        starsFull.addAll(clubsPage.getCards().get(0).getStarRatingFullList());
+        starsFull.addAll(clubsPage.getBlockCards().get(0).getStarRatingFullList());
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(starsFull.size(), 5);
@@ -126,7 +121,7 @@ public class SortClubTest extends BaseTestRunner {
                 .arrowDownButtonClick();
 
         List <WebElement> starsZero = new ArrayList<>();
-        starsZero.addAll(clubsPage.getCards().get(0).getStarRatingZeroList());
+        starsZero.addAll(clubsPage.getBlockCards().get(0).getStarRatingZeroList());
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(starsZero.size(), 5);
