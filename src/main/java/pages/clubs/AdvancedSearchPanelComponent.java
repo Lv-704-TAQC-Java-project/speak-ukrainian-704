@@ -23,6 +23,7 @@ public class AdvancedSearchPanelComponent extends BasePage {
     private WebElement availableOnline;
     private WebElement scrollDistrictSelector;
 
+    private List<WebElement> listOfCategoriesCheckList;
 
     public AdvancedSearchPanelComponent(WebDriver driver) {
         super(driver);
@@ -104,6 +105,7 @@ public class AdvancedSearchPanelComponent extends BasePage {
         if (availableOnline == null) {
             availableOnline = driver.findElement(By.xpath("//div[@id='basic_isOnline']"));
         }
+
         return availableOnline;
     }
 
@@ -121,12 +123,24 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return centerRadioButton;
     }
 
+    public List<WebElement> getListOfCategoriesCheckList() {
+        if (listOfCategoriesCheckList == null) {
+            listOfCategoriesCheckList = getBasicCategoriesCheckList()
+                    .findElements(By.xpath(".//input[@type='checkbox']"));
+        }
+        return listOfCategoriesCheckList;
+    }
+
     public String getAdvancedSearchHeaderText() {
         return getAdvancedSearchHeader().getText();
     }
 
     public boolean advancedSearchSideMenuIsVisible() {
-        return getAsideAdvancedSearchMenu().isDisplayed();
+        try {
+            return getAsideAdvancedSearchMenu().isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
     public boolean citySelectionInputIsVisible() {
@@ -189,6 +203,18 @@ public class AdvancedSearchPanelComponent extends BasePage {
 
     public AdvancedSearchPanelComponent scrollDistrictInputSelect() {
 //        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollTop=arguments[1].offsetTop",getScrollDistrictSelector());
+        return this;
+    }
+
+    public WebElement getCategoryFromString(String name) {
+//        waitVisibilityOfElement(By.xpath(String.format("//input[@value='%s']", name)), Duration.ofSeconds(2));
+        return driver.findElement(By.xpath(String.format("//input[@value='%s']", name)));
+    }
+
+    public AdvancedSearchPanelComponent categoryClick(String categoryName) {
+        WebElement card = driver.findElement(By.xpath("//div[contains(@class, 'card-body')]"));
+        driver.findElement(By.xpath(String.format("//input[@value='%s']", categoryName))).click();
+        waitStalenessOfElement(card);
         return this;
     }
 
