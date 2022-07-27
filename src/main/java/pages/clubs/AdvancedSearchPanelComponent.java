@@ -185,12 +185,13 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return this;
     }
 
-    public void clubRadioButtonClick() {
+    public AdvancedSearchPanelComponent clubRadioButtonClick() {
         waitVisibilityOfWebElement(getClubRadioButton());
         getClubRadioButton().click();
+        return this;
     }
 
-    public void centerRadioButtonClick() {
+    public AdvancedSearchPanelComponent centerRadioButtonClick() {
         waitVisibilityOfWebElement(getCenterRadioButton());
         getCenterRadioButton().click();
         try {
@@ -198,6 +199,7 @@ public class AdvancedSearchPanelComponent extends BasePage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        return this;
     }
 
     public AdvancedSearchPanelComponent centerRadioButtonClick2() {
