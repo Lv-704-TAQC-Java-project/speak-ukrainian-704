@@ -23,6 +23,7 @@ public class AdvancedSearchPanelComponent extends BasePage {
     private WebElement availableOnline;
     private WebElement categoriesBlock;
     private WebElement childAgeBlock;
+    private WebElement childAgeInput;
     private WebElement scrollDistrictSelector;
 
     private List<WebElement> listOfCategoriesCheckList;
@@ -86,6 +87,13 @@ public class AdvancedSearchPanelComponent extends BasePage {
             basicCategoriesCheckList = driver.findElement(By.xpath("//div[@id='basic_categoriesName']"));
         }
         return basicCategoriesCheckList;
+    }
+
+    public WebElement getChildAgeInput() {
+        if (childAgeInput == null) {
+            childAgeInput = driver.findElement(By.xpath("//span[@id='basic_age']//input"));
+        }
+        return childAgeInput;
     }
 
     public List<WebElement> getClubListSectionChildren() {
@@ -287,6 +295,14 @@ public class AdvancedSearchPanelComponent extends BasePage {
             return false;
         }
     }
+
+    public AdvancedSearchPanelComponent enterChildAge(Integer age){
+        getChildAgeInput().sendKeys(age.toString());
+        clickManagingClubsPageElement(getChildAgeInput());
+        return this;
+    }
+
+
 
 
 }
