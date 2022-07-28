@@ -135,7 +135,7 @@ public class RegionAndMetroStationTest extends BaseTestRunner {
         AdvancedSearchPanelComponent inputSearchDistrict = new HomePage(driver)
                 .clickAdvancedSearchButton()
                 .getAdvancedSearchPanelComponent()
-                .centerRadioButtonClick2()
+                .centerRadioButtonClick()
                 .openDistrictInputSelect();
         List<WebElement> listDistricts = inputSearchDistrict.getDistrictListSectionChildren();
         inputSearchDistrict
@@ -165,7 +165,7 @@ public class RegionAndMetroStationTest extends BaseTestRunner {
         AdvancedSearchPanelComponent inputSearchMetro = new HomePage(driver)
                 .clickAdvancedSearchButton()
                 .getAdvancedSearchPanelComponent()
-                .centerRadioButtonClick2()
+                .centerRadioButtonClick()
                 .openMetroInputSelect();
         List<WebElement> listMetros = inputSearchMetro.getMetroListSectionChildren();
         System.out.println(listMetros.size());

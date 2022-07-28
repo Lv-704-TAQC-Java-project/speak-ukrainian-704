@@ -3,7 +3,6 @@ package advancedSearchPanel.tests;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.HomePage;
-import pages.clubs.card.components.BlockCardComponent;
 import pages.clubs.ClubsPage;
 import pages.clubs.card.components.CardComponent;
 import runners.BaseTestRunner;
