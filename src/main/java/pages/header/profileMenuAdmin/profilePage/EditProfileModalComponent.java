@@ -23,6 +23,12 @@ public class EditProfileModalComponent extends BasePage {
     private WebElement viewRepeatNewPasswordButton;
     private WebElement saveChangesButton;
     private WebElement closeButton;
+    private  WebElement lastnameFieldWrapper;
+    private WebElement firstnameFieldWrapper;
+    private WebElement phoneFieldWrapper;
+    private  WebElement lastnameErrorText;
+    private WebElement firstnameErrorText;
+    private WebElement phoneErrorText;
 
     public EditProfileModalComponent(WebDriver driver) {
         super(driver);
@@ -154,6 +160,54 @@ public class EditProfileModalComponent extends BasePage {
             closeButton = driver.findElement(By.xpath("//button[@class='ant-modal-close']"));
         }
         return closeButton;
+    }
+
+    public WebElement getLastnameFieldWrapper(String color) {
+        if (lastnameFieldWrapper == null) {
+            waitAttributeOfElementContains(By.xpath("//input[@id='edit_lastName']/parent::span"), "border-color", color);
+            lastnameFieldWrapper = getLastNameInput().findElement(By.xpath("./parent::span"));
+        }
+        return lastnameFieldWrapper;
+    }
+
+    public WebElement getFirstNameFieldWrapper(String color) {
+        if (firstnameFieldWrapper == null) {
+            waitAttributeOfElementContains(By.xpath("//input[@id='edit_firstName']/parent::span"), "border-color", color);
+            firstnameFieldWrapper = getFirstNameInput().findElement(By.xpath("./parent::span"));
+        }
+        return firstnameFieldWrapper;
+    }
+
+    public WebElement getPhoneFieldWrapper(String color) {
+        if (phoneFieldWrapper == null) {
+            waitAttributeOfElementContains(By.xpath("//input[@id='edit_phone']/parent::span"), "border-color", color);
+            phoneFieldWrapper = getFirstNameInput().findElement(By.xpath("./parent::span"));
+        }
+        return phoneFieldWrapper;
+    }
+
+    public String getLastnameErrorText(){
+        if (lastnameErrorText == null) {
+            waitVisibilityOfElement(By.xpath("//input[@id='edit_lastName']/../../../following-sibling::div/div"));
+            lastnameErrorText = driver.findElement(By.xpath("//input[@id='edit_lastName']/../../../following-sibling::div/div"));
+        }
+        return lastnameErrorText.getText();
+    }
+
+    public String getFirstnameErrorText(){
+        if (firstnameErrorText == null) {
+            waitVisibilityOfElement(By.xpath("//input[@id='edit_firstName']/../../../following-sibling::div/div"));
+            firstnameErrorText = driver.findElement(By.xpath("//input[@id='edit_firstName']/../../../following-sibling::div/div"));
+        }
+        return firstnameErrorText.getText();
+    }
+
+    public String getPhoneErrorText(){
+        if (phoneErrorText == null) {
+            waitVisibilityOfElement(By.xpath("//input[@id='edit_phone']/../../../../../following-sibling::div/div"));
+            phoneErrorText = driver.findElement(By.xpath("//input[@id='edit_phone']/../../../../../following-sibling::div/div"));
+        }
+        return phoneErrorText.getText();
     }
 
     public EditProfileModalComponent userButtonClick() {
