@@ -119,9 +119,9 @@ public class BasePage {
     public void clickManagingClubsPageElement(WebElement element) {
         List<CardComponent> cards = new ClubsPage(driver).getCards();
         element.click();
+        driver.manage().timeouts().implicitlyWait(SHORT_TIMEOUT);
         for (CardComponent card : cards) {
             try {
-                driver.manage().timeouts().implicitlyWait(SHORT_TIMEOUT);
                 waitStalenessOfElement(card.getCardBody());
             } catch (TimeoutException ignored) {
             }
