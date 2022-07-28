@@ -22,17 +22,14 @@ public class PaginationComponent extends BasePage {
     }
 
     public List<WebElement> getListOfPagesInPagination() {
-        if (listOfPagesInPagination == null) {
-            waitVisibilityOfElements(By.xpath("//li[contains(@class, 'ant-pagination-item')]"));
+//            waitVisibilityOfElements(By.xpath("//li[contains(@class, 'ant-pagination-item')]"));
             listOfPagesInPagination = driver.findElements(By.xpath("//li[contains(@class, 'ant-pagination-item')]"));
-        }
+
         return listOfPagesInPagination;
     }
 
     public WebElement getLastPaginationPage() {
-        if (lastPaginationPage == null) {
             lastPaginationPage = getListOfPagesInPagination().get(getListOfPagesInPagination().size() - 1);
-        }
         return lastPaginationPage;
     }
 

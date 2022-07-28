@@ -93,9 +93,7 @@ public class ClubsPage extends BasePage {
     }
 
     public PaginationComponent getPaginationComponent() {
-        if (paginationComponent == null) {
             paginationComponent = new PaginationComponent(driver);
-        }
         return paginationComponent;
     }
 
