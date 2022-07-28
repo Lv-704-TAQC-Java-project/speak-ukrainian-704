@@ -1,5 +1,6 @@
 package advancedSearchPanel.tests;
 
+import org.apache.hc.core5.http.Header;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -7,6 +8,9 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.clubs.AdvancedSearchPanelComponent;
 import pages.clubs.ClubsPage;
+import pages.clubs.PaginationComponent;
+import pages.header.HeaderComponent;
+import runners.BaseTestOpenAdvancedSearch;
 import runners.BaseTestRunner;
 
 import java.util.List;
@@ -16,145 +20,189 @@ public class RegionAndMetroStationTest extends BaseTestRunner {
     @DataProvider(name = "countDistricts")
     public Object[][] countDistricts() {
         return new Object[][]{
-                {0, new int[]{6, 6, 6, 6, 6, 6, 6, 6, 6, 2}}
+                {"Деснянський", 9},
+                {"Святошинський", 11},
+                {"Дніпровський", 12},
+                {"Голосіївський", 253},
+                {"Дарницький", 12},
+                {"Оболонський", 11},
         };
     }
 
     @DataProvider(name = "countMetros")
     public Object[][] countMetros() {
         return new Object[][]{
-                {0, new int[]{6, 0, 3, 0, 0, 0, 2, 1}}
+                {"Арсенальна", 8},
+                {"Берестейська", 0},
+                {"Бориспільська", 3},
+                {"Вирлиця", 2},
+                {"Виставковий центр", 1}
         };
     }
 
     @DataProvider(name = "countDistrictsCenter")
     public Object[][] countDistrictsCenter() {
         return new Object[][]{
-                {0, new int[]{6, 6, 1, 3, 2, 4, 1, 5}}
+                {"Деснянський", 10},
+                {"Святошинський", 10},
+                {"Дніпровський", 1},
+                {"Голосіївський", 2},
+                {"Дарницький", 4},
+                {"Оболонський", 1},
         };
     }
 
     @DataProvider(name = "countMetrosCenter")
     public Object[][] countMetrosCenter() {
         return new Object[][]{
-                {0, new int[]{6, 3, 0, 0, 2, 0, 3, 0}}
+                {"Арсенальна", 6},
+                {"Берестейська", 3},
+                {"Бориспільська", 0},
+                {"Вирлиця", 3},
+                {"Виставковий центр", 0}
         };
     }
 
 
     @Test(dataProvider = "countDistricts")
-    public void checkClubsInRegionsOfCity(int indexCity, int[] countExpect) {
+    public void checkClubsInRegionsOfCity(String nameDistrict, int countExpect) {
 
-        AdvancedSearchPanelComponent inputSearchDistrict= new HomePage(driver)
+        AdvancedSearchPanelComponent inputSearchDistrict = new HomePage(driver)
+                .getHeader()
+                .openClubsPage()
                 .clickAdvancedSearchButton()
-                .getAdvancedSearchPanelComponent()
-                .openDistrictInputSelect();
-        List<WebElement> listDistricts=inputSearchDistrict.getDistrictListSectionChildren();
-        inputSearchDistrict
                 .openDistrictInputSelect();
 
-        inputSearchDistrict
-                .openDistrictInputSelect();
+//        AdvancedSearchPanelComponent inputSearchDistrict = new AdvancedSearchPanelComponent(driver)
+//                .openDistrictInputSelect();
 
-//        for (int i = 0; i < listDistricts.size(); i++) {
-//            if (i >= 8) inputSearchDistrict.scrollDistrictInputSelect();
-        for (int i = 0; i < 8; i++) {
-            listDistricts.get(i).click();
-            int clubsNumber = new ClubsPage(driver).openPaginationComponent().getQuantityOfClubsOnCurrentPage();
-            System.out.println(listDistricts.get(i).getAccessibleName() + " " + clubsNumber + " groups");
-            Assert.assertEquals(clubsNumber, countExpect[i]);
-            inputSearchDistrict
-                    .openDistrictInputSelect();
-            if (i == listDistricts.size()-1) break;
+        inputSearchDistrict.clickDistrictWithName(nameDistrict);
+        PaginationComponent paginationComponent = new PaginationComponent(driver);
+
+        int quantityOfClubsOnFirstPage = paginationComponent.getQuantityOfClubsOnCurrentPage();
+        int totalNumberOfClubs = quantityOfClubsOnFirstPage;
+        boolean paginationVisible = new ClubsPage(driver).paginationComponentIsVisible();
+
+        if (paginationVisible){
+            int numberOfPagesInPagination = paginationComponent.getNumberOfPagesInPagination();
+            paginationComponent
+                    .openLastPageInPagination();
+            int quantityOfClubsOnLastPage = paginationComponent.getQuantityOfClubsOnCurrentPage();
+            totalNumberOfClubs = quantityOfClubsOnFirstPage * (numberOfPagesInPagination - 1) + quantityOfClubsOnLastPage;
         }
-        Assert.assertEquals(listDistricts.size(),10);
+
+        Assert.assertEquals(totalNumberOfClubs, countExpect);
+//        new HeaderComponent(driver)
+//                .openHomePage()
+//                .getHeader()
+//                .openClubsPage()
+//                .clickAdvancedSearchButton();
     }
 
-
     @Test(dataProvider = "countMetros")
-    public void checkClubsNearMetroOfCity(int indexCity, int[] countExpect) {
+    public void checkClubsInMetrosOfCity(String nameMetroStation, int countExpect) {
 
-        AdvancedSearchPanelComponent inputSearchMetro= new HomePage(driver)
+        AdvancedSearchPanelComponent inputSearchMetro = new HomePage(driver)
+                .getHeader()
+                .openClubsPage()
                 .clickAdvancedSearchButton()
-                .getAdvancedSearchPanelComponent()
-                .openMetroInputSelect();
-        List<WebElement> listMetros=inputSearchMetro.getMetroListSectionChildren();
-        inputSearchMetro
                 .openMetroInputSelect();
 
-        inputSearchMetro
-                .openMetroInputSelect();
+//        AdvancedSearchPanelComponent inputSearchMetro = new AdvancedSearchPanelComponent(driver)
+//                .openMetroInputSelect();
 
-//        for (int i = 0; i < listDistricts.size(); i++) {
-//            if (i >= 8) inputSearchDistrict.scrollDistrictInputSelect();
-        for (int i = 0; i < 8; i++) {
-            listMetros.get(i).click();
-            int clubsNumber = new ClubsPage(driver).openPaginationComponent().getQuantityOfClubsOnCurrentPage();
-            System.out.println(listMetros.get(i).getAccessibleName() + " " + clubsNumber + " groups");
-            Assert.assertEquals(clubsNumber, countExpect[i]);
-            inputSearchMetro
-                    .openMetroInputSelect();
-            if (i == listMetros.size()-1) break;
-        }
-        Assert.assertEquals(listMetros.size(),10);
+        inputSearchMetro.clickMetroWithName(nameMetroStation);
+        PaginationComponent paginationComponent = new PaginationComponent(driver);
+        int quantityOfClubsOnFirstPage = paginationComponent.getQuantityOfClubsOnCurrentPage();
+        int totalNumberOfClubs = quantityOfClubsOnFirstPage;
+        boolean paginationVisible = new ClubsPage(driver).paginationComponentIsVisible();
+
+           if (paginationVisible){
+               int numberOfPagesInPagination = paginationComponent.getNumberOfPagesInPagination();
+               paginationComponent
+                       .openLastPageInPagination();
+               int quantityOfClubsOnLastPage = paginationComponent.getQuantityOfClubsOnCurrentPage();
+               totalNumberOfClubs = quantityOfClubsOnFirstPage * (numberOfPagesInPagination - 1) + quantityOfClubsOnLastPage;
+           }
+
+        Assert.assertEquals(totalNumberOfClubs, countExpect);
+//        new HeaderComponent(driver)
+//                .openHomePage()
+//                .getHeader()
+//                .openClubsPage()
+//                .clickAdvancedSearchButton();
     }
 
     @Test(dataProvider = "countDistrictsCenter")
-    public void checkCentersInRegionsOfCity(int indexCity, int[] countExpect) {
-        AdvancedSearchPanelComponent inputSearchDistrict= new HomePage(driver)
+    public void checkCentersInRegionsOfCity(String nameDistrict, int countExpect) {
+
+        AdvancedSearchPanelComponent inputSearchDistrict = new HomePage(driver)
+                .getHeader()
+                .openClubsPage()
                 .clickAdvancedSearchButton()
-                .getAdvancedSearchPanelComponent()
                 .centerRadioButtonClick()
-                .openDistrictInputSelect();
-        List<WebElement> listDistricts=inputSearchDistrict.getDistrictListSectionChildren();
-        inputSearchDistrict
-                .openDistrictInputSelect();
+                .openDistrictInputSelectCenter();
 
-        inputSearchDistrict
-                .openDistrictInputSelect();
+//        AdvancedSearchPanelComponent inputSearchDistrict = new AdvancedSearchPanelComponent(driver)
+//                .centerRadioButtonClick()
+//                .openDistrictInputSelect();
 
-//        for (int i = 0; i < listDistricts.size(); i++) {
-//            if (i >= 8) inputSearchDistrict.scrollDistrictInputSelect();
+        inputSearchDistrict.clickDistrictWithNameCenter(nameDistrict);
+        PaginationComponent paginationComponent = new PaginationComponent(driver);
 
-        for (int i = 0; i < 8; i++) {
-            listDistricts.get(i).click();
-            int clubsNumber = new ClubsPage(driver).openPaginationComponent().getQuantityOfClubsOnCurrentPage();
-            System.out.println(listDistricts.get(i).getAccessibleName() + " " + clubsNumber + " groups");
-            Assert.assertEquals(clubsNumber, countExpect[i]);
-            inputSearchDistrict
-                    .openDistrictInputSelect();
-            if (i == listDistricts.size()-1) break;
+        int quantityOfClubsOnFirstPage = paginationComponent.getQuantityOfClubsOnCurrentPage();
+        int totalNumberOfClubs = quantityOfClubsOnFirstPage;
+        boolean paginationVisible = new ClubsPage(driver).paginationComponentIsVisible();
+
+        if (paginationVisible){
+            int numberOfPagesInPagination = paginationComponent.getNumberOfPagesInPagination();
+            paginationComponent
+                    .openLastPageInPagination();
+            int quantityOfClubsOnLastPage = paginationComponent.getQuantityOfClubsOnCurrentPage();
+            totalNumberOfClubs = quantityOfClubsOnFirstPage * (numberOfPagesInPagination - 1) + quantityOfClubsOnLastPage;
         }
-        Assert.assertEquals(listDistricts.size(),10);
+
+        Assert.assertEquals(totalNumberOfClubs, countExpect);
+//        new HeaderComponent(driver)
+//                .openHomePage()
+//                .getHeader()
+//                .openClubsPage()
+//                .clickAdvancedSearchButton();
     }
 
     @Test(dataProvider = "countMetrosCenter")
-    public void checkCentersNearMetroOfCity(int indexCity, int[] countExpect) {
+    public void checkCentersInMetrosOfCity(String nameMetroStation, int countExpect) {
 
-        AdvancedSearchPanelComponent inputSearchMetro= new HomePage(driver)
+        AdvancedSearchPanelComponent inputSearchMetro = new HomePage(driver)
+                .getHeader()
+                .openClubsPage()
                 .clickAdvancedSearchButton()
-                .getAdvancedSearchPanelComponent()
                 .centerRadioButtonClick()
-                .openMetroInputSelect();
-        List<WebElement> listMetros=inputSearchMetro.getMetroListSectionChildren();
-        System.out.println(listMetros.size());
-        inputSearchMetro
-                .openMetroInputSelect();
+                .openMetroInputSelectCenter();
 
-        inputSearchMetro
-                .openMetroInputSelect();
+//        AdvancedSearchPanelComponent inputSearchMetro = new AdvancedSearchPanelComponent(driver)
+//                .openMetroInputSelect();
 
-//        for (int i = 0; i < listDistricts.size(); i++) {
-//            if (i >= 8) inputSearchDistrict.scrollDistrictInputSelect();
-        for (int i = 0; i < 8; i++) {
-            listMetros.get(i).click();
-            int clubsNumber = new ClubsPage(driver).openPaginationComponent().getQuantityOfClubsOnCurrentPage();
-            System.out.println(listMetros.get(i).getAccessibleName() + " " + clubsNumber + " groups");
-            Assert.assertEquals(clubsNumber, countExpect[i]);
-            inputSearchMetro
-                    .openMetroInputSelect();
-            if (i == listMetros.size()-1) break;
+        inputSearchMetro.clickMetroWithNameCenter(nameMetroStation);
+        PaginationComponent paginationComponent = new PaginationComponent(driver);
+        int quantityOfClubsOnFirstPage = paginationComponent.getQuantityOfClubsOnCurrentPage();
+        int totalNumberOfClubs = quantityOfClubsOnFirstPage;
+        boolean paginationVisible = new ClubsPage(driver).paginationComponentIsVisible();
+
+        if (paginationVisible){
+            int numberOfPagesInPagination = paginationComponent.getNumberOfPagesInPagination();
+            paginationComponent
+                    .openLastPageInPagination();
+            int quantityOfClubsOnLastPage = paginationComponent.getQuantityOfClubsOnCurrentPage();
+            totalNumberOfClubs = quantityOfClubsOnFirstPage * (numberOfPagesInPagination - 1) + quantityOfClubsOnLastPage;
         }
-        Assert.assertEquals(listMetros.size(),10);
+
+        Assert.assertEquals(totalNumberOfClubs, countExpect);
+//        new HeaderComponent(driver)
+//                .openHomePage()
+//                .getHeader()
+//                .openClubsPage()
+//                .clickAdvancedSearchButton();
     }
+
 }
