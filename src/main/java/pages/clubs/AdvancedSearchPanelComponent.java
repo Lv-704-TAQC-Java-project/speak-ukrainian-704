@@ -290,7 +290,16 @@ public class AdvancedSearchPanelComponent extends BasePage {
     }
 
     public AdvancedSearchPanelComponent enterChildAge(Integer age){
+        getChildAgeInput().click();
+        getChildAgeInput().clear();
         getChildAgeInput().sendKeys(age.toString());
+        clickManagingClubsPageElement(getChildAgeInput());
+        return this;
+    }
+
+    public AdvancedSearchPanelComponent clearChildAge(){
+        getChildAgeInput().click();
+        getChildAgeInput().clear();
         clickManagingClubsPageElement(getChildAgeInput());
         return this;
     }
