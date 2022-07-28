@@ -13,6 +13,7 @@ import java.util.List;
 public class ExpandedCardComponent extends BasePage {
     private WebElement exitButton;
     private List<WebElement> listOfCategories;
+    private WebElement ageDescription;
 
     public ExpandedCardComponent(WebDriver driver) {
         super(driver);
@@ -24,6 +25,24 @@ public class ExpandedCardComponent extends BasePage {
             exitButton = driver.findElement(By.xpath("//button[contains(@class,'close')]"));
         }
         return exitButton;
+    }
+
+    public String getAgeDescription() {
+            waitVisibilityOfElement(By.xpath("//div[@class='ant-modal-body']//div[@class='age']//span[@class='years']"), Duration.ofSeconds(2));
+            ageDescription = driver.findElement(By.xpath("//div[@class='ant-modal-body']//div[@class='age']//span[@class='years']"));
+        return ageDescription.getText();
+    }
+
+    public Integer[] getAgeRestriction(){
+        String line = getAgeDescription();
+        String regex = "[^\\d]+";
+        String[] splitedLine = line.split(regex);
+        Integer[] intLine = new Integer[2];
+
+        for(int i = 1; i <= splitedLine.length - 1; i++){
+            intLine[i-1] = Integer.parseInt(splitedLine[i]);
+        }
+        return intLine;
     }
 
     public List<WebElement> getListOfCategories() {
@@ -40,7 +59,6 @@ public class ExpandedCardComponent extends BasePage {
         return listOfNameOfCategories;
     }
     public ClubsPage exitButtonClick() {
-        waitElementIsClickable(getExitButton());
         getExitButton().click();
         return new ClubsPage(driver);
     }
