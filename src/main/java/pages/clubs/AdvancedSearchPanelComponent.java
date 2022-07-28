@@ -235,7 +235,7 @@ public class AdvancedSearchPanelComponent extends BasePage {
     }
 
     public AdvancedSearchPanelComponent scrollDistrictInputSelect() {
-//        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollTop=arguments[1].offsetTop",getScrollDistrictSelector());
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollTop=arguments[1].offsetTop",getScrollDistrictSelector());
         return this;
     }
 
@@ -273,12 +273,6 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return this;
     }
 
-    public AdvancedSearchPanelComponent centerRadioButtonClick2() {
-        waitVisibilityOfWebElement(getClubRadioButton());
-        getClubRadioButton().click();
-        return this;
-    }
-
     public boolean IsClubButtonSelected() {
         try {
             return driver.findElement(By.xpath("//label[contains(@class,'ant-radio-wrapper-checked')]/span[contains(text(),'Гурток')]")).isDisplayed();
@@ -295,15 +289,10 @@ public class AdvancedSearchPanelComponent extends BasePage {
         }
     }
 
-
     public AdvancedSearchPanelComponent enterChildAge(Integer age){
         getChildAgeInput().sendKeys(age.toString());
         clickManagingClubsPageElement(getChildAgeInput());
         return this;
     }
-
-
-
-
 
 }
