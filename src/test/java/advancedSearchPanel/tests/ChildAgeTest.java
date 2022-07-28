@@ -8,10 +8,12 @@ import pages.clubs.AdvancedSearchPanelComponent;
 import pages.clubs.ClubsPage;
 import pages.clubs.ExpandedCardComponent;
 import pages.clubs.card.components.CardComponent;
+import runners.BaseTestOpenAdvancedSearch;
 import runners.BaseTestRunner;
+import runners.BaseTestRunnerWithOpenAdvancedSearch;
 
 
-public class ChildAgeTest extends BaseTestRunner {
+public class ChildAgeTest extends BaseTestRunnerWithOpenAdvancedSearch {
     @DataProvider(name = "childAge")
     public Object[][] locationSelectionData() {
         return new Object[][]{
@@ -24,10 +26,9 @@ public class ChildAgeTest extends BaseTestRunner {
     }
     @Test(dataProvider = "childAge")
     public void enterValidChildAgeTest(Integer childAge) {
-        ClubsPage clubsPage = new HomePage(driver)
-                .clickAdvancedSearchButton();
 
-        AdvancedSearchPanelComponent advancedSearchPanelComponent = new ClubsPage(driver).getAdvancedSearchPanelComponent();
+        ClubsPage clubsPage = new ClubsPage(driver);
+        AdvancedSearchPanelComponent advancedSearchPanelComponent = clubsPage.getAdvancedSearchPanelComponent();
 
         advancedSearchPanelComponent.enterChildAge(childAge);
 
@@ -39,10 +40,9 @@ public class ChildAgeTest extends BaseTestRunner {
             card.cardTitleClick();
             Integer fromAge = expandedCardComponent.getAgeRestriction()[0];
             Integer toAge = expandedCardComponent.getAgeRestriction()[1];
-            softAssert.assertTrue((fromAge <= childAge && toAge >= childAge));
+            softAssert.assertTrue((fromAge <= childAge && toAge >= childAge),String.format("Your child age is %d, age restrictions %d - %d",childAge,fromAge,toAge));
             expandedCardComponent.exitButtonClick();
         }
-
         softAssert.assertAll();
     }
 }
