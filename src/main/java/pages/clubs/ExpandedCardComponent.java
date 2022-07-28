@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.BasePage;
 
+import javax.lang.model.element.Element;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class ExpandedCardComponent extends BasePage {
 
     public List<String> getListOfNamesOfCategories(){
         List<String> listOfNameOfCategories = new ArrayList<>();
-        listOfCategories = getListOfCategories();
+        List<WebElement> listOfCategories = getListOfCategories();
         for (WebElement category : listOfCategories){
             listOfNameOfCategories.add(category.getText());
         }
