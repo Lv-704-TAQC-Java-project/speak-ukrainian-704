@@ -12,13 +12,13 @@ import java.util.List;
 public class CardComponent extends BasePage {
 
     protected WebElement cardBody;
-    private WebElement cardTitle;
+    protected WebElement cardTitle;
     protected WebElement cardName;
     protected WebElement address;
     protected List<WebElement> starRatingZeroList;
     protected List<WebElement> starRatingFullList;
     protected WebElement availableOnline;
-    private List<WebElement> listOfCategoriesOnCard;
+    protected List<WebElement> listOfCategoriesOnCard;
 
 
     public CardComponent(WebDriver driver) {
