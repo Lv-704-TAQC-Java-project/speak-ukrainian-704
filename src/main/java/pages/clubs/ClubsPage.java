@@ -28,6 +28,7 @@ public class ClubsPage extends BasePage {
     private List<BlockCardComponent> blockCards;
     private List<WideCardComponent> wideCards;
     private List<CenterComponent> centers;
+    private List<WebElement> paginationComponents;
 
     public ClubsPage(WebDriver driver) {
         super(driver);
@@ -88,10 +89,17 @@ public class ClubsPage extends BasePage {
     }
 
     public PaginationComponent getPaginationComponent() {
-        if (paginationComponent == null) {
-            paginationComponent = new PaginationComponent(driver);
-        }
+        paginationComponent = new PaginationComponent(driver);
         return paginationComponent;
+    }
+
+    public List<WebElement> getPaginationComponents() {
+        paginationComponents = driver.findElements(By.xpath("//ul[@class='ant-pagination pagination']/li"));
+        return paginationComponents;
+    }
+
+    public boolean paginationComponentIsVisible(){
+        return getPaginationComponents().size() > 0;
     }
 
     public PaginationComponent openPaginationComponent() {

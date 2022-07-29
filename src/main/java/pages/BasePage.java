@@ -5,6 +5,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.clubs.ClubsPage;
 import pages.clubs.card.components.CardComponent;
+import pages.clubs.card.components.CenterComponent;
 
 import java.time.Duration;
 import java.util.List;
@@ -125,6 +126,24 @@ public class BasePage {
                 waitStalenessOfElement(card.getCardBody());
             } catch (TimeoutException ignored) {
             }
+        }
+    }
+
+    public void clickManagingCenterPageElement(WebElement element) {
+        List<CardComponent> cards = new ClubsPage(driver).getCards();
+        element.click();
+        driver.manage().timeouts().implicitlyWait(SHORT_TIMEOUT);
+//        for (CardComponent card : cards) {
+//            try {
+//                waitStalenessOfElement(card.getCardBody());
+//            } catch (TimeoutException ignored) {
+//
+//            }
+//                   }
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -23,9 +23,7 @@ public class HeaderComponent extends BasePage {
     }
 
     public LocationComponent getLocationComponent() {
-        if (locationComponent == null) {
-            locationComponent = new LocationComponent(driver);
-        }
+        locationComponent = new LocationComponent(driver);
         return locationComponent;
     }
 
@@ -51,7 +49,7 @@ public class HeaderComponent extends BasePage {
         return profileMenuButton;
     }
 
-    public WebElement getUserIdentity(){
+    public WebElement getUserIdentity() {
         if (imageUserComponent == null) {
             imageUserComponent = driver.findElement(By.xpath("//span[@aria-label='user']"));
         }

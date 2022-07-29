@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AdvancedSearchPanelComponent extends BasePage {
     private List<WebElement> clubListSectionChildren;
-    private List<WebElement> districtListSectionChildren;
+    private WebElement districtListSectionChildren;
     private WebElement asideAdvancedSearchMenu;
     private WebElement advancedSearchHeader;
     private WebElement citySelector;
@@ -100,13 +100,15 @@ public class AdvancedSearchPanelComponent extends BasePage {
         return clubListSectionChildren;
     }
 
-    public List<WebElement> getDistrictListSectionChildren() {
-        districtListSectionChildren = driver.findElements(By.xpath("//div[@id='basic_districtName_list']/following-sibling::div//div[@class='rc-virtual-list-holder-inner']/div"));
+    public WebElement getDistrictListSectionChildren(String district) {
+        districtListSectionChildren = driver.findElement(By.xpath(String.format("//div[@title='%s']",district)));
         return districtListSectionChildren;
     }
 
-    public List<WebElement> getMetroListSectionChildren() {
-        districtListSectionChildren = driver.findElements(By.xpath("//div[@id='basic_stationName_list']/following-sibling::div//div[@class='rc-virtual-list-holder-inner']/div"));
+
+
+    public WebElement getMetroListSectionChildren(String metroStation) {
+        districtListSectionChildren = driver.findElement(By.xpath(String.format("//div[@title='%s']",metroStation)));
         return districtListSectionChildren;
     }
 
@@ -217,14 +219,52 @@ public class AdvancedSearchPanelComponent extends BasePage {
     }
 
     public AdvancedSearchPanelComponent openDistrictInputSelect() {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(getDistrictSelector()).click().perform();
+        clickManagingClubsPageElement(getDistrictSelector());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return this;
+    }
+
+    public AdvancedSearchPanelComponent clickDistrictWithName(String district) {
+        clickManagingClubsPageElement(getDistrictListSectionChildren(district));
         return this;
     }
 
     public AdvancedSearchPanelComponent openMetroInputSelect() {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(getMetroSelector()).click().perform();
+        clickManagingClubsPageElement(getMetroSelector());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return this;
+    }
+
+    public AdvancedSearchPanelComponent clickMetroWithName(String district) {
+        clickManagingClubsPageElement(getDistrictListSectionChildren(district));
+        return this;
+    }
+
+    public AdvancedSearchPanelComponent openDistrictInputSelectCenter() {
+        clickManagingCenterPageElement(getDistrictSelector());
+        return this;
+    }
+
+    public AdvancedSearchPanelComponent clickDistrictWithNameCenter(String district) {
+        clickManagingCenterPageElement(getDistrictListSectionChildren(district));
+        return this;
+    }
+
+    public AdvancedSearchPanelComponent openMetroInputSelectCenter() {
+        clickManagingCenterPageElement(getMetroSelector());
+        return this;
+    }
+
+    public AdvancedSearchPanelComponent clickMetroWithNameCenter(String district) {
+        clickManagingCenterPageElement(getDistrictListSectionChildren(district));
         return this;
     }
 
@@ -272,6 +312,16 @@ public class AdvancedSearchPanelComponent extends BasePage {
         clickManagingClubsPageElement(getCenterRadioButton());
         return this;
     }
+    public AdvancedSearchPanelComponent centerRadioButtonClickAnother() {
+        waitVisibilityOfWebElement(getCenterRadioButton());
+        getCenterRadioButton().click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return this;
+    }
 
     public boolean IsClubButtonSelected() {
         try {
@@ -290,7 +340,16 @@ public class AdvancedSearchPanelComponent extends BasePage {
     }
 
     public AdvancedSearchPanelComponent enterChildAge(Integer age){
+        getChildAgeInput().click();
+        getChildAgeInput().clear();
         getChildAgeInput().sendKeys(age.toString());
+        clickManagingClubsPageElement(getChildAgeInput());
+        return this;
+    }
+
+    public AdvancedSearchPanelComponent clearChildAge(){
+        getChildAgeInput().click();
+        getChildAgeInput().clear();
         clickManagingClubsPageElement(getChildAgeInput());
         return this;
     }
