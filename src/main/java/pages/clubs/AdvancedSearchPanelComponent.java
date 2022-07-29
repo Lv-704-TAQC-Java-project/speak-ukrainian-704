@@ -220,6 +220,11 @@ public class AdvancedSearchPanelComponent extends BasePage {
 
     public AdvancedSearchPanelComponent openDistrictInputSelect() {
         clickManagingClubsPageElement(getDistrictSelector());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         return this;
     }
 
@@ -230,6 +235,11 @@ public class AdvancedSearchPanelComponent extends BasePage {
 
     public AdvancedSearchPanelComponent openMetroInputSelect() {
         clickManagingClubsPageElement(getMetroSelector());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         return this;
     }
 
@@ -300,6 +310,16 @@ public class AdvancedSearchPanelComponent extends BasePage {
     public AdvancedSearchPanelComponent centerRadioButtonClick() {
         waitVisibilityOfWebElement(getCenterRadioButton());
         clickManagingClubsPageElement(getCenterRadioButton());
+        return this;
+    }
+    public AdvancedSearchPanelComponent centerRadioButtonClickAnother() {
+        waitVisibilityOfWebElement(getCenterRadioButton());
+        getCenterRadioButton().click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         return this;
     }
 

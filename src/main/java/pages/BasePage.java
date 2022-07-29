@@ -130,14 +130,20 @@ public class BasePage {
     }
 
     public void clickManagingCenterPageElement(WebElement element) {
-        List<CenterComponent> cards = new ClubsPage(driver).getCenters();
+        List<CardComponent> cards = new ClubsPage(driver).getCards();
         element.click();
         driver.manage().timeouts().implicitlyWait(SHORT_TIMEOUT);
-        for (CenterComponent card : cards) {
-            try {
-                waitStalenessOfElement(card.getCardBody());
-            } catch (TimeoutException ignored) {
-            }
+//        for (CardComponent card : cards) {
+//            try {
+//                waitStalenessOfElement(card.getCardBody());
+//            } catch (TimeoutException ignored) {
+//
+//            }
+//                   }
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
