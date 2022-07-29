@@ -1,4 +1,4 @@
-package login.tests;
+package profile.tests;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
