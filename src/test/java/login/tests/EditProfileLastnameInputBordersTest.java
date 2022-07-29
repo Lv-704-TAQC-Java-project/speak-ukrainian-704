@@ -53,7 +53,7 @@ public class EditProfileLastnameInputBordersTest extends BaseTestRunnerWithLogIn
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(getBorderColorOfLastnameWrapper.contains(expectedLastnameBorderColor),
-                String.format("Border color of email field border is expected to be %s, but was %s.",
+                String.format("Border color of lastname field border is expected to be %s, but was %s.",
                         expectedLastnameBorderColor, getBorderColorOfLastnameWrapper));
 
         softAssert.assertAll();
