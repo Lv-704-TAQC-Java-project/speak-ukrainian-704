@@ -40,7 +40,7 @@ public class MapLocationTest extends BaseTestRunner {
         };
     }
 
-    @Test
+    @Test(dataProvider = "mapLocationSelectionData")
     public void showOnMapTest(String city) {
         new HomePage(driver)
                 .clickAdvancedSearchButton()
