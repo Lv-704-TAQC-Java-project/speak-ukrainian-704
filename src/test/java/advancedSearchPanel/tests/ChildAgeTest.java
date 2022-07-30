@@ -8,12 +8,13 @@ import pages.clubs.AdvancedSearchPanelComponent;
 import pages.clubs.ClubsPage;
 import pages.clubs.ExpandedCardComponent;
 import pages.clubs.card.components.CardComponent;
+import runners.BaseTestOneWindowRunner;
 import runners.BaseTestOpenAdvancedSearch;
 import runners.BaseTestRunner;
 import runners.BaseTestRunnerWithOpenAdvancedSearch;
 
 
-public class ChildAgeTest extends BaseTestRunnerWithOpenAdvancedSearch {
+public class ChildAgeTest extends BaseTestOpenAdvancedSearch {
     @DataProvider(name = "childAge")
     public Object[][] childAgeData() {
         return new Object[][]{
