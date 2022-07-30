@@ -15,7 +15,7 @@ import runners.BaseTestRunnerWithOpenAdvancedSearch;
 
 public class ChildAgeTest extends BaseTestRunnerWithOpenAdvancedSearch {
     @DataProvider(name = "childAge")
-    public Object[][] locationSelectionData() {
+    public Object[][] childAgeData() {
         return new Object[][]{
                 {3},
                 {2},
