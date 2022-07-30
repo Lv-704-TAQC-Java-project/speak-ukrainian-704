@@ -87,9 +87,10 @@ public class HeaderComponent extends BasePage {
         getProfileMenuButton().click();
         return getAdminProfileMenuComponent();
     }
-    public HeaderComponent showOnMapButtonClick(){
+    public MapLocationComponent showOnMapButtonClick(){
         getShowOnMapButton().click();
-        return this;
+        //sleep(1000);
+        return new MapLocationComponent(driver);
     }
     public PopupMessageComponent getPopupMessageComponent() {
         if (popupMessageComponent == null) {

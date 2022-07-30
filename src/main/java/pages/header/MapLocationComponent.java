@@ -24,29 +24,22 @@ public class MapLocationComponent extends BasePage {
         }
         return locationMenuButton;
     }
-
+    public WebElement getMapLocationLinkByCityName(String city) {
+        driver.findElements(By.xpath("//div[contains(@class, 'ant-select-selector') and not(contains(@class, 'hidden'))]//li[contains(@class, 'dropdown-menu-item')]"));
+        return driver.findElement(By.xpath(String.format("//span[contains(@class, 'ant-select-selection-search') and contains(text(), '%s')]", city)));
+    }
+    public void selectMapLocationByCity(String city) {
+        getMapLocationLinkByCityName(city).click();
+        waitVisibilityOfElement(By.xpath("//div[contains(@class, 'selectBlock')]"));
+        try {
+            waitForTextPresentInElement(new ClubsPage(driver).getHeaderTitle(), city);
+        } catch (TimeoutException ignored) {}
+    }
     public WebElement getLocationMenu() {
         if (locationMenu == null) {
             locationMenu = driver.findElement(By.xpath("//button[@class= 'ant-btn ant-btn-default flooded-button show-map-button' and contains(@class, 'dropdown')]"));
         }
         return locationMenu;
     }
-    public WebElement getLocationLinkByCityName(String city) {
-        driver.findElements(By.xpath("//div[contains(@class, 'ant-dropdown-show-arrow') and not(contains(@class, 'hidden'))]//li[contains(@class, 'dropdown-menu-item')]"));
-        return driver.findElement(By.xpath(String.format("//span[contains(@class, 'title-content') and contains(text(), '%s')]", city)));
-    }
 
-
-    public void selectLocationByCity(String city) {
-        getLocationLinkByCityName(city).click();
-        waitVisibilityOfElement(By.xpath("//div[contains(@class, 'trigger city')]"));
-        try {
-            waitForTextPresentInElement(new ClubsPage(driver).getHeaderTitle(), city);
-        } catch (TimeoutException ignored) {}
-    }
-
-    public MapLocationComponent clickLocationMenuButton() {
-        getMapLocationMenuButton().click();
-        return this;
-    }
 }

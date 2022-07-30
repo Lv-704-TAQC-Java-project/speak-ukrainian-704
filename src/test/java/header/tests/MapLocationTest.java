@@ -15,8 +15,8 @@ import java.util.List;
 
 public class MapLocationTest extends BaseTestRunner {
 
-    @DataProvider(name = "locationSelectionData")
-    public Object[][] locationSelectionData() {
+    @DataProvider(name = "mapLocationSelectionData")
+    public Object[][] mapLocationSelectionData() {
         return new Object[][]{
                 {"Київ"},
                 {"Харків"},
@@ -41,14 +41,12 @@ public class MapLocationTest extends BaseTestRunner {
     }
 
     @Test
-    public void showOnMapTest() {
+    public void showOnMapTest(String city) {
         new HomePage(driver)
                 .clickAdvancedSearchButton()
                 .getHeader()
-                .showOnMapButtonClick();
-       /*         .getLocationComponent()
-                .clickLocationMenuButton()
-                .selectLocationByCity(city);
+                .showOnMapButtonClick()
+                .selectMapLocationByCity(city);
 
         System.out.println(city);
 
@@ -71,6 +69,6 @@ public class MapLocationTest extends BaseTestRunner {
                         String.format("Club address '%s' does not contain searched city %s.", club.getAddress().getText(), city));
             }
         }
-        softAssert.assertAll();*/
+        softAssert.assertAll();
     }
 }
