@@ -18,8 +18,8 @@ public class MapLocationTest extends BaseTestRunner {
     @DataProvider(name = "mapLocationSelectionData")
     public Object[][] mapLocationSelectionData() {
         return new Object[][]{
-                {"Київ"},
                 {"Харків"},
+                {"Київ"},
                 {"Дніпро"},
                 {"Одеса"},
                 {"Запоріжжя"},

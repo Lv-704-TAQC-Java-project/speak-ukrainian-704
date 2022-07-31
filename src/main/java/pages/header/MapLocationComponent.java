@@ -28,7 +28,7 @@ public class MapLocationComponent extends BasePage {
     public WebElement getMapLocationLinkByCityName(String city) {
         getMapLocationMenuButton().click();
         driver.findElements(By.xpath("//div[contains(@class, 'selector') and not(contains(@class, 'hidden'))]//li[contains(@class, 'dropdown-menu-item')]"));
-        return driver.findElement(By.xpath(String.format("//span[contains(@class, 'ant-select-selection-item') and contains(text(), '%s')]", city)));
+        return driver.findElement(By.xpath(String.format("//div[contains(@class, 'select-item') and contains(@title, '%s')]", city)));
     }
     public void selectMapLocationByCity(String city) {
         waitVisibilityOfElement(By.xpath("//input[@id='mapCitiesList']/ancestor::div[@class='ant-select-selector']"));
