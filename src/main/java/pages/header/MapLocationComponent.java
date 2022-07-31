@@ -20,19 +20,23 @@ public class MapLocationComponent extends BasePage {
 
     public WebElement getMapLocationMenuButton() {
         if (locationMenuButton == null) {
-            locationMenuButton = driver.findElement(By.xpath("//div[contains(@class, 'city') and contains(@class, 'dropdown')]"));
+            locationMenuButton = driver.findElement(By.xpath("//input[@id='mapCitiesList']/ancestor::div[@class='ant-select-selector']"));
         }
         return locationMenuButton;
     }
+
+
+
     public WebElement getMapLocationLinkByCityName(String city) {
-        driver.findElements(By.xpath("//div[contains(@class, 'ant-select-selector') and not(contains(@class, 'hidden'))]//li[contains(@class, 'dropdown-menu-item')]"));
-        return driver.findElement(By.xpath(String.format("//span[contains(@class, 'ant-select-selection-search') and contains(text(), '%s')]", city)));
+        getMapLocationMenuButton().click();
+        driver.findElements(By.xpath("//div[contains(@class, 'selector') and not(contains(@class, 'hidden'))]//li[contains(@class, 'dropdown-menu-item')]"));
+        return driver.findElement(By.xpath(String.format("//span[contains(@class, 'ant-select-selection-item') and contains(text(), '%s')]", city)));
     }
     public void selectMapLocationByCity(String city) {
         getMapLocationLinkByCityName(city).click();
-        waitVisibilityOfElement(By.xpath("//div[contains(@class, 'selectBlock')]"));
+        waitVisibilityOfElement(By.xpath("//input[@id='mapCitiesList']/ancestor::div[@class='ant-select-selector']"));
         try {
-            waitForTextPresentInElement(new ClubsPage(driver).getHeaderTitle(), city);
+            waitForTextPresentInElement(new ClubsPage(driver).getMapHeaderTitle(), city);
         } catch (TimeoutException ignored) {}
     }
     public WebElement getLocationMenu() {
