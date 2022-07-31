@@ -21,14 +21,6 @@ public class LocationTest extends BaseTestOneWindowRunner {
                 {"Дніпро"},
                 {"Одеса"},
                 {"Запоріжжя"},
-//                {"Кропивницький"},
-//                {"Херсон"},
-//                {"Миколаїв"},
-//                {"Суми"},
-//                {"Маріуполь"},
-//                {"Чернігів"},
-//                {"Полтава"},
-//                {"Кременчук"},
                 {"Черкаси"},
                 {"Львів"},
                 {"Рівне"},
@@ -52,8 +44,6 @@ public class LocationTest extends BaseTestOneWindowRunner {
                 .getLocationComponent()
                 .clickLocationMenuButton()
                 .selectLocationByCity(city);
-
-        System.out.println(city);
 
         ClubsPage clubsPage = new ClubsPage(driver);
         String headerText = clubsPage.headerTitleText();
