@@ -1,9 +1,7 @@
 package pages.header;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+
 import java.util.List;
 import pages.BasePage;
 import pages.clubs.ClubsPage;
@@ -33,8 +31,9 @@ public class MapLocationComponent extends BasePage {
         return driver.findElement(By.xpath(String.format("//span[contains(@class, 'ant-select-selection-item') and contains(text(), '%s')]", city)));
     }
     public void selectMapLocationByCity(String city) {
-        getMapLocationLinkByCityName(city).click();
         waitVisibilityOfElement(By.xpath("//input[@id='mapCitiesList']/ancestor::div[@class='ant-select-selector']"));
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click();", getMapLocationLinkByCityName(city));
         try {
             waitForTextPresentInElement(new ClubsPage(driver).getMapHeaderTitle(), city);
         } catch (TimeoutException ignored) {}

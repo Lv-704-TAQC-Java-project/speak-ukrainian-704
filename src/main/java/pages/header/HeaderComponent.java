@@ -30,17 +30,17 @@ public class HeaderComponent extends BasePage {
         }
         return locationComponent;
     }
+
     public MapLocationComponent getMapLocationComponent() {
         if (mapLocationComponent == null) {
             mapLocationComponent = new MapLocationComponent(driver);
         }
         return mapLocationComponent;
     }
+
     public WebElement getShowOnMapButton() {
-        if (showOnMapButton == null) {
-            waitVisibilityOfElement(By.xpath("//span[contains(text(), 'Показати на мапі')]/parent::button"));
-            showOnMapButton = driver.findElement(By.xpath("//span[contains(text(), 'Показати на мапі')]/parent::button"));
-        }
+        waitVisibilityOfElement(By.xpath("//span[contains(text(), 'Показати на мапі')]/parent::button"));
+        showOnMapButton = driver.findElement(By.xpath("//span[contains(text(), 'Показати на мапі')]/parent::button"));
         return showOnMapButton;
     }
 
@@ -66,7 +66,7 @@ public class HeaderComponent extends BasePage {
         return profileMenuButton;
     }
 
-    public WebElement getUserIdentity(){
+    public WebElement getUserIdentity() {
         if (imageUserComponent == null) {
             imageUserComponent = driver.findElement(By.xpath("//span[@aria-label='user']"));
         }
@@ -87,11 +87,13 @@ public class HeaderComponent extends BasePage {
         getProfileMenuButton().click();
         return getAdminProfileMenuComponent();
     }
-    public MapLocationComponent showOnMapButtonClick(){
+
+    public MapLocationComponent showOnMapButtonClick() {
         getShowOnMapButton().click();
         //sleep(1000);
         return new MapLocationComponent(driver);
     }
+
     public PopupMessageComponent getPopupMessageComponent() {
         if (popupMessageComponent == null) {
             popupMessageComponent = new PopupMessageComponent(driver);
