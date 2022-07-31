@@ -1,0 +1,16 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "danko_maksym">
+    <test name = "danko_maksym_tests">
+        <classes>
+            <class name="header.tests.HeaderNavigationTest"/>
+            <class name="header.tests.LocationTest"/>
+            <class name="header.tests.LocationExtensiveTest"/>
+            <class name="login.tests.LoginValidDataTest"/>
+            <class name="login.tests.LoginInvalidDataTest"/>
+            <class name="login.tests.LoginInputFieldsBorderTest"/>
+            <class name="advancedSearchPanel.tests.AdvancedSearchTest"/>
+        </classes>
+    </test>
+</suite>
