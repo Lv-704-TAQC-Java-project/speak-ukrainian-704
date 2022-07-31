@@ -74,6 +74,7 @@ public class CardComponent extends BasePage {
     }
 
     public WebElement getAvailableOnline() {
+        waitVisibilityOfElement(By.xpath("//div[contains(@class, 'card-body')]"), Duration.ofSeconds(2));
         availableOnline = cardBody.findElement(By.xpath("//div[contains(@class, 'club-online')]"));
         return availableOnline;
     }

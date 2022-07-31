@@ -18,7 +18,8 @@ public class IsAvailableOnlineClubTest extends BaseTestRunner {
         SoftAssert softAssert = new SoftAssert();
         for (CardComponent card : new ClubsPage(driver).getCards()) {
             softAssert.assertTrue(card.isClubAvailableOnline(),
-                    String.format("%s is not available online", card.getTextCardName()));
+                    String.format("%s is not available online",
+                            card.getTextCardName()));
         }
         softAssert.assertAll();
     }
