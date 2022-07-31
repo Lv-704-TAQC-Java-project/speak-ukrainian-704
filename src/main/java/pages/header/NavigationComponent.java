@@ -1,6 +1,7 @@
 package pages.header;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.*;
@@ -54,6 +55,11 @@ public class NavigationComponent extends BasePage {
     public WebElement getClubsLinkWrapperWithAttributeValue(String attribute, String value) {
         waitForAttributeValueWithJS(getClubsLinkWrapper(), attribute, value);
         return driver.findElement(By.xpath("//a[contains(@href, 'clubs')]/parent::span"));
+    }
+
+    public String getPropertyValueOfPseudoElement(WebElement element, String pseudoElement, String propertyValue) {
+        return ((JavascriptExecutor) driver)
+                .executeScript(String.format("return window.getComputedStyle(arguments[0], '%s').getPropertyValue('%s');", pseudoElement, propertyValue), element).toString();
     }
 
     public WebElement getChallengeBtn() {
