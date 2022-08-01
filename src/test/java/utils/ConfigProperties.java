@@ -8,7 +8,6 @@ public class ConfigProperties {
     private final Properties properties;
 
     public ConfigProperties() {
-
         properties = new Properties();
         try {
             FileInputStream fileInputStream = new FileInputStream("src/test/resources/config.properties");

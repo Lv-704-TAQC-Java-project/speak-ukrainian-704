@@ -8,7 +8,7 @@ import pages.HomePage;
 import pages.header.profileMenuGuest.LoginModalComponent;
 
 
-public class LoginFieldBorderTest extends BaseTestOneWindowRunner {
+public class LoginInputFieldsBorderTest extends BaseTestOneWindowRunner {
 
     @DataProvider(name = "loginInputFieldsBordersTestData")
     public Object[][] loginInputFieldsBordersTestData() {
