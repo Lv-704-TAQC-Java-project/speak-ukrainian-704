@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "Suite1">
+
+    <test name = "RegionAndMetroStationCentersTest">
+        <classes>
+            <class name = "advancedSearchPanel.tests.RegionAndMetroStationCentersTest" />
+        </classes>
+    </test>
+
+    <test name = "RegionAndMetroStationClubsTest">
+        <classes>
+            <class name = "advancedSearchPanel.tests.RegionAndMetroStationClubsTest" />
+        </classes>
+    </test>
+
+    <test name = "PageWithHeaderMenuTest">
+        <classes>
+            <class name = "header.tests.PageWithHeaderMenuTest" />
+        </classes>
+    </test>
+
+    <test name = "AdminProfileMenuTest">
+        <classes>
+            <class name = "login.tests.AdminProfileMenuTest" />
+        </classes>
+    </test>
+
+</suite>
