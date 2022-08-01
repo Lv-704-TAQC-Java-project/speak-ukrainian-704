@@ -3,19 +3,17 @@ package advancedSearchPanel.tests;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.HomePage;
 import pages.clubs.AdvancedSearchPanelComponent;
 import pages.clubs.ClubsPage;
 import pages.clubs.ExpandedCardComponent;
 import pages.clubs.card.components.CardComponent;
 import runners.BaseTestOpenAdvancedSearch;
-import runners.BaseTestRunner;
-import runners.BaseTestRunnerWithOpenAdvancedSearch;
 
 
-public class ChildAgeTest extends BaseTestRunnerWithOpenAdvancedSearch {
+
+public class ChildAgeTest extends BaseTestOpenAdvancedSearch {
     @DataProvider(name = "childAge")
-    public Object[][] locationSelectionData() {
+    public Object[][] childAgeData() {
         return new Object[][]{
                 {3},
                 {2},

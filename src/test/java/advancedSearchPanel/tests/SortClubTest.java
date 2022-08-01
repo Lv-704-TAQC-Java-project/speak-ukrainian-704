@@ -23,7 +23,7 @@ public class SortClubTest extends BaseTestRunner {
                 .blockViewButtonClick();
 
         boolean isDisplayed = new ClubsPage(driver).getBlockCardContainer().isDisplayed();
-        Assert.assertTrue(isDisplayed);
+        Assert.assertTrue(isDisplayed, "Clubs are not displayed in block type view");
     }
 
     @Test
@@ -35,7 +35,7 @@ public class SortClubTest extends BaseTestRunner {
                 .listViewButtonClick();
 
         boolean isDisplayed = new ClubsPage(driver).getWideCardContainer().isDisplayed();
-        Assert.assertTrue(isDisplayed);
+        Assert.assertTrue(isDisplayed, "Clubs are not displayed in list type view");
     }
 
     @Test
@@ -54,7 +54,7 @@ public class SortClubTest extends BaseTestRunner {
         List<String> cardNamesText = new ArrayList<>();
         for (int i = 0; i < clubsPage.getCards().size(); i++) {
             cardNamesText.add(i, clubsPage.getCards().get(i).getTextCardName().toUpperCase());
-            softAssert.assertTrue(cardNamesText.get(i).startsWith("A"));
+            softAssert.assertTrue(cardNamesText.get(i).startsWith("A"), "Club name doesn't start with A");
             System.out.println(cardNamesText.get(i));
         }
 
@@ -83,7 +83,6 @@ public class SortClubTest extends BaseTestRunner {
         List<String> cardNamesText = new ArrayList<>();
         for (int i = 0; i < clubsPage.getCards().size(); i++) {
             cardNamesText.add(i, clubsPage.getCards().get(i).getTextCardName().toUpperCase());
-//            System.out.println(cardNamesText.get(i));
         }
 
         softAssert.assertEquals(cardNamesText.toString(), cardNamesDECExpected.toString());
@@ -107,7 +106,7 @@ public class SortClubTest extends BaseTestRunner {
         }
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(starsFull.size(), 5);
+        softAssert.assertEquals(starsFull.size(), 5, "The amount of full stars doesn't equal 5");
         softAssert.assertAll();
     }
 
@@ -126,7 +125,7 @@ public class SortClubTest extends BaseTestRunner {
         starsZero.addAll(clubsPage.getCards().get(0).getStarRatingZeroList());
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(starsZero.size(), 5);
+        softAssert.assertEquals(starsZero.size(), 5, "The amount of zero stars doesn't equal 5");
         softAssert.assertAll();
     }
 

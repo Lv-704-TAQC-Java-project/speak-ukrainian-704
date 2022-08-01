@@ -5,7 +5,6 @@ import pages.BasePage;
 import pages.clubs.card.components.BlockCardComponent;
 import pages.clubs.card.components.CardComponent;
 import pages.clubs.card.components.CenterComponent;
-import pages.clubs.card.components.WideCardComponent;
 import pages.header.HeaderComponent;
 
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ public class ClubsPage extends BasePage {
     private WebElement blockCardContainer;
     private WebElement listCardContainer;
     private SortClubComponent sortClubComponent;
-    private BlockCardComponent cardComponent;
     private AdvancedSearchPanelComponent advancedSearchPanelComponent;
     private ExpandedCardComponent expandedCardComponent;
     private WebElement advancedSearchButton;
@@ -25,8 +23,6 @@ public class ClubsPage extends BasePage {
     private WebElement pageIdentifier;
     private WebElement headerTitle;
     private List<CardComponent> cards;
-    private List<BlockCardComponent> blockCards;
-    private List<WideCardComponent> wideCards;
     private List<CenterComponent> centers;
     private List<WebElement> paginationComponents;
 
@@ -146,7 +142,6 @@ public class ClubsPage extends BasePage {
     public WebElement getBlockCardContainer() {
         if (blockCardContainer == null) {
             blockCardContainer = driver.findElement(By.xpath("//div[@class = 'content-clubs-list content-clubs-block']"));
-//            blockCardContainer.findElement(By.xpath("//div/div[@class = 'ant-card ant-card-bordered card']"));
         }
         return blockCardContainer;
     }
@@ -154,7 +149,6 @@ public class ClubsPage extends BasePage {
     public WebElement getWideCardContainer() {
         if (listCardContainer == null) {
             listCardContainer = driver.findElement(By.xpath("//div[@class = 'content-clubs-list false']"));
-//            listCardContainer.findElement(By.xpath("//div/div[@class = 'ant-card ant-card-bordered card list-rectangle-item']"));
         }
         return listCardContainer;
     }

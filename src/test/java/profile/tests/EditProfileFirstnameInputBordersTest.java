@@ -1,4 +1,4 @@
-package login.tests;
+package profile.tests;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -26,7 +26,7 @@ public class EditProfileFirstnameInputBordersTest extends BaseTestRunnerWithLogI
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(getBorderColorOfFirstnameWrapper.contains(expectedFirstnameBorderColor),
-                String.format("Border color of email field border is expected to be %s, but was %s.",
+                String.format("Border color of firstname field border is expected to be %s, but was %s.",
                         expectedFirstnameBorderColor, getBorderColorOfFirstnameWrapper));
         softAssert.assertTrue(editProfileModalComponent.getFirstnameErrorText().contains(expectedError));
         softAssert.assertAll();
@@ -53,7 +53,7 @@ public class EditProfileFirstnameInputBordersTest extends BaseTestRunnerWithLogI
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(getBorderColorOfFirstnameWrapper.contains(expectedFirstnameBorderColor),
-                String.format("Border color of email field border is expected to be %s, but was %s.",
+                String.format("Border color of firstname field border is expected to be %s, but was %s.",
                         expectedFirstnameBorderColor, getBorderColorOfFirstnameWrapper));
 
         softAssert.assertAll();

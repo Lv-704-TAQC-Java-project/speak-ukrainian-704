@@ -8,7 +8,7 @@ import pages.HomePage;
 import pages.header.profileMenuGuest.LoginModalComponent;
 
 
-public class LoginMessageTest extends BaseTestOneWindowRunner {
+public class LoginInvalidDataTest extends BaseTestOneWindowRunner {
 
     @DataProvider(name = "invalidLoginData")
     public Object[][] invalidLoginData() {
@@ -33,14 +33,5 @@ public class LoginMessageTest extends BaseTestOneWindowRunner {
         Assert.assertTrue(errorMessageText.contains("невірний"), "Error message doesn't contain key word 'невірний'.");
 
         loginModal.closeLoginModal();
-    }
-
-    @DataProvider(name = "loginInputFieldsBordersTestData")
-    public Object[][] loginInputFieldsBordersTestData() {
-        return new Object[][]{
-                {"", "", true, true},
-                {"some", "a", true, false},
-                {configProps.getUserEmail(), configProps.getUserPassword(), false, false}
-        };
     }
 }

@@ -12,13 +12,13 @@ import java.util.List;
 public class CardComponent extends BasePage {
 
     protected WebElement cardBody;
-    private WebElement cardTitle;
+    protected WebElement cardTitle;
     protected WebElement cardName;
     protected WebElement address;
     protected List<WebElement> starRatingZeroList;
     protected List<WebElement> starRatingFullList;
     protected WebElement availableOnline;
-    private List<WebElement> listOfCategoriesOnCard;
+    protected List<WebElement> listOfCategoriesOnCard;
 
 
     public CardComponent(WebDriver driver) {
@@ -30,16 +30,16 @@ public class CardComponent extends BasePage {
         this.cardBody = cardBody;
     }
 
+    public WebElement getCardBody() {
+        return cardBody;
+    }
 
     public WebElement getCardTitle() {
-        if (cardTitle == null){
+        if (cardTitle == null) {
             waitVisibilityOfElements(cardBody.findElements(By.xpath(".//div[@class='title']")));
             cardTitle = cardBody.findElement(By.xpath(".//div[@class='title']"));
         }
         return cardTitle;
-    }
-    public WebElement getCardBody() {
-        return cardBody;
     }
 
     public WebElement getCardName() {
@@ -74,6 +74,7 @@ public class CardComponent extends BasePage {
     }
 
     public WebElement getAvailableOnline() {
+        waitVisibilityOfElement(By.xpath("//div[contains(@class, 'card-body')]"), Duration.ofSeconds(2));
         availableOnline = cardBody.findElement(By.xpath("//div[contains(@class, 'club-online')]"));
         return availableOnline;
     }

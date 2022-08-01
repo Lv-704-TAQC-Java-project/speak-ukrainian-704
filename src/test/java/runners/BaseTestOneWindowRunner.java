@@ -42,5 +42,12 @@ public class BaseTestOneWindowRunner {
             driver.quit();
         }
     }
+
+    @AfterSuite
+    public void tearDownAfterSuite() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 }
 
