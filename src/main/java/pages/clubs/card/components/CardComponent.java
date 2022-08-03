@@ -95,5 +95,4 @@ public class CardComponent extends BasePage {
     public boolean isClubAvailableOnline() {
         return getAvailableOnline().isDisplayed();
     }
-
 }

@@ -30,7 +30,7 @@ public class CategoriesTest extends BaseTestOpenAdvancedSearch {
     }
 
     @Test(dataProvider = "categoriesChecklist")
-    public void checkIsAllCategoriesIsAvailableOnCard(String categoryName) {
+    public void checkIsAllCategoriesAreAvailableOnCard(String categoryName) {
         ClubsPage clubsPage = new ClubsPage(driver);
         AdvancedSearchPanelComponent advancedSearchPanelComponent = clubsPage.getAdvancedSearchPanelComponent();
 
@@ -42,7 +42,8 @@ public class CategoriesTest extends BaseTestOpenAdvancedSearch {
 
         for (CardComponent card : clubsPage.getCards()) {
             card.cardTitleClick();
-            softAssert.assertTrue(expandedCardComponent.getListOfNamesOfCategories().contains(categoryName));
+            softAssert.assertTrue(expandedCardComponent.getListOfNamesOfCategories().contains(categoryName),
+                    String.format("Category '%s' is not available in %s", categoryName, card.getTextCardName()));
             expandedCardComponent.exitButtonClick();
         }
         advancedSearchPanelComponent.categoryClick(categoryName);

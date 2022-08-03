@@ -47,7 +47,8 @@ public class ExpandedCardComponent extends BasePage {
 
     public List<WebElement> getListOfCategories() {
         waitVisibilityOfElement(By.xpath("//div[@class='container']//span[@class='name']"), Duration.ofSeconds(2));
-        return driver.findElements(By.xpath("//div[@class='container']//span[@class='name']"));
+        listOfCategories = driver.findElements(By.xpath("//div[@class='container']//span[@class='name']"));
+        return listOfCategories;
     }
 
     public List<String> getListOfNamesOfCategories(){

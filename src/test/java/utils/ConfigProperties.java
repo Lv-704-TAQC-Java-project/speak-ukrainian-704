@@ -12,7 +12,6 @@ public class ConfigProperties {
         try {
             FileInputStream fileInputStream = new FileInputStream("src/test/resources/config.properties");
             properties.load(fileInputStream);
-
         } catch (IOException e) {
             e.printStackTrace();
         }

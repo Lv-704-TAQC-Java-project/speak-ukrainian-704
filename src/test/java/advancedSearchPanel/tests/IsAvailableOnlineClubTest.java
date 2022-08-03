@@ -9,7 +9,7 @@ import runners.BaseTestRunner;
 
 public class IsAvailableOnlineClubTest extends BaseTestRunner {
     @Test
-    public void checkIsAllClubsIsAvailableOnline() {
+    public void checkIsAllClubsAreAvailableOnline() {
         new HomePage(driver)
                 .clickAdvancedSearchButton()
                 .getAdvancedSearchPanelComponent()
