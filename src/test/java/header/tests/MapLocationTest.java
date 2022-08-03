@@ -3,47 +3,37 @@ package header.tests;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import pages.HomePage;
 import pages.clubs.ClubsPage;
 import pages.clubs.card.components.CardComponent;
 import pages.header.HeaderComponent;
 import runners.BaseTestOneWindowRunner;
+import runners.BaseTestRunner;
 
 import java.util.List;
 
 
-public class LocationTest extends BaseTestOneWindowRunner {
+public class MapLocationTest extends BaseTestRunner {
 
-    @DataProvider(name = "locationSelectionData")
-    public Object[][] locationSelectionData() {
+    @DataProvider(name = "mapLocationSelectionData")
+    public Object[][] mapLocationSelectionData() {
         return new Object[][]{
-                {"Київ"},
                 {"Харків"},
+                {"Київ"},
                 {"Дніпро"},
-                {"Одеса"},
-                {"Запоріжжя"},
-                {"Черкаси"},
-                {"Львів"},
-                {"Рівне"},
-                {"Луцьк"},
-                {"Солонка"},
-                {"Бібрка"},
-                {"Винники"},
-                {"Тернопіль"},
-                {"Гельмязов"},
-                {"Каленики"},
-                {"Днепр"},
-                {"Новомосковськ"},
-                {"Знаменовка"},
-                {"Затока"}
+                {"Одеса"}
         };
     }
 
-    @Test(dataProvider = "locationSelectionData")
-    public void headerLocationSelectionTest(String city) {
-        new HeaderComponent(driver)
-                .getLocationComponent()
-                .clickLocationMenuButton()
-                .selectLocationByCity(city);
+    @Test(dataProvider = "mapLocationSelectionData")
+    public void showOnMapTest(String city) {
+        new HomePage(driver)
+                .clickAdvancedSearchButton()
+                .getHeader()
+                .showOnMapButtonClick()
+                .selectMapLocationByCity(city);
+
+        System.out.println(city);
 
         ClubsPage clubsPage = new ClubsPage(driver);
         String headerText = clubsPage.headerTitleText();

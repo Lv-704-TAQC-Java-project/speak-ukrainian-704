@@ -53,6 +53,9 @@ public class ClubsPage extends BasePage {
     public WebElement getHeaderTitle() {
         return driver.findElement(By.xpath("//h2[@class='city-name']"));
     }
+    public WebElement getMapHeaderTitle() {
+        return driver.findElement(By.xpath("//div[@class='club-item']"));
+    }
 
     public String headerTitleText() {
         return getHeaderTitle().getText();
